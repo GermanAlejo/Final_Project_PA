@@ -44,6 +44,10 @@
                         <label for="inputNumber">Phone number</label>
                         <input type="text" name="phoneNumber" class="form-control">
                     </div>
+                    <div class="col-md-6">
+                        <label>Card Number</label>
+                        <input type="text" name="cardNumber" class="form-control">
+                    </div>
                     
                 </div>
 

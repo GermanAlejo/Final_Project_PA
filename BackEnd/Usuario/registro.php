@@ -2,7 +2,6 @@
 
 include_once '../../libraries.php';
 
-
 //This function contains all php code for the database connection and insertion of a user
 function registroForm() {
     if (isset($_POST['send'])) {
@@ -37,6 +36,13 @@ function registroForm() {
             $error[] = "Phone Number not valid";
         }
 
+        //optional values bank card is optional
+        if (isset($formInput['cardNumber'])) {
+            $cardNumber = $formInput['cardNumber'];
+        } else {
+            $cardNumber = "";
+        }
+
         //print_r($error);
         //filtered array
         $formInput = filter_input_array(INPUT_POST, $arraySanitize);
@@ -47,8 +53,8 @@ function registroForm() {
         $userName = $formInput['email']; //username is email
         $password = $formInput['password'];
         $phoneNumber = $formInput['phoneNumber'];
+        $cardNumber = $formInput['cardNumber'];
 
-        
 
         //hash the password
         $hashedPass = password_hash($password, PASSWORD_DEFAULT);
@@ -77,6 +83,17 @@ function registroForm() {
             $user_id = mysqli_insert_id($con);
             //Now we need to create the relation to the client table
 
+            //sql sentence for inserting client with user_id
+            $sqlClient= "INSERT INTO cliente (usuario_id, tarjetaCredito) VALUES ("
+                    . "(' " . $user_id . "', '" . $cardNumber . "')";
+            
+            $query2 = mysqli_query($con, $sqlClient);
+            
+            if(!$query2){
+                $error[] = "Error inserting card number";
+            }
+            
+            //create session values
             $_SESSION["user"] = $userName;
             $_SESSION["user_id"] = $user_id;
 
