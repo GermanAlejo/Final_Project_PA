@@ -54,15 +54,23 @@ function borrarForo($idForo) {
 //devolvemos el resultado,si termino bien o mal la creacion
     return $resultado;
 }
-
-        
-        function modifForo($idForo,$foroTitulo,$foroEtiqueta) {
+"UPDATE foro SET titulo = ?, etiqueta = ? WHERE foro.id = ?";
+function modifForo($idForo, $foroTitulo, $foroEtiqueta) {
 //obtenemos la conexion con la base de datos
     $con = dbConnection();
 //creamos la consulta
-    $borrar = "UPDATE foro SET titulo = ?, etiqueta = ? WHERE foro.id = ?";
+    $modificar = "UPDATE foro SET";
+    if($foroTitulo!==""){
+        $modificar+="";
+    }
+    
+    
+    
+    
+    
+    $modificar1 = "UPDATE foro SET titulo = ?, etiqueta = ? WHERE foro.id = ?";
     $stmt = mysqli_stmt_init($con);
-    mysqli_stmt_prepare($stmt, $borrar);
+    mysqli_stmt_prepare($stmt, $modificar);
 //metemos la variable a la consulta
     mysqli_stmt_bind_param($stmt, "s", $idForo);
 //ejecutamos la consulta
