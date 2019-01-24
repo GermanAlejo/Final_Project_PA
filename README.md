@@ -1,4 +1,4 @@
-# Final_Project_PA  #
+# Final_Project_PA
 Final project for the course PA of university Pablo de Olavide
 
 TODO:
@@ -28,3 +28,81 @@ Pantallas:
 -Discusion: pagina para cada foro donde se monstraran los comentarios
 -panel de adm
 -res-viajes: al realizar una busqueda de viajes en esta pagina se mostrara el resultado de la busqueda mostrando los viajes
+
+
+Codigo pa despues:
+<div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="hasCar" onclick="showCarForm('hasCar', 'carValuesID', null, 'on')" unchecked>
+                        <label class="form-check-label" for="gridCheck">
+                            Do you own a car?
+                        </label>
+                    </div>
+                </div>
+                <div id="carValuesID" class="form-row" style="display: none">
+                    <div class="form-group col-md-6">
+                        <label for="inputCard">Plate Number</label>
+                        <input type="text" name="plateNumber" class="form-control">
+
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputCard">Car slots</label>
+
+                        <input type="text" name="slots" class="form-control">
+
+                    </div>
+                </div>
+				
+				
+				
+				//optional values
+        if (isset($formInput['cardNumber'])) {
+            $cardNumber = $formInput['cardNumber'];
+        } else {
+            $cardNumber = "";
+        }
+        if (isset($_POST['plateNumber'])) {
+            $plateNumber = $formInput['plateNumber'];
+            $rol = "conductor"; //set user rol to driver in case he has a vehicle
+        } else {
+            $rol = "cliente";
+        }
+        if (isset($_POST['slots'])) {
+            $carSlots = $formInput['slots'];
+        } else {
+            $carSlots = false;
+        }
+		
+		
+		
+		
+		
+        //number of slots in the car are optional thus we check before that they are filled
+        if (isset($_POST['slots']) && !empty($_POST['slots'])) {
+            if (!filter_var($_POST['slots'], FILTER_VALIDATE_INT)) {
+                $error[] = "Slots not valid";
+            }
+        }
+		
+		
+		
+		
+		
+		
+		echo "slots: " . $carSlots;
+            //if slots is true means theres a number thus a driver and a car to insert
+            if ($carSlots) {
+                //sql sentence for inserting vehicle
+                $sqlVehicle = "INSERT INTO vehiculo (Matricula, Plazas, Propietario_id)"
+                        . " VALUES ('" . $plateNumber . "', '" . $carSlots . "', '" . $user_id
+                        . "')";
+
+                //insert vehicle into DB
+                $query2 = mysqli_query($con, $sqlVehicle);
+
+                if (!$query2) {
+                    $error[] = "Vehicle already registered";
+                }
+            } else {
+                $error[] = "Error iserting vehicle";
+            }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link href="css/res-viajes.css" rel="stylesheet">
-    <?php include '../libraries.php'; ?>
+    <?php include '../../libraries.php'; ?>
     <?php include_once '../header.php'; ?>
 </head>
 
