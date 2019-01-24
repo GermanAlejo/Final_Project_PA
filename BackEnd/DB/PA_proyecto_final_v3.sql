@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-01-2019 a las 19:47:39
+-- Tiempo de generación: 24-01-2019 a las 20:29:36
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -39,7 +39,6 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`usuario_id`) VALUES
-(1),
 (1);
 
 -- --------------------------------------------------------
@@ -58,7 +57,7 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`usuario_id`, `tarjetaCredito`) VALUES
-(1, 153),
+(2, NULL),
 (3, 351515161);
 
 -- --------------------------------------------------------
@@ -116,7 +115,7 @@ CREATE TABLE `mensaje` (
 --
 
 INSERT INTO `mensaje` (`id`, `foro_id`, `autor_id`, `mensaje`) VALUES
-(1, 1, 1, 'hola que tal ');
+(2, 1, 3, 'ASDFGJK');
 
 -- --------------------------------------------------------
 
@@ -133,13 +132,6 @@ CREATE TABLE `promocion` (
   `descripcion` text COLLATE utf8_spanish2_ci NOT NULL,
   `descuento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `promocion`
---
-
-INSERT INTO `promocion` (`id`, `creador_id`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `descuento`) VALUES
-(1, 1, '2019-01-25', '2019-01-30', 'promo', 'promocion de mierda', 10);
 
 -- --------------------------------------------------------
 
@@ -201,7 +193,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `rol_id`, `nombre`, `apellidos`, `correo`, `contrasenha`, `telefono`) VALUES
-(1, 0, 'admin', '', 'admin@admin', 'admin', 0),
+(1, 0, 'admin', '', 'admin@admin', 'admin', NULL),
 (2, 1, 'oscar', 'Gomez Gonzalez', 'oscar@gmail.es', 'oscar', 620988324),
 (3, 1, 'german', 'Alejo Dominguez', 'german@gmail.com', 'german', 620947632);
 
@@ -219,13 +211,6 @@ CREATE TABLE `valoracion` (
   `valoracion` int(3) NOT NULL,
   `comentarios` text COLLATE utf8_spanish2_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `valoracion`
---
-
-INSERT INTO `valoracion` (`id`, `creador_id`, `conductor_id`, `viaje_id`, `valoracion`, `comentarios`) VALUES
-(1, 3, 2, 1, 1, 'el conductor era gay');
 
 -- --------------------------------------------------------
 
@@ -265,13 +250,6 @@ CREATE TABLE `viaje` (
   `descripcion` text COLLATE utf8_spanish2_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Volcado de datos para la tabla `viaje`
---
-
-INSERT INTO `viaje` (`id`, `conductor_id`, `vehiculo_id`, `seguro_id`, `promocion_id`, `origen`, `destino`, `capacidad`, `descripcion`) VALUES
-(1, 1, 'se0866DP', 1, 1, 'sevilla', 'madrid', 2, 'no admito gays');
-
 -- --------------------------------------------------------
 
 --
@@ -284,13 +262,6 @@ CREATE TABLE `viajerosClientes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `viajerosClientes`
---
-
-INSERT INTO `viajerosClientes` (`cliente_id`, `viaje_id`) VALUES
-(3, 1);
-
---
 -- Índices para tablas volcadas
 --
 
@@ -298,7 +269,7 @@ INSERT INTO `viajerosClientes` (`cliente_id`, `viaje_id`) VALUES
 -- Indices de la tabla `admin`
 --
 ALTER TABLE `admin`
-  ADD KEY `usuario_id` (`usuario_id`);
+  ADD KEY `admin_ibfk_1` (`usuario_id`);
 
 --
 -- Indices de la tabla `cliente`
@@ -325,14 +296,14 @@ ALTER TABLE `gestionesForos`
 ALTER TABLE `mensaje`
   ADD PRIMARY KEY (`id`),
   ADD KEY `autor_id` (`autor_id`),
-  ADD KEY `foro_id` (`foro_id`);
+  ADD KEY `mensaje_ibfk_2` (`foro_id`);
 
 --
 -- Indices de la tabla `promocion`
 --
 ALTER TABLE `promocion`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `creador_id` (`creador_id`);
+  ADD KEY `promocion_ibfk_1` (`creador_id`);
 
 --
 -- Indices de la tabla `Rol`
@@ -351,7 +322,7 @@ ALTER TABLE `seguro`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `rol_id` (`rol_id`);
+  ADD KEY `usuario_ibfk_2` (`rol_id`);
 
 --
 -- Indices de la tabla `valoracion`
@@ -401,7 +372,7 @@ ALTER TABLE `foro`
 -- AUTO_INCREMENT de la tabla `mensaje`
 --
 ALTER TABLE `mensaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `promocion`
@@ -441,39 +412,39 @@ ALTER TABLE `viaje`
 -- Filtros para la tabla `admin`
 --
 ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`);
+  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`);
+  ADD CONSTRAINT `cliente_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `gestionesForos`
 --
 ALTER TABLE `gestionesForos`
   ADD CONSTRAINT `gestionesForos_ibfk_1` FOREIGN KEY (`foro_id`) REFERENCES `foro` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `gestionesForos_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `admin` (`usuario_id`);
+  ADD CONSTRAINT `gestionesForos_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `admin` (`usuario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mensaje`
 --
 ALTER TABLE `mensaje`
   ADD CONSTRAINT `mensaje_ibfk_1` FOREIGN KEY (`autor_id`) REFERENCES `cliente` (`usuario_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `mensaje_ibfk_2` FOREIGN KEY (`foro_id`) REFERENCES `foro` (`id`);
+  ADD CONSTRAINT `mensaje_ibfk_2` FOREIGN KEY (`foro_id`) REFERENCES `foro` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `promocion`
 --
 ALTER TABLE `promocion`
-  ADD CONSTRAINT `promocion_ibfk_1` FOREIGN KEY (`creador_id`) REFERENCES `admin` (`usuario_id`);
+  ADD CONSTRAINT `promocion_ibfk_1` FOREIGN KEY (`creador_id`) REFERENCES `admin` (`usuario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `Rol` (`id`);
+  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`rol_id`) REFERENCES `Rol` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `valoracion`
