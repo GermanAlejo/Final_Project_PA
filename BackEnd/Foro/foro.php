@@ -14,7 +14,12 @@ function consultaForo($nomForo) {
     mysqli_stmt_execute($stmt);
     //guardamos el resultado de la consulta
     $resultado = mysqli_stmt_get_result($stmt);
+    //pasamos el resultado de la consulta a un array
     $fila = mysqli_fetch_assoc($resultado);
     //devolvemos el resultado en orden titulo, etiqueta
     return $fila;
+}
+
+function crearForo(){
+    
 }
