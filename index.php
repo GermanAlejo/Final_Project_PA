@@ -9,7 +9,7 @@
         <?php include 'libraries.php'; ?>
     </head>
     <body>
-        <?php include_once 'header.php'; ?>
+        <?php include_once '/FrontEnd/header.php'; ?>
 
         
         <header class="masthead text-white text-center">
