@@ -34,38 +34,46 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row ">
-                                            <div class="col-md-2">
-                                                <img class="user-pic" src="../img/user_icon.jpg" alt="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h4>Driver Name</h4>
-                                                <a href="#">click to check offers & discounts</a>
-                                                <ul class="list-unstyled list-inline">
-                                                    <li class="list-inline-item">Origin</li>
-                                                    <li class="list-inline-item">Destination</li>
-                                                    <li class="list-inline-item">5 Free Seats</li>
-                                                </ul>
-                                            </div>
                                             <div class="col-md-4">
+                                                <img class="user-pic" src="../img/user_icon.jpg" alt=""width="100px">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h4>Driver Name</h4>
+                                                <a href="#">offers & discounts</a>
+                                            </div>
+                                        </div>
+                                        <div class="row ">                                  
+                                            <div class="col-md-4">  
+                                                <ul class="list-unstyled list-inline">
+                                                    <li class="list-inline">Origin:</li>
+                                                    <li class="list-inline">Destination:</li>
+                                                    <li class="list-inline">Distance:</li>
+                                                </ul> 
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-6">   
+
                                                 <h6>3 Free seats</h6>
-                                                <div class="sub-row">
-                                                    <button type="button" class="btn btn-secondary btn-sm btn-block">RESERVE SEAT</button>
-                                                </div>
+                                                <input type="number" name="quantity" min="1" max="5" value="1">
+
+                                                <button type="button" class="btn btn-secondary btn-sm btn-block">RESERVE SEAT</button>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2"></div>
                         </div>
+                        <div class="col-md-2"></div>
                     </div>
-                </section>
             </div>
-            <div class="col-sm-2">
+            </section>
+        </div>
+        <div class="col-sm-2">
 
-            </div>
         </div>
     </div>
+</div>
 
 </body>
 
