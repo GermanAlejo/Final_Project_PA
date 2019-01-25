@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-01-2019 a las 15:13:18
+-- Tiempo de generación: 25-01-2019 a las 16:30:40
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -130,15 +130,16 @@ CREATE TABLE `promocion` (
   `fecha_fin` date NOT NULL,
   `titulo` varchar(21) COLLATE utf8_spanish2_ci NOT NULL,
   `descripcion` text COLLATE utf8_spanish2_ci NOT NULL,
-  `descuento` int(11) NOT NULL
+  `descuento` int(11) NOT NULL,
+  `foto` text COLLATE utf8_spanish2_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `promocion`
 --
 
-INSERT INTO `promocion` (`id`, `creador_id`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `descuento`) VALUES
-(2, 1, '2019-01-25', '2019-01-30', 'promo', 'promo', 10);
+INSERT INTO `promocion` (`id`, `creador_id`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `descuento`, `foto`) VALUES
+(2, 1, '2019-01-25', '2019-01-30', 'promo', 'promo', 10, '');
 
 -- --------------------------------------------------------
 
