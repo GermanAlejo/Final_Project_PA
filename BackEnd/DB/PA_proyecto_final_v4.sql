@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-01-2019 a las 20:29:36
+-- Tiempo de generación: 25-01-2019 a las 15:13:18
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -133,6 +133,13 @@ CREATE TABLE `promocion` (
   `descuento` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `promocion`
+--
+
+INSERT INTO `promocion` (`id`, `creador_id`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `descuento`) VALUES
+(2, 1, '2019-01-25', '2019-01-30', 'promo', 'promo', 10);
+
 -- --------------------------------------------------------
 
 --
@@ -181,6 +188,7 @@ INSERT INTO `seguro` (`n_poliza`, `cobertura`, `importe`, `max_asegurado`) VALUE
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `rol_id` int(1) NOT NULL,
+  `foto` text COLLATE utf8_spanish2_ci,
   `nombre` varchar(16) COLLATE utf8_spanish2_ci NOT NULL,
   `apellidos` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
   `correo` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
@@ -192,10 +200,10 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `rol_id`, `nombre`, `apellidos`, `correo`, `contrasenha`, `telefono`) VALUES
-(1, 0, 'admin', '', 'admin@admin', 'admin', NULL),
-(2, 1, 'oscar', 'Gomez Gonzalez', 'oscar@gmail.es', 'oscar', 620988324),
-(3, 1, 'german', 'Alejo Dominguez', 'german@gmail.com', 'german', 620947632);
+INSERT INTO `usuario` (`id`, `rol_id`, `foto`, `nombre`, `apellidos`, `correo`, `contrasenha`, `telefono`) VALUES
+(1, 0, NULL, 'admin', '', 'admin@admin', 'admin', NULL),
+(2, 1, NULL, 'oscar', 'Gomez Gonzalez', 'oscar@gmail.es', 'oscar', 620988324),
+(3, 1, NULL, 'german', 'Alejo Dominguez', 'german@gmail.com', 'german', 620947632);
 
 -- --------------------------------------------------------
 
@@ -243,12 +251,22 @@ CREATE TABLE `viaje` (
   `conductor_id` int(11) NOT NULL,
   `vehiculo_id` varchar(11) COLLATE utf8_spanish2_ci NOT NULL,
   `seguro_id` int(11) DEFAULT NULL,
-  `promocion_id` int(11) DEFAULT NULL,
   `origen` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
   `destino` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
   `capacidad` int(11) NOT NULL,
-  `descripcion` text COLLATE utf8_spanish2_ci
+  `descripcion` text COLLATE utf8_spanish2_ci,
+  `precio` float NOT NULL,
+  `fecha` date NOT NULL,
+  `hora_salida` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `viaje`
+--
+
+INSERT INTO `viaje` (`id`, `conductor_id`, `vehiculo_id`, `seguro_id`, `origen`, `destino`, `capacidad`, `descripcion`, `precio`, `fecha`, `hora_salida`) VALUES
+(2, 2, 'se0866DP', 1, 'sevilla', 'madrid', 4, NULL, 0, '0000-00-00', '00:00:00'),
+(3, 3, 'se0866DP', 1, 'sevilla', 'madrid', 4, NULL, 23, '2019-01-26', '12:15:00');
 
 -- --------------------------------------------------------
 
@@ -260,6 +278,13 @@ CREATE TABLE `viajerosClientes` (
   `cliente_id` int(11) NOT NULL,
   `viaje_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `viajerosClientes`
+--
+
+INSERT INTO `viajerosClientes` (`cliente_id`, `viaje_id`) VALUES
+(3, 2);
 
 --
 -- Índices para tablas volcadas
@@ -347,7 +372,6 @@ ALTER TABLE `vehiculo`
 ALTER TABLE `viaje`
   ADD PRIMARY KEY (`id`),
   ADD KEY `conductor_id` (`conductor_id`),
-  ADD KEY `promocion_id` (`promocion_id`),
   ADD KEY `seguro_id` (`seguro_id`),
   ADD KEY `viaje_ibfk_4` (`vehiculo_id`);
 
@@ -378,7 +402,7 @@ ALTER TABLE `mensaje`
 -- AUTO_INCREMENT de la tabla `promocion`
 --
 ALTER TABLE `promocion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `seguro`
@@ -396,13 +420,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `valoracion`
 --
 ALTER TABLE `valoracion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `viaje`
 --
 ALTER TABLE `viaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -465,7 +489,6 @@ ALTER TABLE `vehiculo`
 --
 ALTER TABLE `viaje`
   ADD CONSTRAINT `viaje_ibfk_1` FOREIGN KEY (`conductor_id`) REFERENCES `cliente` (`usuario_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `viaje_ibfk_2` FOREIGN KEY (`promocion_id`) REFERENCES `promocion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `viaje_ibfk_3` FOREIGN KEY (`seguro_id`) REFERENCES `seguro` (`n_poliza`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `viaje_ibfk_4` FOREIGN KEY (`vehiculo_id`) REFERENCES `vehiculo` (`matricula`) ON DELETE CASCADE ON UPDATE CASCADE;
 
