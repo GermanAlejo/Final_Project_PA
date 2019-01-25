@@ -54,6 +54,8 @@ function borrarForo($idForo) {
 //devolvemos el resultado,si termino bien o mal la creacion
     return $resultado;
 }
+
+
 "UPDATE foro SET titulo = ?, etiqueta = ? WHERE foro.id = ?";
 function modifForo($idForo, $foroTitulo, $foroEtiqueta) {
 //obtenemos la conexion con la base de datos
@@ -79,4 +81,9 @@ function modifForo($idForo, $foroTitulo, $foroEtiqueta) {
     $resultado = mysqli_stmt_get_result($stmt);
 //devolvemos el resultado,si termino bien o mal la creacion
     return $resultado;
+}
+
+
+function entraForo(){
+    
 }
