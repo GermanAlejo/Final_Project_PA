@@ -4,6 +4,9 @@ include_once '../../libraries.php';
 
 //This function contains all php code for the database connection and insertion of a new user
 function registroForm() {
+    
+    $error[]="";
+    
     if (isset($_POST['send'])) {
         //first we sanitize all inputs 
         //     if (empty($error)) {

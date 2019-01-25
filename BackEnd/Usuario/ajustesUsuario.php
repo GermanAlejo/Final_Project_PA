@@ -11,6 +11,8 @@ include_once '../../libraries.php';
 //this function insert a new vehicle in the DB
 function addVehicle() {
 
+     $error[]="";
+    
     //check if the user sent a form
     if (isset($_POST['send'])) {
 
@@ -82,4 +84,57 @@ function addVehicle() {
     
     //check all error for debugging porpouses
     print_r($error);
+}
+
+
+//this function will get all vehicles from a user in the DB and return it to the backend
+function getUserVehicles(){
+    
+     $error[]="";
+    
+    //check if the user is logged
+    if(isset($_SESSION['user_id'])){
+        
+        //get userID to known which cars to get from DB
+        $user_id = $_SESSION['user_id'];
+        
+        //first conenct to DB
+        $con = dbConnection();
+        
+        $sql = "SELECT * FROM vehiculo WHERE propietario_id LIKE '" . $user_id . "';";
+        
+        $query = mysqli_query($con, $sql);
+        
+        if(!$query){
+            
+            $error = "Error in sql";
+            mysqli_close($con);
+        }else{
+            
+            //this loop should go to each row of the vehicle table and store it in an array
+            while($row = mysqli_fetch_assoc($query)){
+                
+                $res[] = array('matricula'=> $row['matricula'], 
+                    'propietario_id' => $row['propietario_id'],
+                    'marca' => $row['marca'],
+                    'modelo' => $row['modelo']);
+                
+            }
+            
+            //close DB conection
+            mysqli_close($con);
+            
+            //the array with the tables rows is returnet to the frontend
+            return $res;
+        }
+        
+        
+        
+    }else{
+        
+        $error[] = "The user must be logged-in";
+    }
+    
+    print_r($error);
+    
 }
