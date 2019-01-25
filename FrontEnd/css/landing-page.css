@@ -16,6 +16,7 @@ h5,
 h6 {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
+  color: blue;
 }
 
 header.masthead {
