@@ -1,6 +1,6 @@
 <?php
 
-include_once '../libraries.php';
+include_once '../../libraries.php';
 
 //This function contains all php code for the validation and check of a user
 function loginForm() {
@@ -20,7 +20,7 @@ function loginForm() {
 
 //now do the DB search
 //first sql sentence to find user in the DB
-        $sql = "SELECT * FROM usuario WHERE Mail LIKE '" . $userName . "';"; //username is email
+        $sql = "SELECT * FROM usuario WHERE correo LIKE '" . $userName . "';"; //username is email
         $query = mysqli_query($con, $sql);
 
         if (!$query) {//if we don't get an error here we found a user
@@ -30,19 +30,19 @@ function loginForm() {
 
             $aux = mysqli_fetch_array($query); //get the query result into an array
             //print_r($aux);
-            //if (password_verify($password, $aux['Pass'])) {//using password_verify without hashing the DB passwords causes an error
+            if (password_verify($password, $aux['contrasenha'])) {//using password_verify without hashing the DB passwords causes an error
             //not finding any user
-            if ($password === $aux['Pass']) {
+           // if ($password === $aux['Pass']) {
                 //user found
 
                 mysqli_close($con);
 
                 //create session values once the user has been found in the DB
                 $_SESSION['user'] = $userName;
-                $_SESSION['userID'] = $aux['Id'];
-                $_SESSION['userRol'] = $aux['Rol'];
+                $_SESSION['userID'] = $aux['id_usuario'];
+                //$_SESSION['userRol'] = $aux['Rol'];
                 //go back to index after login
-                header("Location:index.php");
+                header("../../Location:index.php");
             } else {
                 //user not found
                 mysqli_close($con);

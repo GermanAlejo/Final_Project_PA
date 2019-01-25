@@ -1,9 +1,8 @@
 <?php
 
-include_once '../libraries.php';
+include_once '../../libraries.php';
 
-
-//This function contains all php code for the database connection and insertion of a user
+//This function contains all php code for the database connection and insertion of a new user
 function registroForm() {
     if (isset($_POST['send'])) {
         //first we sanitize all inputs 
@@ -14,10 +13,7 @@ function registroForm() {
             'lastName' => FILTER_SANITIZE_STRING,
             'email' => FILTER_SANITIZE_STRING,
             'password' => FILTER_SANITIZE_STRING,
-            'phoneNumber' => FILTER_SANITIZE_NUMBER_INT,
-            'cardNumber' => FILTER_SANITIZE_STRING,
-            'plateNumber' => FILTER_SANITIZE_STRING,
-            'slots' => FILTER_SANITIZE_NUMBER_INT);
+            'phoneNumber' => FILTER_SANITIZE_NUMBER_INT);
         //       }
         //form validation
         $error = [];
@@ -40,12 +36,13 @@ function registroForm() {
             $error[] = "Phone Number not valid";
         }
 
-        //number of slots in the car are optional thus we check before that they are filled
-        if (isset($_POST['slots']) && !empty($_POST['slots'])) {
-            if (!filter_var($_POST['slots'], FILTER_VALIDATE_INT)) {
-                $error[] = "Slots not valid";
-            }
+        //optional values bank card is optional
+        if (isset($_POST['cardNumber'])) {
+            $cardNumber = $formInput['cardNumber'];
+        } else {
+            $cardNumber = "";
         }
+
         //print_r($error);
         //filtered array
         $formInput = filter_input_array(INPUT_POST, $arraySanitize);
@@ -56,24 +53,8 @@ function registroForm() {
         $userName = $formInput['email']; //username is email
         $password = $formInput['password'];
         $phoneNumber = $formInput['phoneNumber'];
+        $cardNumber = $formInput['cardNumber'];
 
-        //optional values
-        if (isset($formInput['cardNumber'])) {
-            $cardNumber = $formInput['cardNumber'];
-        } else {
-            $cardNumber = "";
-        }
-        if (isset($_POST['plateNumber'])) {
-            $plateNumber = $formInput['plateNumber'];
-            $rol = "conductor"; //set user rol to driver in case he has a vehicle
-        } else {
-            $rol = "cliente";
-        }
-        if (isset($_POST['slots'])) {
-            $carSlots = $formInput['slots'];
-        } else {
-            $carSlots = false;
-        }
 
         //hash the password
         $hashedPass = password_hash($password, PASSWORD_DEFAULT);
@@ -83,10 +64,10 @@ function registroForm() {
 
         //sql sentence for inserting user
         //echo $name . "<br/>";
-        $sqlUser = "INSERT INTO usuario ( Id, Name, LastName, Mail, Pass, Phone,"
-                . " Credit_card, Rol) VALUES ('NULL', '" . $name . "', '" . $lastName
-                . "', '" . $userName . "', '" . $hashedPass . "', '" . $phoneNumber
-                . "', '" . $cardNumber . "', '" . $rol . "')";
+        $sqlUser = "INSERT INTO usuario ( id_usuario, rol_id, nombre, apellidos, correo, contrasenha, telefono,"
+                . ") VALUES ('NULL', ' 2 ', '" . $name
+                . "', '" . $lastName . "', '" . $userName . "', '" . $hashedPass
+                . "', '" . $phoneNumber . " )";
 
         //  echo $sqlUser;
         //insert into DB
@@ -100,32 +81,26 @@ function registroForm() {
             //  echo "true";
             //get the automated generated id from last query
             $user_id = mysqli_insert_id($con);
-            echo "slots: " . $carSlots;
-            //if slots is true means theres a number thus a driver and a car to insert
-            if ($carSlots) {
-                //sql sentence for inserting vehicle
-                $sqlVehicle = "INSERT INTO vehiculo (Matricula, Plazas, Propietario_id)"
-                        . " VALUES ('" . $plateNumber . "', '" . $carSlots . "', '" . $user_id
-                        . "')";
+            //Now we need to create the relation to the client table
 
-                //insert vehicle into DB
-                $query2 = mysqli_query($con, $sqlVehicle);
-
-                if (!$query2) {
-                    $error[] = "Vehicle already registered";
-                }
-            } else {
-                $error[] = "Error iserting vehicle";
+            //sql sentence for inserting client with user_id
+            $sqlClient= "INSERT INTO cliente (usuario_id, tarjetaCredito) VALUES ("
+                    . "(' " . $user_id . "', '" . $cardNumber . "')";
+            
+            $query2 = mysqli_query($con, $sqlClient);
+            
+            if(!$query2){
+                $error[] = "Error inserting card number";
             }
-
+            
+            //create session values
             $_SESSION["user"] = $userName;
             $_SESSION["user_id"] = $user_id;
-            $_SESSION["type"] = $rol;
 
             print_r($error);
 
             mysqli_close($con);
-            header("Location: index.php");
+            header("Location: ../../index.php");
         }
     }
 }

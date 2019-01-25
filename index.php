@@ -10,7 +10,10 @@
     </head>
     <body>
         <?php include_once 'FrontEnd/header.php'; ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 
         <header class="masthead text-white text-center">
             <div class="overlay"></div>
