@@ -14,6 +14,11 @@ La carpeta DB contiene el .sql de la base de datos, para actualizar el archivo d
 
 Posible template para los ajustes de cuenta: https://bootsnipp.com/snippets/M48pA
 
+Nombre de variables para formulario del registro del vehiculo:
+	matricula->plate
+	modelo->model
+	marca->brand
+
 Pantallas:
 
 -Index: Pagina principal para bucar viajes

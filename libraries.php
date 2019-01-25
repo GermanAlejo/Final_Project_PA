@@ -74,5 +74,5 @@ function dbConnection() {
         }
         return false;
     }
-    
+
 </script>

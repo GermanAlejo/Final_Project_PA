@@ -2,8 +2,11 @@
 
 include_once '../../libraries.php';
 
-//This function contains all php code for the database connection and insertion of a user
+//This function contains all php code for the database connection and insertion of a new user
 function registroForm() {
+    
+    $error[]="";
+    
     if (isset($_POST['send'])) {
         //first we sanitize all inputs 
         //     if (empty($error)) {
@@ -37,7 +40,7 @@ function registroForm() {
         }
 
         //optional values bank card is optional
-        if (isset($formInput['cardNumber'])) {
+        if (isset($_POST['cardNumber'])) {
             $cardNumber = $formInput['cardNumber'];
         } else {
             $cardNumber = "";
