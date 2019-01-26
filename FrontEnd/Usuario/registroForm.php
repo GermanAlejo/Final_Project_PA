@@ -6,12 +6,23 @@
         <meta charset="UTF-8">
         <title></title>
 
-        <?php include '../../libraries.php'; ?>
+        <?php
+        include '../../libraries.php';
+        include_once '../../BackEnd/Usuario/registro.php';
+        ?>
     </head>
 
     <body>
 
-       
+        <?php
+
+
+
+        include_once '../../BackEnd/Usuario/registro.php';
+        registrationForm();
+        registroForm();
+        ?>
+
 
 
 
@@ -74,7 +85,8 @@
             <!--<div class="overlay"></div>-->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
+
+                    <div class="col-md-10 col-lg-8 col-xl-10 mx-auto">
                         <form action="#" method="POST">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -111,16 +123,23 @@
                                 </div>
                             </div>
 
-
+                            <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
+                                <!--  <a href="http://localhost/Final_Project_PA/FrontEnd/Usuario/loginForm.php" class="btn btn-block btn-primary" href="#">Sign up</a>    -->
+                                <!-- <a  name="send" class="btn btn-block btn-primary" href="#">Sign up</a>      -->              
+                                <input type="submit" name="send" class="btn btn-block btn-primary" placeholder="Sign up">
+                            </div>
                         </form>
                     </div>
                     <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
-                        <button  onclick="alert('hola')" class="btn btn-block btn-primary">Sign up</button>                  
+                        <a href="http://localhost/Final_Project_PA/FrontEnd/Usuario/loginForm.php" class="btn btn-block btn-primary" href="#">Sign up</a>                    
                     </div>
+
 
 
                 </div>
             </div>
+
+
         </header>
 
 
@@ -173,4 +192,7 @@
         </div>
     </footer>
 
+
 </html>
+
+
