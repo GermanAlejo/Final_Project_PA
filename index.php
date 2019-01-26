@@ -45,12 +45,11 @@
                             <a href="#" class="dropdown-item">Close Session</a>
                         </div>
                     </nav>
-                    <a href="http://localhost/Final_Project_PA/FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
+                    <a href="FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
             </div>
         </div>
 
         <header class="masthead text-white text-center">
-            <div class="overlay"></div>
             <div class="container">
                 <div class="row">
                     <div class="col-xl-10 mx-auto">
@@ -78,10 +77,8 @@
                         </form>
                     </div>
                     <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
-                        <a href="http://localhost/Final_Project_PA/FrontEnd/Usuario/loginForm.php" class="btn btn-block btn-primary" href="#">Sign up</a>                    
+                        <a href="FrontEnd/Usuario/registroForm.php" class="btn btn-block btn-primary" href="#">Sign up</a>                    
                     </div>
-
-
                 </div>
             </div>
         </header>
