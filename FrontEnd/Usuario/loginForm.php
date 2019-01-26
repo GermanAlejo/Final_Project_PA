@@ -85,11 +85,11 @@
                     </div>
                 </div>
             </div>
-            
+
             <br><br><br><br>
         </header>
 
-        
+
 
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
@@ -139,15 +139,15 @@
             </div>
         </div>
     </footer>
-    
-<?php
-//start session
-session_start();
-include_once('../../BackEnd/Usuario/login.php');
 
-loginForm();
-?>
-    
+    <?php
+//start session
+    session_start();
+    include_once('../../BackEnd/Usuario/login.php');
+
+    loginForm();
+    ?>
+
 </html>
 
 

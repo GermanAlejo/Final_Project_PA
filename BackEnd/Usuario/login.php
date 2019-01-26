@@ -10,7 +10,7 @@ function loginForm() {
         $con = dbConnection();
 
 //Save values in an array and sanitize them
-        $arraySanitize = array('userName' => FILTER_SANITIZE_STRING,
+        $arraySanitize = array('username' => FILTER_SANITIZE_STRING,
             'password' => FILTER_SANITIZE_STRING);
 
 //filter the values
@@ -38,16 +38,20 @@ function loginForm() {
                 mysqli_close($con);
 
                 //create session values once the user has been found in the DB
-                $_SESSION['user'] = $userName;
-                $_SESSION['userID'] = $aux['id_usuario'];
+                $_SESSION['userName'] = $userName;
+                $_SESSION['user_id'] = $aux['id'];
                 //$_SESSION['userRol'] = $aux['Rol'];
+                
+                echo "User logged";
                 //go back to index after login
-                header("../../Location:index.php");
+                header("Location: ../../index.php");
             } else {
                 //user not found
                 mysqli_close($con);
                 die("User not found, mail and pass dont match");
             }
         }
+    }else{
+        echo "<br/>Please make sure you filled both email and password fields<br/>";
     }
 }
