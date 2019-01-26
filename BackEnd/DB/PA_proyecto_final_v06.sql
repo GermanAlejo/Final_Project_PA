@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-01-2019 a las 16:30:40
+-- Tiempo de generación: 26-01-2019 a las 11:28:36
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -48,17 +48,16 @@ INSERT INTO `admin` (`usuario_id`) VALUES
 --
 
 CREATE TABLE `cliente` (
-  `usuario_id` int(11) NOT NULL,
-  `tarjetaCredito` int(11) DEFAULT NULL
+  `usuario_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`usuario_id`, `tarjetaCredito`) VALUES
-(2, NULL),
-(3, 351515161);
+INSERT INTO `cliente` (`usuario_id`) VALUES
+(2),
+(3);
 
 -- --------------------------------------------------------
 
@@ -191,7 +190,8 @@ CREATE TABLE `usuario` (
   `rol_id` int(1) NOT NULL,
   `foto` text COLLATE utf8_spanish2_ci,
   `nombre` varchar(16) COLLATE utf8_spanish2_ci NOT NULL,
-  `apellidos` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellido1` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
+  `apellido2` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
   `correo` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
   `contrasenha` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
   `telefono` int(12) DEFAULT NULL
@@ -201,10 +201,10 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `rol_id`, `foto`, `nombre`, `apellidos`, `correo`, `contrasenha`, `telefono`) VALUES
-(1, 0, NULL, 'admin', '', 'admin@admin', 'admin', NULL),
-(2, 1, NULL, 'oscar', 'Gomez Gonzalez', 'oscar@gmail.es', 'oscar', 620988324),
-(3, 1, NULL, 'german', 'Alejo Dominguez', 'german@gmail.com', 'german', 620947632);
+INSERT INTO `usuario` (`id`, `rol_id`, `foto`, `nombre`, `apellido1`, `apellido2`, `correo`, `contrasenha`, `telefono`) VALUES
+(1, 0, NULL, 'admin', '', '', 'admin@admin', 'admin', NULL),
+(2, 1, NULL, 'oscar', 'Gomez Gonzalez', '', 'oscar@gmail.es', 'oscar', 620988324),
+(3, 1, NULL, 'german', 'Alejo Dominguez', '', 'german@gmail.com', 'german', 620947632);
 
 -- --------------------------------------------------------
 
