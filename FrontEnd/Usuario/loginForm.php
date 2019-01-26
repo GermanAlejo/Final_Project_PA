@@ -59,41 +59,10 @@
             <!--<div class="overlay"></div>-->
             <div class="container">
                 <div class="row">
-<<<<<<< HEAD
-                    <form action="#" method="POST">
-
-                        <div class="loginContainer">
- <div class="col-md-10 col-lg-8 col-xl-10 mx-auto">
-                                <form>
-                                    <div class="form-row">
-                                        <div class="col-12 col-md-6 mb-2">
-                                            <label for="uname"><b>Username</b></label>
-                                            <input name="username" id="username" type="text" class="form-control " placeholder="Enter username">  
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                            <label for="uname"><b>Username</b></label>
-                            <input  id="username" type="text" placeholder="Enter Username" name="username" required>
-
-                            <label for="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="password" required>
-
-                            <button type="submit">Login</button>
-
-                        </div>
-
-                        <div class="loginContainer">
-                            <button type="button" class="cancelbtn">Cancel</button>
-                            <span class="psw">Forgot <a href="#">password?</a></span>
-                        </div>
-                    </form> 
-=======
                     <div class="col-xl-10 mx-auto">
                         <form action="#" method="POST">
                             <div class="loginContainer">
-                                <div class="col-md-10 col-lg-8 col-xl-10 mx-auto">
+                                <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
                                     <form>
                                         <div class="form-row">
                                             <div class="col-12 col-md-6 mb-2">
@@ -114,7 +83,6 @@
                             </div>
                         </form>
                     </div>
->>>>>>> a93f30c3f00abc4f4c01b6297d5cc7a111575ec6
                 </div>
             </div>
             

@@ -55,7 +55,7 @@
                     <div class="col-xl-10 mx-auto">
                         <h1 class="mb-5">Planea tu próximo viaje ¿A dónde vas a ir?</h1>
                     </div>
-                    <div class="col-md-10 col-lg-8 col-xl-10 mx-auto">
+                    <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
                         <form>
                             <div class="form-row">
                                 <div class="col-12 col-md-3 mb-2 mb-md-0">
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="col-12 col-md-3 mb-2 mb-md-0">
                                     <div class="form-group">
-                                        <input type="date" id="date" class="form-control" placeholder="Date">
+                                        <input type="date" id="date" class="form-control" placeholder="Date" min="today" value="today">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">

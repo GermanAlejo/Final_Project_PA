@@ -11,19 +11,7 @@
 
     <body>
 
-        <?php
-
-        function registrationForm() {
-            ?>
-
-            <?php
-        }
-
-        include_once '../../BackEnd/Usuario/registro.php';
-        registrationForm();
-        registroForm();
-        ?>
-
+       
 
 
 
@@ -86,8 +74,7 @@
             <!--<div class="overlay"></div>-->
             <div class="container">
                 <div class="row">
-
-                    <div class="col-md-10 col-lg-8 col-xl-10 mx-auto">
+                    <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
                         <form action="#" method="POST">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -128,42 +115,13 @@
                         </form>
                     </div>
                     <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
-                        <a href="http://localhost/Final_Project_PA/FrontEnd/Usuario/loginForm.php" class="btn btn-block btn-primary" href="#">Sign up</a>                    
+                        <button  onclick="alert('hola')" class="btn btn-block btn-primary">Sign up</button>                  
                     </div>
 
 
                 </div>
             </div>
         </header>
-
-
-        <script>
-            var incio;
-            var fin;
-            var countryRestrict = {'country': 'es'};
-
-            function initMap() {
-
-                incio = new google.maps.places.Autocomplete((
-                        document.getElementById('inicio')), {
-                    types: ['(cities)'],
-                    componentRestrictions: countryRestrict
-                });
-
-                fin = new google.maps.places.Autocomplete((
-                        document.getElementById('fin')), {
-                    types: ['(cities)'],
-                    componentRestrictions: countryRestrict
-                });
-
-            }
-
-        </script>
-
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
-        </script>
-
 
 
         <!-- Bootstrap core JavaScript -->
