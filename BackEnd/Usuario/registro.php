@@ -4,9 +4,9 @@ include_once '../../libraries.php';
 
 //This function contains all php code for the database connection and insertion of a new user
 function registroForm() {
-    
-    $error[]="";
-    
+
+    $error[] = "";
+
     if (isset($_POST['send'])) {
         //first we sanitize all inputs 
         //     if (empty($error)) {
@@ -16,7 +16,8 @@ function registroForm() {
             'lastName' => FILTER_SANITIZE_STRING,
             'email' => FILTER_SANITIZE_STRING,
             'password' => FILTER_SANITIZE_STRING,
-            'phoneNumber' => FILTER_SANITIZE_NUMBER_INT);
+            'phoneNumber' => FILTER_SANITIZE_NUMBER_INT,
+            'cardNumber' => FILTER_SANITIZE_STRING);
         //       }
         //form validation
         $error = [];
@@ -40,11 +41,13 @@ function registroForm() {
         }
 
         //optional values bank card is optional
-        if (isset($_POST['cardNumber'])) {
-            $cardNumber = $formInput['cardNumber'];
+        /*if (isset($_POST['cardNumber'])) {
+            if (!filter_var($_POST['cardNumber'], FILTER_VA)) {
+                $error[] = "Error in card number";
+            }
         } else {
             $cardNumber = "";
-        }
+        }*/
 
         //print_r($error);
         //filtered array
@@ -67,35 +70,34 @@ function registroForm() {
 
         //sql sentence for inserting user
         //echo $name . "<br/>";
-        $sqlUser = "INSERT INTO usuario ( id_usuario, rol_id, nombre, apellidos, correo, contrasenha, telefono,"
-                . ") VALUES ('NULL', ' 2 ', '" . $name
+        $sqlUser = "INSERT INTO usuario ( id, rol_id, foto, nombre, apellidos, correo, contrasenha, telefono"
+                . ") VALUES ('NULL', ' 1 ', 'NULL', '" . $name
                 . "', '" . $lastName . "', '" . $userName . "', '" . $hashedPass
-                . "', '" . $phoneNumber . " )";
+                . "', '" . $phoneNumber . "' )";
 
-        //  echo $sqlUser;
+         echo $sqlUser;
         //insert into DB
         $query1 = mysqli_query($con, $sqlUser);
 
         if (!$query1) {
-            //  echo "error sql1";
+              echo "error sql1";
             $error[] = "User already registered";
             mysqli_close($con);
         } else {
-            //  echo "true";
+              echo "true";
             //get the automated generated id from last query
             $user_id = mysqli_insert_id($con);
             //Now we need to create the relation to the client table
-
             //sql sentence for inserting client with user_id
-            $sqlClient= "INSERT INTO cliente (usuario_id, tarjetaCredito) VALUES ("
+            $sqlClient = "INSERT INTO cliente (usuario_id, tarjetaCredito) VALUES "
                     . "(' " . $user_id . "', '" . $cardNumber . "')";
-            
+
             $query2 = mysqli_query($con, $sqlClient);
-            
-            if(!$query2){
-                $error[] = "Error inserting card number";
+
+            if (!$query2) {
+                $error[] = "Error inserting client tinto clientes table";
             }
-            
+
             //create session values
             $_SESSION["user"] = $userName;
             $_SESSION["user_id"] = $user_id;

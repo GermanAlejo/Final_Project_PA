@@ -66,12 +66,11 @@
                         </div>
                         <div class="col-md-2"></div>
                     </div>
+                </section>
             </div>
-            </section>
-        </div>
-        <div class="col-sm-2">
 
         </div>
+        <div class="col-sm-2"></div>
     </div>
 </div>
 

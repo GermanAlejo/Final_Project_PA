@@ -236,7 +236,10 @@ function setPassword($newPass1, $newPass2, $oldPass) {
         //connect to DB
         $con = dbConnection();
 
-        $sql = "UPDATE usuario SET contrasenha = '" . $newPass1 . "' WHERE usuario.id =" . $user_id;
+        //hash the new password before updating
+        $hashedPass = password_hash($newPass1, PASSWORD_DEFAULT);
+        
+        $sql = "UPDATE usuario SET contrasenha = '" . $hashedPass . "' WHERE usuario.id =" . $user_id;
 
         $query = mysqli_query($con, $sql);
 

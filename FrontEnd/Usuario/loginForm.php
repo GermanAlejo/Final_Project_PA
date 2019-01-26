@@ -63,21 +63,16 @@
                     <form action="#" method="POST">
 
                         <div class="loginContainer">
-                            
-                             <div class="col-md-10 col-lg-8 col-xl-10 mx-auto">
-                        <form>
-                            <div class="form-row">
-                                <div class="col-12 col-md-6 mb-2">
-                                    <label for="uname"><b>Username</b></label>
-                                    <input name="username" id="username" type="text" class="form-control " placeholder="Enter username">  
-                                </div>
-                            </div>
-                        </form>
-                                
-                            
-                            
-                            
-                                              
+ <div class="col-md-10 col-lg-8 col-xl-10 mx-auto">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="col-12 col-md-6 mb-2">
+                                            <label for="uname"><b>Username</b></label>
+                                            <input name="username" id="username" type="text" class="form-control " placeholder="Enter username">  
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
                             <label for="uname"><b>Username</b></label>
                             <input  id="username" type="text" placeholder="Enter Username" name="username" required>
