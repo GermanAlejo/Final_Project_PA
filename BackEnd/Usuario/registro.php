@@ -105,7 +105,7 @@ function registroForm() {
                 print_r($error);
 
                 mysqli_close($con);
-                // header("Location: ../../index.php");
+                header("Location: ../../index.php");
             }
         } else {
             unSetSession();
