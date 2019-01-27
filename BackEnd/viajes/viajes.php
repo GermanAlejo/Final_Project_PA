@@ -23,6 +23,7 @@ function getProximosViajes() {
 //first conenct to DB
     $con = dbConnection();
 
+    //esto es una crutada para separar el resultado de busqueda de google
     $ini = explode(",", $ini);
     $ini = $ini[0];
     
@@ -73,4 +74,11 @@ function getProximosViajes() {
 
 
     print_r($error);
+}
+
+//this function will insert a new trip in the DB
+function newViaje(){
+    
+    
+    
 }

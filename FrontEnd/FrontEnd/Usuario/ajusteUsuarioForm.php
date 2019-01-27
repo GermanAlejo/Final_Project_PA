@@ -61,10 +61,10 @@
             </div>
         </div>
 
-        <header>
+        <header class="">
             <div class="container">
                 <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
-                    
+
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">
@@ -74,41 +74,23 @@
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <label for="uname"><b>Name: </b></label>
                         </div>
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <input type="text" name="firstName" class="form-control" placeholder="First name">
-                        </div>
-
                     </div>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <label for="uname"><b>Middle & Last name: </b></label>
-                        </div>
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <input type="text" name="middlename" class="form-control" placeholder="Middle name">
-                        </div>
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <input type="text" name="lastname" class="form-control" placeholder="Last name">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <label for="uname"><b>Email: </b></label>
                         </div>
-                        <div class="col-12 col-md-6 mb-2 mb-md-0">
-                            <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
-                        </div>
                     </div>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <label for="uname"><b>Phone:</b></label>
                         </div>
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <input type="text" name="phoneNumber" class="form-control" placeholder="Phone number">
-                        </div>
                     </div>
-                </div>
-                <br>
-                <div class="col-md-12 col-lg-6 col-xl-6 mx-auto"> 
+                    
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <div class="form-group">
@@ -123,63 +105,63 @@
                     </div>
                 </div>
             </div>
-        </header>
+    </header>
 
 
 
 
-    </body>
+</body>
 
 
-    <!-- Footer -->
-    <footer class="footer bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-                    <ul class="list-inline mb-2">
-                        <li class="list-inline-item">
-                            <a href="#">About</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Contact</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Forum</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Promos</a>
-                        </li>
-                    </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
-                </div>
-                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item mr-3">
-                            <a href="https://www.facebook.com/TRIPSHARE_es-282100442475538" target="_blank">
-                                <i class="fab fa-facebook fa-2x fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item mr-3">
-                            <a href="https://twitter.com/TRIPSHARE3" target="_blank">
-                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item">
+                        <a href="#">About</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Contact</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Forum</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Promos</a>
+                    </li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item mr-3">
+                        <a href="https://www.facebook.com/TRIPSHARE_es-282100442475538" target="_blank">
+                            <i class="fab fa-facebook fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="https://twitter.com/TRIPSHARE3" target="_blank">
+                            <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <?php
+<?php
 //start session
 //    session_start();
-    include_once('../../BackEnd/Usuario/login.php');
+include_once('../../BackEnd/Usuario/login.php');
 
 //   loginForm();
-    ?>
+?>
 
 </html>
 
