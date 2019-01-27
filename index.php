@@ -57,7 +57,7 @@
                             <a href="#" class="dropdown-item">Close Session</a>
                         </div>
                     </nav>
-                    <a href="FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
+                    <a href="/FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
             </div>
         </div>
 

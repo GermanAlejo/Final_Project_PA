@@ -75,33 +75,33 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Email</label>
-                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email" required>
+                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Password</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password" required>
+                                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputNumber">Phone number</label>
-                                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone number" required>
+                                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone number">
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="inputName" >Name</label>
-                                    <input type="text" name="firstName" class="form-control" placeholder="First name" required>
+                                    <input type="text" name="firstName" class="form-control" placeholder="First name">
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
                                     <label for="inputLastName">Middle Name</label>
-                                    <input type="text" name="middlename" class="form-control" placeholder="Middle name" required>
+                                    <input type="text" name="middlename" class="form-control" placeholder="Middle name">
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
                                     <label for="inputLastName">Last Name</label>
-                                    <input type="text" name="lastname" class="form-control" placeholder="Last name" required>
+                                    <input type="text" name="lastname" class="form-control" placeholder="Last name">
                                 </div>
                             </div>
 

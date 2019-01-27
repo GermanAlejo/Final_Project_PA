@@ -64,6 +64,7 @@
         <header>
             <div class="container">
                 <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
+                    <h1>Mis datos</h1>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">
@@ -109,14 +110,9 @@
                 <br>
                 <div class="col-md-12 col-lg-6 col-xl-6 mx-auto"> 
                     <div class="form-row">
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                        <div class="col-12 col-md-4 mb-2 mb-md-0 mx-auto">
                             <div class="form-group">
-                                <input type="submit" name="edit" class="btn btn-block btn-primary" value="Editar perfil">    
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <div class="form-group">
-                                <input type="submit" name="delete" class="btn btn-block btn-primary" value="Eliminar perfil">    
+                                <input type="submit" name="confirm" class="btn btn-block btn-primary" value="Confirm">    
                             </div>
                         </div>
                     </div>

@@ -26,16 +26,10 @@
         <!-- Custom styles for this template -->
         <link href="../../FrontEnd/css/landing-page.min.css" rel="stylesheet">
 
-
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
-
-        <?php
-            session_start();
-        ?>
 
 
     </head>
@@ -151,11 +145,7 @@
 
     <?php
 //start session
-
 //    session_start();
-
-    //session_start();
-
     include_once('../../BackEnd/Usuario/login.php');
 
     //   loginForm();

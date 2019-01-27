@@ -64,7 +64,7 @@
         <header class="">
             <div class="container">
                 <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
-
+                    <h1>Mi vehiculo</h1>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">
@@ -72,34 +72,30 @@
                     </div>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Name: </b></label>
+                            <label for="uname"><b>Matricula: </b></label>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Middle & Last name: </b></label>
+                            <label for="uname"><b>Marca: </b></label>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Email: </b></label>
+                            <label for="uname"><b>Modelo: </b></label>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Phone:</b></label>
-                        </div>
-                    </div>
+                    
                     
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <div class="form-group">
-                                <input type="submit" name="edit" class="btn btn-block btn-primary" value="Editar perfil">    
+                                <a href="editVehiculoForm.php" name="edit" class="btn btn-block btn-primary">Editar vehiculo</a>   
                             </div>
                         </div>
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <div class="form-group">
-                                <input type="submit" name="delete" class="btn btn-block btn-primary" value="Eliminar perfil">    
+                                <input type="submit" name="delete" class="btn btn-block btn-primary" value="Eliminar vehiculo">    
                             </div>
                         </div>
                     </div>

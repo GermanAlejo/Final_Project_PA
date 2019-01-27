@@ -1,7 +1,9 @@
-<!--This page contains all the php and html code for the registration of a new user-->
+
+<!--This page contains all html and php code for the login of the users
+    All of the vaidations will be done in the this same page as the html form
+    once the user has log in the page will redirect the user to index.php-->
 <!DOCTYPE html>
 <html lang="en">
-
 
     <head>
         <meta charset="utf-8">
@@ -10,7 +12,7 @@
         <meta name="author" content="">
 
 
-         <link rel="icon" href="../../FrontEnd/img/icon.png">
+        <link rel="icon" href="../../FrontEnd/img/icon.png">
         <title>Tripshare</title>
 
         <!-- Bootstrap core CSS -->
@@ -28,16 +30,8 @@
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <?php
-        include '../../libraries.php';
-        include_once '../../BackEnd/Usuario/registro.php';
-        ?>
 
-        <?php
-        include_once '../../BackEnd/Usuario/registro.php';
-        // registrationForm();
-        registroForm();
-        ?>
+
     </head>
 
     <body>
@@ -63,65 +57,60 @@
                             <a href="#" class="dropdown-item">Close Session</a>
                         </div>
                     </nav>
-                    <a href="loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
+                    <a href="../../FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
             </div>
         </div>
 
-        <header class="masthead text-white text-center">
+        <header>
             <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-lg-8 col-xl-10 mx-auto">
-                        <form action="#" method="POST">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Email</label>
-                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
-                                </div>
-                                <br>
-                                <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Password</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="inputNumber">Phone number</label>
-                                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone number">
-                                </div>
-                            </div>
+                <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
+                    <h1>Mi vehiculo</h1>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <label for="uname"><b>Matricula: </b></label>
+                        </div>
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <input type="text" name="matricula" class="form-control">
+                        </div>
 
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="inputName" >Name</label>
-                                    <input type="text" name="firstName" class="form-control" placeholder="First name">
-                                </div>
-                                <br>
-                                <div class="form-group col-md-4">
-                                    <label for="inputLastName">Middle Name</label>
-                                    <input type="text" name="middlename" class="form-control" placeholder="Middle name">
-                                </div>
-                                <br>
-                                <div class="form-group col-md-4">
-                                    <label for="inputLastName">Last Name</label>
-                                    <input type="text" name="lastname" class="form-control" placeholder="Last name">
-                                </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <label for="uname"><b>Marca: </b></label>
+                        </div>
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <input type="text" name="marca" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <label for="uname"><b>Modelo: </b></label>
+                        </div>
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <input type="text" name="modelo" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-md-12 col-lg-6 col-xl-6 mx-auto"> 
+                    <div class="form-row">
+                        <div class="col-12 col-md-4 mb-2 mb-md-0 mx-auto">
+                            <div class="form-group">
+                                <input type="submit" name="confirm" class="btn btn-block btn-primary" value="Confirm">    
                             </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-4 mx-auto">
-                                    <input type="submit" name="send" class="btn btn-block btn-primary" value="Sign up">                    
-                                </div>
-                            </div>
-                        </form>
-                    </div>  
+                        </div>
+                    </div>
                 </div>
             </div>
-
-
         </header>
 
 
-        <!-- Bootstrap core JavaScript -->
-        <script src="../../vendor/jquery/jquery.min.js"></script>
-        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 
     </body>
 
@@ -133,7 +122,7 @@
                 <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                     <ul class="list-inline mb-2">
                         <li class="list-inline-item">
-                            <a href="#">About us</a>
+                            <a href="#">About</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
@@ -168,4 +157,15 @@
         </div>
     </footer>
 
+    <?php
+//start session
+//    session_start();
+    include_once('../../BackEnd/Usuario/login.php');
+
+//   loginForm();
+    ?>
+
 </html>
+
+
+
