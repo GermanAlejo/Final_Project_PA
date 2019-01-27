@@ -20,6 +20,11 @@
         <!-- Custom styles for this template -->
         <link href="FrontEnd/css/landing-page.min.css" rel="stylesheet">
 
+        <?php
+            session_start();
+        ?>
+        
+        
     </head>
 
     <body>

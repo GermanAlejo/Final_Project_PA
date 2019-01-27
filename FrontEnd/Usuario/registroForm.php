@@ -17,7 +17,7 @@
         <?php
 
 
-
+        session_start();
         include_once '../../BackEnd/Usuario/registro.php';
         registrationForm();
         registroForm();

@@ -24,7 +24,9 @@
         <!-- Custom styles for this template -->
         <link href="../../FrontEnd/css/landing-page.min.css" rel="stylesheet">
 
-
+        <?php
+            session_start();
+        ?>
 
     </head>
 
@@ -142,7 +144,7 @@
 
     <?php
 //start session
-    session_start();
+    //session_start();
     include_once('../../BackEnd/Usuario/login.php');
 
     loginForm();

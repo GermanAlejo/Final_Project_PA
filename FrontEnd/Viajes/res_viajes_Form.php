@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title></title>
   
-    <?php include '../../libraries.php'; ?>
+    <?php include '../../libraries.php';
+ session_start();
+    $username=  $_SESSION['user_id'];
+    echo $username;
+    ?>
 </head>
 
 
@@ -277,7 +281,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+       <?php
+       include_once '../../BackEnd/viajes/misViajes.php';
+       getViajes();
+       ?>
     </section>
 
 
@@ -336,6 +343,8 @@
         </div>
     </div>
 </footer>
+
+
 
 </html>
 
