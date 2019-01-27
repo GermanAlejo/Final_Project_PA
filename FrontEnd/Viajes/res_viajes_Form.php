@@ -283,7 +283,7 @@
             </div>
        <?php
        include_once '../../BackEnd/viajes/misViajes.php';
-       getViajes();
+       getViajesConductor();
        ?>
     </section>
 

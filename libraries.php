@@ -43,6 +43,14 @@ function dbConnection() {
 
     return $con;
 }
+
+//this function should kill all session vars when needed to
+function unSetSession() {
+    session_start();
+    session_unset();
+    session_destroy();
+}
+
 ?>
 
 <!--All javascript functions here:   -->

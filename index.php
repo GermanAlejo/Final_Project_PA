@@ -61,17 +61,17 @@
                         <h1 class="mb-5">Planea tu próximo viaje ¿A dónde vas a ir?</h1>
                     </div>
                     <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
-                        <form>
+                        <form action="BackEnd/viajes/viajes.php" method="POST">
                             <div class="form-row">
                                 <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                    <input name="incio" id="inicio" type="text" class="form-control " placeholder="From...">
+                                    <input name="inicio" id="inicio" type="text" class="form-control " placeholder="From...">
                                 </div>
                                 <div class="col-12 col-md-3 mb-2 mb-md-0">
                                     <input name="fin" id="fin" type="text" class="form-control " placeholder="To...">
                                 </div>
                                 <div class="col-12 col-md-3 mb-2 mb-md-0">
                                     <div class="form-group">
-                                        <input type="date" id="date" class="form-control" placeholder="Date" min="today" value="today">
+                                        <input type="date" name="fecha" id="date" class="form-control" placeholder="Date" min="today" value="today">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">

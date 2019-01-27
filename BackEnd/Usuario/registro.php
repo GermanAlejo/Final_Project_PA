@@ -46,14 +46,7 @@ function registroForm() {
                 $error[] = "Phone Number not valid";
             }
 
-            //optional values bank card is optional
-            /* if (isset($_POST['cardNumber'])) {
-              if (!filter_var($_POST['cardNumber'], FILTER_VA)) {
-              $error[] = "Error in card number";
-              }
-              } else {
-              $cardNumber = "";
-              } */
+
 
             //print_r($error);
             //filtered array
@@ -114,8 +107,9 @@ function registroForm() {
                 mysqli_close($con);
                 // header("Location: ../../index.php");
             }
+        } else {
+            unSetSession();
+            echo "<br/>All fields must be filled<br/>";
         }
-        
-        echo "<br/>All fields must be filled<br/>";
     }
 }

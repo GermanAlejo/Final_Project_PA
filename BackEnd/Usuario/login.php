@@ -45,18 +45,19 @@ function loginForm() {
                 header("Location: ../../index.php");
             } else {
                 //user not found
+                logOut();
                 mysqli_close($con);
                 die("User not found, mail and pass dont match");
             }
         }
     } else {
+        unSetSession();
         echo "<br/>Please make sure you filled both email and password fields<br/>";
     }
 }
 
 //this function should log out the user unseting all session variables
 function logOut() {
-
     session_start();
     session_unset();
     header("Location: home.php");
