@@ -1,38 +1,4 @@
 <!--This page contains all the php and html code for the registration of a new user-->
-<<<<<<< HEAD:FrontEnd/Usuario/registroUsuarioForm.php
-=======
-
-<html>
-
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-
-        <?php
-        include '../../libraries.php';
-        include_once '../../BackEnd/Usuario/registro.php';
-        ?>
-    </head>
-
-    <body>
-
-        <?php
-
-
-        session_start();
-        include_once '../../BackEnd/Usuario/registro.php';
-        registrationForm();
-        registroForm();
-        ?>
-
-
-
-
-    </body>
-
-</html>
-
->>>>>>> master:FrontEnd/Usuario/registroForm.php
 <!DOCTYPE html>
 <html lang="en">
 
@@ -109,33 +75,33 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Email</label>
-                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email" required>
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Password</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
+                                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password" required>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputNumber">Phone number</label>
-                                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone number">
+                                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone number" required>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="inputName" >Name</label>
-                                    <input type="text" name="firstName" class="form-control" placeholder="First name">
+                                    <input type="text" name="firstName" class="form-control" placeholder="First name" required>
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
                                     <label for="inputLastName">Middle Name</label>
-                                    <input type="text" name="middlename" class="form-control" placeholder="Middle name">
+                                    <input type="text" name="middlename" class="form-control" placeholder="Middle name" required>
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
                                     <label for="inputLastName">Last Name</label>
-                                    <input type="text" name="lastname" class="form-control" placeholder="Last name">
+                                    <input type="text" name="lastname" class="form-control" placeholder="Last name" required>
                                 </div>
                             </div>
 
