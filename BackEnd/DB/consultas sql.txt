@@ -64,12 +64,26 @@ DELETE FROM `foro` WHERE `foro`.`id` = 2
 Editar info del foro:
 UPDATE `foro` SET `titulo` = 'titulo nuevo', `etiqueta` = 'nueva etiqueta' WHERE `foro`.`id` = 2
 
-eliminar mensaje de un foro 
+Eliminar mensaje de un foro: 
 delete from mensaje where mensaje.id=2
 
+Listar usuarios:
+SELECT usuario.id,usuario.rol_id,usuario.foto,usuario.nombre,usuario.apellido1,usuario.apellido2,usuario.correo,usuario.telefono FROM usuario WHERE rol_id=1
 
+Borrar usuario:
+delete from usuario where usuario.id=2
 
+Crear promoción: 
+INSERT INTO `promocion` (`id`, `creador_id`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `descuento`, `foto`) VALUES (NULL, '1', '2019-01-25', '2019-02-14', 'Sorteo entradas rey leon', 'que te lo has creído tu ', '', NULL);
 
+Editar promoción:
+UPDATE `promocion` SET `titulo` = 'titulo', `descripcion` = 'descripcion', `foto` = 'foto cambiada.url' WHERE `promocion`.`id` = 3
 
+Eliminar promoción:
+delete from promocion where promocion.id =3
 
+Reactivar promoción
+UPDATE `promocion` SET `fecha_inicio` = '2019-01-30', `fecha_fin` = '2019-01-31' WHERE `promocion`.`id` = 3
 
+Listar promociones
+SELECT foto,titulo,descripcion,fecha_inicio,fecha_fin FROM `promocion`
