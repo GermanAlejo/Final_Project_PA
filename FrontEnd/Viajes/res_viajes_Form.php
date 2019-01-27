@@ -1,4 +1,23 @@
+<<<<<<< HEAD
 <head></head>
+=======
+
+<!------ Include the above in your HEAD tag ---------->
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  
+    <?php include '../../libraries.php';
+ session_start();
+    $username=  $_SESSION['user_id'];
+    echo $username;
+    ?>
+</head>
+
+
+
+
+>>>>>>> master
 <!--This page contains all html and php code for the login of the users
     All of the vaidations will be done in the this same page as the html form
     once the user has log in the page will redirect the user to index.php-->
@@ -180,6 +199,85 @@
                 <h2 class="mb-5">Conductores disponibles</h2>
                 <div class="row">
 
+<<<<<<< HEAD
+=======
+                    <div class="col-lg-6 col-sm-12 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h4>Driver Name</h4>
+                                        <a href="#">offers &amp; discounts</a>
+                                    </div>
+                                </div>
+                                <div class="row ">                                  
+                                    <div class="col-md-4">  
+                                        <ul class="list-unstyled list-inline">
+                                            <li class="list-inline">Origin:</li>
+                                            <li class="list-inline">Destination:</li>
+                                            <li class="list-inline">Distance:</li>
+                                        </ul> 
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-6">   
+
+                                        <h6>3 Free seats</h6>
+                                        <input type="number" name="quantity" min="1" max="5" value="1">
+
+                                        <button type="button" class="btn btn-secondary btn-sm btn-block">RESERVE SEAT</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h4>Driver Name</h4>
+                                        <a href="#">offers &amp; discounts</a>
+                                    </div>
+                                </div>
+                                <div class="row ">                                  
+                                    <div class="col-md-4">  
+                                        <ul class="list-unstyled list-inline">
+                                            <li class="list-inline">Origin:</li>
+                                            <li class="list-inline">Destination:</li>
+                                            <li class="list-inline">Distance:</li>
+                                        </ul> 
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-6">   
+
+                                        <h6>3 Free seats</h6>
+                                        <input type="number" name="quantity" min="1" max="5" value="1">
+
+                                        <button type="button" class="btn btn-secondary btn-sm btn-block">RESERVE SEAT</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       <?php
+       include_once '../../BackEnd/viajes/misViajes.php';
+       getViajesConductor();
+       ?>
+    </section>
+
+
+
+>>>>>>> master
 
                     <?php
                     for ($i = 0; $i < 5; $i++) {
@@ -285,6 +383,8 @@
             </div>
         </div>
     </footer>
+
+
 
 </html>
 

@@ -31,27 +31,34 @@ function loginForm() {
             $aux = mysqli_fetch_array($query); //get the query result into an array
             //print_r($aux);
             if (password_verify($password, $aux['contrasenha'])) {//using password_verify without hashing the DB passwords causes an error
-            //not finding any user
-           // if ($password === $aux['Pass']) {
+                //not finding any user
+                // if ($password === $aux['Pass']) {
                 //user found
-
                 mysqli_close($con);
 
                 //create session values once the user has been found in the DB
                 $_SESSION['userName'] = $userName;
                 $_SESSION['user_id'] = $aux['id'];
                 //$_SESSION['userRol'] = $aux['Rol'];
-                
-                echo "User logged";
+                //echo "User logged";
                 //go back to index after login
                 header("Location: ../../index.php");
             } else {
                 //user not found
+                logOut();
                 mysqli_close($con);
                 die("User not found, mail and pass dont match");
             }
         }
-    }else{
+    } else {
+        unSetSession();
         echo "<br/>Please make sure you filled both email and password fields<br/>";
     }
+}
+
+//this function should log out the user unseting all session variables
+function logOut() {
+    session_start();
+    session_unset();
+    header("Location: home.php");
 }

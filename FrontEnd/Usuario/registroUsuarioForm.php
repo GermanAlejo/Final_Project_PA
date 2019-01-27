@@ -1,4 +1,38 @@
 <!--This page contains all the php and html code for the registration of a new user-->
+<<<<<<< HEAD:FrontEnd/Usuario/registroUsuarioForm.php
+=======
+
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+
+        <?php
+        include '../../libraries.php';
+        include_once '../../BackEnd/Usuario/registro.php';
+        ?>
+    </head>
+
+    <body>
+
+        <?php
+
+
+        session_start();
+        include_once '../../BackEnd/Usuario/registro.php';
+        registrationForm();
+        registroForm();
+        ?>
+
+
+
+
+    </body>
+
+</html>
+
+>>>>>>> master:FrontEnd/Usuario/registroForm.php
 <!DOCTYPE html>
 <html lang="en">
 
