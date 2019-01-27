@@ -1,37 +1,7 @@
 <!--This page contains all the php and html code for the registration of a new user-->
-
-<html>
-
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-
-        <?php
-        include '../../libraries.php';
-        include_once '../../BackEnd/Usuario/registro.php';
-        ?>
-    </head>
-
-    <body>
-
-        <?php
-
-
-
-        include_once '../../BackEnd/Usuario/registro.php';
-        registrationForm();
-        registroForm();
-        ?>
-
-
-
-
-    </body>
-
-</html>
-
 <!DOCTYPE html>
 <html lang="en">
+
 
     <head>
         <meta charset="utf-8">
@@ -39,7 +9,9 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Landing Page - Start Bootstrap Theme</title>
+
+         <link rel="icon" href="../../FrontEnd/img/icon.png">
+        <title>Tripshare</title>
 
         <!-- Bootstrap core CSS -->
         <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -52,6 +24,20 @@
         <!-- Custom styles for this template -->
         <link href="../../FrontEnd/css/landing-page.min.css" rel="stylesheet">
 
+        <!-- Bootstrap core JavaScript -->
+        <script src="../../vendor/jquery/jquery.min.js"></script>
+        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <?php
+        include '../../libraries.php';
+        include_once '../../BackEnd/Usuario/registro.php';
+        ?>
+
+        <?php
+        include_once '../../BackEnd/Usuario/registro.php';
+        // registrationForm();
+        registroForm();
+        ?>
     </head>
 
     <body>
@@ -77,22 +63,19 @@
                             <a href="#" class="dropdown-item">Close Session</a>
                         </div>
                     </nav>
-                    <a href="http://localhost/Final_Project_PA/FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
+                    <a href="loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
             </div>
         </div>
 
         <header class="masthead text-white text-center">
-            <!--<div class="overlay"></div>-->
             <div class="container">
                 <div class="row">
-
                     <div class="col-md-10 col-lg-8 col-xl-10 mx-auto">
                         <form action="#" method="POST">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Email</label>
                                     <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
-                                   <!-- <small class="form-text text-muted">Your email will be also your surname and used to log-in</small> -->
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
@@ -103,7 +86,6 @@
                                     <label for="inputNumber">Phone number</label>
                                     <input type="text" name="phoneNumber" class="form-control" placeholder="Phone number">
                                 </div>
-
                             </div>
 
                             <div class="form-row">
@@ -123,19 +105,13 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
-                                <!--  <a href="http://localhost/Final_Project_PA/FrontEnd/Usuario/loginForm.php" class="btn btn-block btn-primary" href="#">Sign up</a>    -->
-                                <!-- <a  name="send" class="btn btn-block btn-primary" href="#">Sign up</a>      -->              
-                                <input type="submit" name="send" class="btn btn-block btn-primary" placeholder="Sign up">
+                            <div class="form-row">
+                                <div class="form-group col-md-4 mx-auto">
+                                    <input type="submit" name="send" class="btn btn-block btn-primary" value="Sign up">                    
+                                </div>
                             </div>
                         </form>
-                    </div>
-                    <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
-                        <a href="http://localhost/Final_Project_PA/FrontEnd/Usuario/loginForm.php" class="btn btn-block btn-primary" href="#">Sign up</a>                    
-                    </div>
-
-
-
+                    </div>  
                 </div>
             </div>
 
@@ -192,7 +168,4 @@
         </div>
     </footer>
 
-
 </html>
-
-

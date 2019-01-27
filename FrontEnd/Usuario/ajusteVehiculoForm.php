@@ -61,38 +61,44 @@
             </div>
         </div>
 
-        <header class="masthead text-white text-center">
-            <!--<div class="overlay"></div>-->
+        <header class="">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-10 mx-auto">
-                        <form action="#" method="POST">
-                            <div class="loginContainer">
-                                <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
-                                    <form>
-                                        <div class="form-row">
-                                            <div class="col-12 col-md-6 mb-2">
-                                                <label for="uname"><b>Username</b></label>
-                                                <input name="username" id="username" type="text" class="form-control " placeholder="Enter username">
-                                            </div>
-                                            <div class="col-12 col-md-6 mb-2">
-                                                <label for="uname"><b>Password</b></label>
-                                                <input name="password" id="password" type="password" class="form-control " placeholder="Enter password">  
-                                                <span class="psw">Forgot <a href="#" style="color: white">password?</a></span> 
-                                            </div> 
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
-                                    <button type="submit" class="btn btn-block btn-primary">Login</button>    
-                                </div>
+                <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
+                    <h1>Mis datos</h1>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <label for="uname"><b>Matricula: </b></label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <label for="uname"><b>Marca: </b></label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <label for="uname"><b>Modelo: </b></label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <div class="form-group">
+                                <input type="submit" name="edit" class="btn btn-block btn-primary" value="Editar vehiculo">    
                             </div>
-                        </form>
+                        </div>
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <div class="form-group">
+                                <input type="submit" name="delete" class="btn btn-block btn-primary" value="Eliminar vehiculo">    
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <br><br><br><br>
         </header>
 
 
@@ -148,13 +154,10 @@
 //    session_start();
     include_once('../../BackEnd/Usuario/login.php');
 
-    //   loginForm();
+//   loginForm();
     ?>
 
 </html>
-
-
-
 
 
 
