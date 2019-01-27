@@ -131,7 +131,7 @@ function getUserVehicles() {
 }
 
 //this function changes the name of the user in case is not taken already
-function setName($newName) {
+function setName() {
 
     $error[] = "";
 
@@ -169,7 +169,87 @@ function setName($newName) {
     }
 }
 
-function setEmail($newEmail) {
+function setMiddlename(){
+    
+     $error[] = "";
+
+    //check if the user is logged
+    if (isset($_SESSION['user_id'])) {
+
+        //get user_id
+        $user_id = $_SESSION['user_id'];
+        //first filter and sanitize the new name
+        if ($_POST['newMiddle'] != "") {
+            $newMidle = filter_var($_POST['newMiddle'], FILTER_SANITIZE_STRING);
+            if ($_POST['newMiddle'] == "") {
+                $error[] = 'Please enter a valid middle name.<br/><br/>';
+            }
+        } else {
+            $error[] = 'Please enter your middle name.<br/>';
+        }
+
+        //connect to DB
+        $con = dbConnection();
+
+        $sql = "UPDATE usuario SET apellido1 = '" . $newMidle . "' WHERE usuario.id =" . $user_id;
+
+        $query = mysqli_query($con, $sql);
+
+        if (!$query) {
+
+            $error[] = "Error in sql";
+            mysqli_close($con);
+        } else {
+            
+            echo "Middlename updated";
+            //if the name is not already registered 
+            mysqli_close($con);
+        }
+    }
+    
+}
+
+function setLastName(){
+    
+     $error[] = "";
+
+    //check if the user is logged
+    if (isset($_SESSION['user_id'])) {
+
+        //get user_id
+        $user_id = $_SESSION['user_id'];
+        //first filter and sanitize the new name
+        if ($_POST['newLast'] != "") {
+            $newLast = filter_var($_POST['newLast'], FILTER_SANITIZE_STRING);
+            if ($_POST['newLast'] == "") {
+                $error[] = 'Please enter a valid last name.<br/><br/>';
+            }
+        } else {
+            $error[] = 'Please enter your last name.<br/>';
+        }
+
+        //connect to DB
+        $con = dbConnection();
+
+        $sql = "UPDATE usuario SET apellido2 = '" . $newLast . "' WHERE usuario.id =" . $user_id;
+
+        $query = mysqli_query($con, $sql);
+
+        if (!$query) {
+
+            $error[] = "Error in sql";
+            mysqli_close($con);
+        } else {
+            
+            echo "Lastname updated";
+            //if the name is not already registered 
+            mysqli_close($con);
+        }
+    }
+    
+}
+
+function setEmail() {
 
     $error[] = "";
 
@@ -207,8 +287,48 @@ function setEmail($newEmail) {
     }
 }
 
-function setPassword($newPass1, $newPass2, $oldPass) {
+function setTelf(){
     
+     $error[] = "";
+
+    //check if the user is logged
+    if (isset($_SESSION['user_id'])) {
+
+        //get user_id
+        $user_id = $_SESSION['user_id'];
+        //first filter and sanitize the new name
+        if ($_POST['newTlf'] != "") {
+            $tlf = filter_var($_POST['newTlf'], FILTER_SANITIZE_NUMBER_INT);
+            if ($_POST['newTlf'] == "") {
+                $error[] = 'Please enter a valid phone number.<br/><br/>';
+            }
+        } else {
+            $error[] = 'Please enter your phone number.<br/>';
+        }
+
+        //connect to DB
+        $con = dbConnection();
+
+        $sql = "UPDATE usuario SET telefono = '" . $tlf . "' WHERE usuario.id =" . $user_id;
+
+        $query = mysqli_query($con, $sql);
+
+        if (!$query) {
+
+            $error[] = "Error in sql";
+            mysqli_close($con);
+        } else {
+            
+            echo "Phone number updated";
+            //if the name is not already registered 
+            mysqli_close($con);
+        }
+    }
+    
+}
+
+function setPassword($newPass1, $newPass2, $oldPass) {
+
     $error[] = "";
 
     //check if the user is logged
@@ -217,15 +337,15 @@ function setPassword($newPass1, $newPass2, $oldPass) {
         //get user_id
         $user_id = $_SESSION['user_id'];
         //first filter and sanitize the new password
-       if ($_POST['newPass1'] !== "" && $_POST['newPass2'] !== "") {
+        if ($_POST['newPass1'] !== "" && $_POST['newPass2'] !== "") {
             $newPass1 = filter_var($_POST['newPass1'], FILTER_SANITIZE_STRING);
             $newPass2 = filter_var($_POST['newPass2'], FILTER_SANITIZE_STRING);
-            if ($_POST['newName'] === ""  || $_POST['newPass2'] === "") {
+            if ($_POST['newName'] === "" || $_POST['newPass2'] === "") {
                 $error[] = 'Please fill both fields with new password.<br/><br/>';
-            }else if($newPass1 !== $newPass2) {//check for both fields of password are the same
+            } else if ($newPass1 !== $newPass2) {//check for both fields of password are the same
                 $error[] = 'Please make sure you introduce same password into both fields.<br/>';
-            }else{
-                if(password_verify($oldPass, $newPass1)){//check new password is not the old password
+            } else {
+                if (password_verify($oldPass, $newPass1)) {//check new password is not the old password
                     $error[] = "Please make sure your new password is not the oldpassword.<br/>";
                 }
             }
@@ -238,7 +358,7 @@ function setPassword($newPass1, $newPass2, $oldPass) {
 
         //hash the new password before updating
         $hashedPass = password_hash($newPass1, PASSWORD_DEFAULT);
-        
+
         $sql = "UPDATE usuario SET contrasenha = '" . $hashedPass . "' WHERE usuario.id =" . $user_id;
 
         $query = mysqli_query($con, $sql);
@@ -253,5 +373,79 @@ function setPassword($newPass1, $newPass2, $oldPass) {
             mysqli_close($con);
         }
     }
+}
+
+//this function returns all data from the user and returns it to the frontend
+function getUser() {
+
+    $error[] = "";
+
+    //check if the user is logged
+    if (isset($_SESSION['user_id'])) {
+
+        //get userID to known which cars to get from DB
+        $user_id = $_SESSION['user_id'];
+
+        //first conenct to DB
+        $con = dbConnection();
+
+        $sql = "SELECT usuario.foto,usuario.nombre,usuario.apellido1,usuario.apellido2,"
+                . "usuario.correo, usuario.telefono FROM usuario JOIN cliente WHERE "
+                . "usuario.id=cliente.usuario_id and cliente.usuario_id='" . $user_id . "'";
+
+        $query = mysqli_query($con, $sql);
+
+        if (!$query) {
+
+            $error = "Error in sql";
+            mysqli_close($con);
+        } else {
+
+            //put all data into array
+            $res = mysqli_fetch_assoc($query);
+
+            //close DB conection
+            mysqli_close($con);
+
+            //the array with user data is returned to the frontend
+            return $res;
+        }
+    } else {
+
+        $error[] = "The user must be logged-in";
+    }
+
+    print_r($error);
+}
+
+//this function controls which values from the user are modified
+function actualizeUser() {
+
+    if ($_SESSION['usuario_id']) {
+        if (isset($_POST['send'])) {
+
+
+            if (isset($_POST['nombre'])) {
+                setName();
+            }
+            if (isset($_POST['apellido1'])) {
+                setMiddlename();
+            }
+            if (isset($_POST['apellido2'])) {
+                setLastName();
+            }
+            if (isset($_POST['correo'])) {
+                setEmail();
+            }
+            if(isset($_POST['telefono'])){
+                setTelf();
+            }
+        }
+    }
+}
+
+function deleteUser(){
+    
+    
     
 }

@@ -1,19 +1,19 @@
-Mostrar Datos Personales:
+Mostrar Datos Personales: DONETE
 select usuario.foto,usuario.nombre,usuario.apellido1,usuario.apellido2,usuario.correo, usuario.telefono FROM usuario JOIN cliente WHERE usuario.id=cliente.usuario_id and cliente.usuario_id=1;
 
-Actualizar datos de usuario:
+Actualizar datos de usuario: DONETE menos la foto
 UPDATE usuario SET foto = 'direccion de la foto', nombre = 'nombre del usuario', apellido1 = 'apellido 1', apellido2 = 'apellido 2', correo = 'nuevo correo', contrasenha = '', telefono = '1111' WHERE usuario.id = 2
 
-Modificar contraseña:
+Modificar contraseña:DONETE
 UPDATE usuario SET contrasenha = 'nueva pass' WHERE usuario.id = 2
 
 Eliminar usuario:
 DELETE FROM usuario WHERE usuario.id = 3
 
-Listar viajes usuario:
+Listar viajes usuario:DONETE
 SELECT viaje.origen,viaje.destino,viaje.fecha FROM viaje JOIN viajerosClientes WHERE viaje.id=viajerosClientes.viaje_id AND viajerosClientes.cliente_id=2
 
-Crear viaje: 
+Crear viaje: DONETE
 INSERT INTO viaje (id, conductor_id, vehiculo_id, seguro_id, origen, destino, capacidad, descripcion, precio, fecha, hora_salida) VALUES (NULL, '2', 'se0866DP', '1', 'sevilla', 'madrid', '4', 'descripcion aleatoria', '30', '2019-01-30', '21:13:00')
 
 Eliminar viaje: 
@@ -34,7 +34,7 @@ SELECT viaje.origen,viaje.destino,usuario.nombre,viaje.fecha,viaje.hora_salida f
 Listar vehículos conductor:
 select vehiculo.matricula,vehiculo.marca,vehiculo.modelo FROM vehiculo where vehiculo.propietario_id=2
 
-Añadir vehículo:
+Añadir vehículo:DONETE
 INSERT INTO `vehiculo` (`matricula`, `propietario_id`, `marca`, `modelo`) VALUES ('SE0866CP', '3', 'marca ', 'modelo');
 
 Modificar vehículo:

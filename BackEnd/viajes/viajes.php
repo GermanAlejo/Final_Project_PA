@@ -71,10 +71,47 @@ function getProximosViajes() {
 
 //the array with the tables rows is returnet to the frontend
         print_r($res);
+        return $res;
     }
 
 
     print_r($error);
+}
+
+//this function receives the id of a trip and returns the trip from the trip table
+function getViaje($idViaje) {
+
+    $error[] = "";
+
+    //user does not need to be logged
+//first conenct to DB
+    $con = dbConnection();
+
+
+    //first get the trip data about the DB
+    $sql = "SELECT * FROM viaje WHERE viaje_id='" . $idViaje . "'";
+
+    //echo $sql;
+    $query = mysqli_query($con, $sql);
+
+    if (!$query) {
+        $error = "Error in sql";
+        $res = "Trip not found";
+        mysqli_close($con);
+    } else if (mysqli_num_rows($query) === 1) {//check if the result is only one(row)
+        $res = mysqli_fetch_array($query);
+        //save trip id for later use when selecting a trip
+        $_SESSION['trip_id'] = $res['id'];
+        //save avalaible slots so its easier to check later when reserving a trip
+        $_SESSION['slots'] = $res['capacidad'];
+//close DB conection
+        mysqli_close($con);
+    }
+
+    print_r($error);
+
+    //return trip
+    return $res;
 }
 
 //this function will insert a new trip in the DB
@@ -174,5 +211,62 @@ function newViaje() {
         } else {
             echo "You must be logged to plan a new trip<br/>";
         }
+    }
+}
+
+//this function reserves a trip for a user if avalaible
+function reservarViaje() {
+
+    //check if user is logged
+    if ($_SESSION['user_id']) {
+        //check if form was sent
+        if ($_POST['send']) {
+            //check if a trip was properly selected
+            if ($_SESSION['trip_id']) {
+
+                $trip_id = $_SESSION['trip_id'];
+                $slots = $_SESSION['slots'];
+                $user_id = $_SESSION['user_id'];
+                $numSeats = $_POST['quantity'];
+                $aux = $slots - $numSeats;//for checking if theres enaought space for more than one
+                
+                //if slots is greater than 0 it means theres space avalaible for clients in the trip
+                if ($slots > 0 && $aux > 0) {
+
+                    $con = dbConnection();
+
+                    //in order to select a trip we need to create a relation between the trip and the user
+                    //and update the number of slots left in the trip
+                    $sql1 = "INSERT INTO 'viajerosClientes' ('cliente_id', 'viaje_id') "
+                            . "VALUES ('" . $user_id . "', '" . $trip_id . "')";
+
+                    $query1 = mysqli_query($con, $sql1);
+
+                    if (!$query1) {
+                        echo "error sql";
+                        mysqli_close($con);
+                    } else {
+                        
+                        $sql2 = "UPDATE viaje SET capacidad = '" . $aux . "' WHERE viaje.id = '" . $trip_id . "'";
+                        
+                        $query2 = mysqli_query($con, $sql2);
+                        
+                        if(!$query2){
+                            echo "error updating seats";
+                            mysqli_close($con);
+                        }else{
+                            echo "trip reserved!";
+                            mysqli_close($con);
+                        }
+                    }
+                } else {
+                    echo "There's no space left in the trip";
+                }
+            } else {
+                echo "No trip was selected";
+            }
+        }
+    } else {
+        echo "Please log in to reserve a trip";
     }
 }
