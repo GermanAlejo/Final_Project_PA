@@ -1,3 +1,7 @@
+
+<!--This page contains all html and php code for the login of the users
+    All of the vaidations will be done in the this same page as the html form
+    once the user has log in the page will redirect the user to index.php-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,28 +12,24 @@
         <meta name="author" content="">
 
 
-        <link rel="icon" href="FrontEnd/img/icon.png">
+        <link rel="icon" href="../../FrontEnd/img/icon.png">
         <title>Tripshare</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom fonts for this template -->
-        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+        <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
         <!-- Custom styles for this template -->
-        <link href="FrontEnd/css/landing-page.min.css" rel="stylesheet">
+        <link href="../../FrontEnd/css/landing-page.min.css" rel="stylesheet">
 
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- API Google -->
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
-        </script>
 
 
     </head>
@@ -39,8 +39,8 @@
         <div>
             <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
                 <h5 class="my-0 mr-md-auto font-weight-normal">
-                    <a href="index.php">
-                        <img src="FrontEnd/img/tripshare logo2.png" height="60"></h5>
+                    <a href="../../index.php">
+                        <img src="../../FrontEnd/img/tripshare logo2.png" height="60"></h5>
                     </a>
                     <nav class="my-2 my-md-0 mr-md-3">
                         <a class="p-2 text-dark" href="#">Search trip</a>
@@ -57,95 +57,48 @@
                             <a href="#" class="dropdown-item">Close Session</a>
                         </div>
                     </nav>
-                    <a href="/FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
+                    <a href="../../FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
             </div>
         </div>
 
         <header class="masthead text-white text-center">
+            <!--<div class="overlay"></div>-->
             <div class="container">
                 <div class="row">
-                    <form action="#" method="GET">
-                        <div class="col-xl-12 mx-auto">
-                            <h1 class="mb-5">Planea tu próximo viaje ¿A dónde vas a ir?</h1>
-                        </div>
-                        <div class="col-md-12 col-lg-8 col-xl-12 mx-auto">
-                            <form>
-                                <div class="form-row">
-                                    <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                        <input name="inicio" id="inicio" type="text" class="form-control " placeholder="From...">
-                                    </div>
-                                    <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                        <input name="fin" id="fin" type="text" class="form-control " placeholder="To...">
-                                    </div>
-                                    <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                        <input type="date" id="date" class="form-control" placeholder="Date" min="today" value="today" required>
-                                    </div>
-                                    <div class="col-12 col-md-3 mb-md-0">
-                                        <button type="submit" class="btn btn-block btn-primary">Search!</button>
-                                    </div>
+                    <div class="col-xl-10 mx-auto">
+                        <form action="#" method="POST">
+                            <div class="loginContainer">
+                                <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
+                                    <form>
+                                        <div class="form-row">
+                                            <div class="col-12 col-md-6 mb-2">
+                                                <label for="uname"><b>Username</b></label>
+                                                <input name="username" id="username" type="text" class="form-control " placeholder="Enter username">
+                                            </div>
+                                            <div class="col-12 col-md-6 mb-2">
+                                                <label for="uname"><b>Password</b></label>
+                                                <input name="password" id="password" type="password" class="form-control " placeholder="Enter password">  
+                                                <span class="psw">Forgot <a href="#" style="color: white">password?</a></span> 
+                                            </div> 
+                                        </div>
+                                    </form>
                                 </div>
-                                <br>
-                                <div class="form-row">
-                                    <div class="col-12 col-md-4 mb-md-0 mx-auto">
-                                        <a href="FrontEnd/Usuario/registroUsuarioForm.php" class="btn btn-block btn-primary">Sign up</a>                    
-                                    </div>
+                                <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
+                                    <button type="submit" class="btn btn-block btn-primary">Login</button>    
                                 </div>
-                            </form>
-                        </div>
-
-                    </form>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+
+            <br><br><br><br>
         </header>
 
-
-        <script>
-            var incio;
-            var fin;
-            var countryRestrict = {'country': 'es'};
-
-            function initMap() {
-
-                incio = new google.maps.places.Autocomplete((
-                        document.getElementById('inicio')), {
-                    types: ['(cities)'],
-                    componentRestrictions: countryRestrict
-                });
-
-                fin = new google.maps.places.Autocomplete((
-                        document.getElementById('fin')), {
-                    types: ['(cities)'],
-                    componentRestrictions: countryRestrict
-                });
-
-            }
-
-        </script>
 
 
 
     </body>
-
-    <!-- Testimonials -->
-    <section class="testimonials text-center bg-light">
-        <div class="container">
-            <h2 class="mb-5">Promociones exclusivas</h2>
-            <div class="row">
-                <?php
-                for ($i = 0; $i < 5; $i++) {
-                    echo '      <div class="col-lg-4">';
-                    echo '        <div class="testimonial-item mx-auto mb-5 mb-lg-0">';
-                    echo '          <img class="img-fluid rounded-circle mb-3" src="FrontEnd/img/cartel.jpg" alt="">';
-                    echo '          <h5>Margaret E.</h5>';
-                    echo '          <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>';
-                    echo '        </div>';
-                    echo '      </div>';
-                }
-                ?>
-            </div>
-        </div>
-    </section>
-
 
 
     <!-- Footer -->
@@ -155,7 +108,7 @@
                 <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                     <ul class="list-inline mb-2">
                         <li class="list-inline-item">
-                            <a href="#">About us</a>
+                            <a href="#">About</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
@@ -190,4 +143,18 @@
         </div>
     </footer>
 
+    <?php
+//start session
+//    session_start();
+    include_once('../../BackEnd/Usuario/login.php');
+
+    //   loginForm();
+    ?>
+
 </html>
+
+
+
+
+
+
