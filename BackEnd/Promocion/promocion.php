@@ -1,17 +1,7 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of promocion
- *
- * @author Racso
- */
 class promocion {
+
     public $idPromocion;
     public $creador_id;
     public $fecha_inicio;
@@ -19,9 +9,7 @@ class promocion {
     public $titulo;
     public $descripcion;
     public $descuento;
-    
-    
-    
+
     function getIdPromocion() {
         return $this->idPromocion;
     }
@@ -78,6 +66,24 @@ class promocion {
         $this->descuento = $descuento;
     }
 
+    function crearPromocion() {
+        $consulta = "INSERT INTO `promocion` (`id`, `creador_id`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `descuento`, `foto`) VALUES (NULL, '1', '2019-01-25', '2019-02-14', 'Sorteo entradas rey leon', 'que te lo has creído tu ', '', NULL)";
+    }
 
-    
+    function consultarPromocion() {
+        $consultar = "SELECT foto,titulo,descripcion,fecha_inicio,fecha_fin FROM `promocion`";
+    }
+
+    function modificarPromocion() {
+        $consulta = "UPDATE `promocion` SET `titulo` = 'titulo', `descripcion` = 'descripcion', `foto` = 'foto cambiada.url' WHERE `promocion`.`id` = 3";
+    }
+
+    function reactivar() {
+        $consulta = "UPDATE `promocion` SET `fecha_inicio` = '2019-01-30', `fecha_fin` = '2019-01-31' WHERE `promocion`.`id` = 3";
+    }
+
+    function eliminarPromocion() {
+        $consulta = "delete from promocion where promocion.id =3";
+    }
+
 }
