@@ -4,7 +4,7 @@
     once the user has log in the page will redirect the user to index.php-->
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -25,11 +25,11 @@
         <!-- Custom styles for this template -->
         <link href="../../FrontEnd/css/landing-page.min.css" rel="stylesheet">
 
-             
+
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        
+
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -39,10 +39,7 @@
         include_once '../../BackEnd/Usuario/registro.php';
         ?>
 
-        <?php
-        // registrationForm();
-        registroForm();
-        ?>
+
     </head>
 
     <body>
@@ -76,40 +73,11 @@
             <div class="container">
                 <h2 class="mb-5">Viajes realizados</h2>
                 <div class="row">
-
-
                     <?php
-                    for ($i = 0; $i < 5; $i++) {
-
-                        echo ' <div class="col-lg-6 col-sm-12 mb-3">';
-                        echo '     <div class="card"> ';
-                        echo '   <div class="card-body">';
-                        echo '       <div class="row ">';
-                        echo '           <div class="col-md-4">';
-                        echo '               <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">';
-                        echo '           </div>';
-                        echo '           <div class="col-md-8">';
-                        echo '               <h4>Conductor </h4>';
-                        echo '               <h6>nombre del tipejo</h6>';
-                        echo '           </div>';
-                        echo '       </div>';
-                        echo '       <div class="row ">  ';
-                        echo '           <div class="col-md-4">  ';
-                        echo '               <ul class="list-unstyled list-inline">';
-                        echo '                   <li class="list-inline">Origen:</li>';
-                        echo '                   <li class="list-inline">Destino:</li>';
-                        echo '                   <li class="list-inline">Distancia:</li>';
-                        echo '               </ul> ';
-                        echo '           </div>';
-                        echo '           <div class="col-md-2"></div>';
-                        echo '           <div class="col-md-6">   ';
-                        echo '               <a href="valorarViajeForm.php" type="button" class="btn btn-primary btn-sm btn-block text-white">Valorar</a>';
-                        echo '           </div>';
-                        echo '       </div>';
-                        echo '     </div>';
-                        echo '  </div>';
-                        echo '</div>';
-                    }
+                    include "../../BackEnd/Viajes/misViajes.php";
+                    session_start();
+                    echo "userID: " . $_SESSION['user_id'];
+                    showTarjetas();
                     ?>
 
                 </div>
@@ -164,9 +132,56 @@
     </footer>
 </html>
 
+<?php
+
+//this function displays all trips done by the user
+function showTarjetas() {
+
+    //get array with trips
+    $viajes = getViajesUsuario();
+    $numViajes = sizeof($viajes);
+    
+    //print_r($viajes);
 
 
+    for ($i = 0; $i < $numViajes; $i++) {
+        
+        //get first element of array aka first trip
+        $viaje = $viajes[$i];
+        //save values form array in variables
+        $driverName = $viaje['name'];
+        $origen = $viaje['from'];
+        $destino = $viaje['to'];
+        $fecha = $viaje['date'];
+        
 
-
-
-
+        echo ' <div class="col-lg-6 col-sm-12 mb-3">';
+        echo '     <div class="card"> ';
+        echo '   <div class="card-body">';
+        echo '       <div class="row ">';
+        echo '           <div class="col-md-4">';
+        echo '               <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">';
+        echo '           </div>';
+        echo '           <div class="col-md-8">';
+        echo '               <h4>Conductor </h4>';
+        echo '               <h6>' . $driverName . '</h6>';
+        echo '           </div>';
+        echo '       </div>';
+        echo '       <div class="row ">  ';
+        echo '           <div class="col-md-4">  ';
+        echo '               <ul class="list-unstyled list-inline">';
+        echo '                   <li class="list-inline">Origen: ' . $origen . '</li>';
+        echo '                   <li class="list-inline">Destino: ' . $destino . '</li>';
+        echo '                   <li class="list-inline">Fecha:</li>' . $fecha . '';
+        echo '               </ul> ';
+        echo '           </div>';
+        echo '           <div class="col-md-2"></div>';
+        echo '           <div class="col-md-6">   ';
+        echo '               <a href="valorarViajeForm.php" type="button" class="btn btn-primary btn-sm btn-block text-white">Valorar</a>';
+        echo '           </div>';
+        echo '       </div>';
+        echo '     </div>';
+        echo '  </div>';
+        echo '</div>';
+    }
+}

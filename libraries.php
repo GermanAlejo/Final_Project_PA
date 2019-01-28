@@ -46,7 +46,7 @@ function dbConnection() {
 
 //this function should kill all session vars when needed to
 function unSetSession() {
-    session_start();
+    //session_start();
     session_unset();
     session_destroy();
 }

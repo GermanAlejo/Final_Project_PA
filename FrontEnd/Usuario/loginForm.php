@@ -156,7 +156,7 @@
     </footer>
 
     <?php
-// session_start();
+    session_start();
     include_once('../../BackEnd/Usuario/login.php');
     ?>
 

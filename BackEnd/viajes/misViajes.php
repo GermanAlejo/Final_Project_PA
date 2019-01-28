@@ -1,6 +1,7 @@
 <?php
 
 include_once '../../libraries.php';
+getViajesUsuario();
 
 //this function returns all trips where the user has drive
 function getViajesConductor() {
@@ -59,7 +60,7 @@ function getViajesConductor() {
 //returns all trips where the user has been client
 function getViajesUsuario(){
     $error[] = "";
-
+    $res = "";
 //check if the user is logged
     if (isset($_SESSION['user_id'])) {
 
@@ -77,7 +78,7 @@ function getViajesUsuario(){
                 . " cliente.usuario_id=usuario.id";
 
         //consulta para obtener nombre (del conductor) fecha origen y destino
-        echo $sql;
+       // echo $sql;
         $query = mysqli_query($con, $sql);
 
         if (!$query) {
@@ -99,9 +100,9 @@ function getViajesUsuario(){
 
 //close DB conection
             mysqli_close($con);
-
+            return $res;
 //the array with the tables rows is returnet to the frontend
-            print_r($res);
+          //  print_r($res);
         }
     } else {
         unSetSession();
@@ -109,4 +110,5 @@ function getViajesUsuario(){
     }
 
     print_r($error);
+    return $res;
 }
