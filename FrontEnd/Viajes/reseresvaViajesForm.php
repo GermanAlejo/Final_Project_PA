@@ -11,7 +11,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-         <link rel="icon" href="../../FrontEnd/img/icon.png">
+        <link rel="icon" href="../../FrontEnd/img/icon.png">
         <title>Tripshare</title>
 
         <!-- Bootstrap core CSS -->
@@ -32,13 +32,25 @@
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script src="../../vendor/jquery/jquery.min.js"></script>
+        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- API Google -->
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
         </script>
 
-        <?php include '../../libraries.php'; ?>
+  <?php
+        include '../../libraries.php';
+        include_once '../../BackEnd/Usuario/registro.php';
+        ?>
+
+        <?php
+        include_once '../../BackEnd/Usuario/registro.php';
+        // registrationForm();
+        registroForm();
+        ?>
 
     </head>
 
@@ -51,21 +63,20 @@
                         <img src="../../FrontEnd/img/tripshare logo2.png" height="60"></h5>
                     </a>
                     <nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="#">Search trip</a>
-                        <a class="p-2 text-dark" href="#">Plan trip</a>
+                        <a class="p-2 text-dark" href="#">Buscar viaje</a>
+                        <a class="p-2 text-dark" href="#">Organizar viaje</a>
 
                         <!-- notice that the Profile and the sigh up buttom will be changed so they switch between them-->
-                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="#" class="dropdown-item">Panel</a>
-                            <a href="#" class="dropdown-item">Previous trips</a>
-                            <a href="#" class="dropdown-item">Profile settings</a>
-                            <a href="#" class="dropdown-item">My Forum</a>
-                            <a href="#" class="dropdown-item">Messages</a>
-                            <a href="#" class="dropdown-item">Close Session</a>
+                           <a href="../../FrontEnd/Usuario/ajusteUsuarioForm.php" class="dropdown-item">Mis datos</a>
+                            <a href="../../FrontEnd/Usuario/ajusteVehiculoForm.php" class="dropdown-item">Mis vehículos</a>
+                            <a href="../../FrontEnd/Viajes/viajesPendientesForm.php" class="dropdown-item">Viajes pendientes</a>
+                            <a href="../../FrontEnd/Viajes/viajesRealizadosForm.php" class="dropdown-item">Viajes realizados</a>
+                            <a href="#" class="dropdown-item">Cerrar Sesión</a>
                         </div>
                     </nav>
-                    <a href="../../FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
+                    <a href="../../FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Acceder</a>
             </div>
         </div>
 
@@ -192,25 +203,25 @@
                         echo '               <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">';
                         echo '           </div>';
                         echo '           <div class="col-md-8">';
-                        echo '               <h4>Driver Name</h4>';
-                        echo '               <a href="#">offers &amp; discounts</a>';
+                        echo '               <h4>Conductor </h4>';
+                        echo '               <h6>nombre del tipejo</h6>';
                         echo '           </div>';
                         echo '       </div>';
                         echo '       <div class="row ">  ';
                         echo '           <div class="col-md-4">  ';
                         echo '               <ul class="list-unstyled list-inline">';
-                        echo '                   <li class="list-inline">Origin:</li>';
-                        echo '                   <li class="list-inline">Destination:</li>';
-                        echo '                   <li class="list-inline">Distance:</li>';
+                        echo '                   <li class="list-inline">Origen:</li>';
+                        echo '                   <li class="list-inline">Destino:</li>';
+                        echo '                   <li class="list-inline">Distancia:</li>';
                         echo '               </ul> ';
                         echo '           </div>';
                         echo '           <div class="col-md-2"></div>';
                         echo '           <div class="col-md-6">   ';
 
-                        echo '               <h6>3 Free seats</h6>';
+                        echo '               <h6>3 Asientos libres</h6>';
                         echo '               <input type="number" name="quantity" min="1" max="5" value="1">';
 
-                        echo '               <button type="button" class="btn btn-secondary btn-sm btn-block">RESERVE SEAT</button>';
+                        echo '               <button type="button" class="btn btn-secondary btn-sm btn-block">Reservar asientos</button>';
 
                         echo '           </div>';
                         echo '       </div>';
@@ -251,19 +262,19 @@
                 <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                     <ul class="list-inline mb-2">
                         <li class="list-inline-item">
-                            <a href="#">About</a>
+                            <a href="#">El proyecto / Nosotros</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Contact</a>
+                            <a href="#">Contacto</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Forum</a>
+                            <a href="#">Foro</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Promos</a>
+                            <a href="#">Promociones</a>
                         </li>
                     </ul>
                     <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>

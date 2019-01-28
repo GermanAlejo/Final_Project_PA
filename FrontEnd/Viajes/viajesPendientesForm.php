@@ -1,10 +1,10 @@
-
+<head></head>
 <!--This page contains all html and php code for the login of the users
     All of the vaidations will be done in the this same page as the html form
     once the user has log in the page will redirect the user to index.php-->
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -25,11 +25,11 @@
         <!-- Custom styles for this template -->
         <link href="../../FrontEnd/css/landing-page.min.css" rel="stylesheet">
 
-             
+
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        
+
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -54,7 +54,7 @@
                         <img src="../../FrontEnd/img/tripshare logo2.png" height="60"></h5>
                     </a>
                     <nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="../../index.php">Buscar viaje</a>
+                        <a class="p-2 text-dark" href="#">Buscar viaje</a>
                         <a class="p-2 text-dark" href="#">Organizar viaje</a>
 
                         <!-- notice that the Profile and the sigh up buttom will be changed so they switch between them-->
@@ -71,55 +71,50 @@
             </div>
         </div>
 
-        <header>
+        <!-- Conductores -->
+        <section class="testimonials text-center bg-light">
             <div class="container">
-                <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
-                    <h1>Mi vehículo</h1>
-                    <div class="form-row">
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Matrícula: </b></label>
-                        </div>
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <input type="text" name="matricula" class="form-control">
-                        </div>
+                <h2 class="mb-5">Viajes pendientes</h2>
+                <div class="row">
 
-                    </div>
-                    <div class="form-row">
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Marca: </b></label>
-                        </div>
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <input type="text" name="marca" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Modelo: </b></label>
-                        </div>
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <input type="text" name="modelo" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="col-md-12 col-lg-6 col-xl-6 mx-auto"> 
-                    <div class="form-row">
-                        <div class="col-12 col-md-4 mb-2 mb-md-0 mx-auto">
-                            <div class="form-group">
-                                <input type="submit" name="confirm" class="btn btn-block btn-primary" value="Confirmar">    
-                            </div>
-                        </div>
-                    </div>
+
+                    <?php
+                    for ($i = 0; $i < 2; $i++) {
+
+                        echo ' <div class="col-lg-6 col-sm-12 mb-3">';
+                        echo '     <div class="card"> ';
+                        echo '   <div class="card-body">';
+                        echo '       <div class="row ">';
+                        echo '           <div class="col-md-4">';
+                        echo '               <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">';
+                        echo '           </div>';
+                        echo '           <div class="col-md-8">';
+                        echo '               <h4>Conductor </h4>';
+                        echo '               <h6>nombre del tipejo</h6>';
+                        echo '           </div>';
+                        echo '       </div>';
+                        echo '       <div class="row ">  ';
+                        echo '           <div class="col-md-4">  ';
+                        echo '               <ul class="list-unstyled list-inline">';
+                        echo '                   <li class="list-inline">Origen:</li>';
+                        echo '                   <li class="list-inline">Destino:</li>';
+                        echo '                   <li class="list-inline">Distancia:</li>';
+                        echo '               </ul> ';
+                        echo '           </div>';
+                        echo '           <div class="col-md-2"></div>';
+                        echo '           <div class="col-md-6">   ';
+                        echo '           </div>';
+                        echo '       </div>';
+                        echo '     </div>';
+                        echo '  </div>';
+                        echo '</div>';
+                    }
+                    ?>
+
                 </div>
             </div>
-        </header>
 
-
+        </section>
 
 
     </body>
@@ -166,16 +161,8 @@
             </div>
         </div>
     </footer>
-
-    <?php
-//start session
-//    session_start();
-    include_once('../../BackEnd/Usuario/login.php');
-
-//   loginForm();
-    ?>
-
 </html>
+
 
 
 

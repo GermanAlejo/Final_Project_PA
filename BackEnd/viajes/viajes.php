@@ -19,7 +19,7 @@ function getProximosViajes() {
     $ini = $formInput['inicio'];
     $fin = $formInput['fin'];
 
-    $fech = $_POST['fecha'];
+   // $fech = $_POST['fecha'];
 
 //first conenct to DB
     $con = dbConnection();

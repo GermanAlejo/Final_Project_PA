@@ -35,7 +35,7 @@ function dbConnection() {
     if (!$con) {
         die("ERROR: Can't connect to host");
     }
-    $db = mysqli_select_db($con, "pa_proyecto_final");
+    $db = mysqli_select_db($con, "PA_proyecto_final");
 
     if (!$db) {
         die("ERROR: Can't connect to DB ");

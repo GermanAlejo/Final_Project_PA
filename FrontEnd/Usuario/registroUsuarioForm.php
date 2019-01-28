@@ -10,7 +10,7 @@
         <meta name="author" content="">
 
 
-         <link rel="icon" href="../../FrontEnd/img/icon.png">
+        <link rel="icon" href="../../FrontEnd/img/icon.png">
         <title>Tripshare</title>
 
         <!-- Bootstrap core CSS -->
@@ -24,6 +24,11 @@
         <!-- Custom styles for this template -->
         <link href="../../FrontEnd/css/landing-page.min.css" rel="stylesheet">
 
+             
+        <!-- Bootstrap core JavaScript -->
+        <script src="../../vendor/jquery/jquery.min.js"></script>
+        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -34,14 +39,12 @@
         ?>
 
         <?php
-        include_once '../../BackEnd/Usuario/registro.php';
         // registrationForm();
         registroForm();
         ?>
     </head>
 
     <body>
-
         <div>
             <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
                 <h5 class="my-0 mr-md-auto font-weight-normal">
@@ -49,21 +52,20 @@
                         <img src="../../FrontEnd/img/tripshare logo2.png" height="60"></h5>
                     </a>
                     <nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="#">Search trip</a>
-                        <a class="p-2 text-dark" href="#">Plan trip</a>
+                        <a class="p-2 text-dark" href="../../index.php">Buscar viaje</a>
+                        <a class="p-2 text-dark" href="#">Organizar viaje</a>
 
                         <!-- notice that the Profile and the sigh up buttom will be changed so they switch between them-->
-                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="#" class="dropdown-item">Panel</a>
-                            <a href="#" class="dropdown-item">Previous trips</a>
-                            <a href="#" class="dropdown-item">Profile settings</a>
-                            <a href="#" class="dropdown-item">My Forum</a>
-                            <a href="#" class="dropdown-item">Messages</a>
-                            <a href="#" class="dropdown-item">Close Session</a>
+                            <a href="../../FrontEnd/Usuario/ajusteUsuarioForm.php" class="dropdown-item">Mis datos</a>
+                            <a href="../../FrontEnd/Usuario/ajusteVehiculoForm.php" class="dropdown-item">Mis vehículos</a>
+                            <a href="../../FrontEnd/Viajes/viajesPendientesForm.php" class="dropdown-item">Viajes pendientes</a>
+                            <a href="../../FrontEnd/Viajes/viajesRealizadosForm.php" class="dropdown-item">Viajes realizados</a>
+                            <a href="#" class="dropdown-item">Cerrar Sesión</a>
                         </div>
                     </nav>
-                    <a href="loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
+                    <a href="loginForm.php" class="btn btn-outline-primary" href="#">Acceder</a>
             </div>
         </div>
 
@@ -79,35 +81,35 @@
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Password</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
+                                    <label for="inputPassword4">Contraseña</label>
+                                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="···········">
                                 </div>
                                 <div class="form-group col-md-2">
-                                    <label for="inputNumber">Phone number</label>
-                                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone number">
+                                    <label for="inputNumber">Teléfono</label>
+                                    <input type="text" name="phoneNumber" class="form-control" placeholder="XXXYYYZZZ">
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="inputName" >Name</label>
-                                    <input type="text" name="firstName" class="form-control" placeholder="First name">
+                                    <label for="inputName" >Nombre</label>
+                                    <input type="text" name="firstName" class="form-control" placeholder="Nombre">
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
-                                    <label for="inputLastName">Middle Name</label>
-                                    <input type="text" name="middlename" class="form-control" placeholder="Middle name">
+                                    <label for="inputLastName">Primer apellido</label>
+                                    <input type="text" name="middlename" class="form-control" placeholder="Primer apellido">
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
-                                    <label for="inputLastName">Last Name</label>
-                                    <input type="text" name="lastname" class="form-control" placeholder="Last name">
+                                    <label for="inputLastName">Segundo apellido</label>
+                                    <input type="text" name="lastname" class="form-control" placeholder="Segundo apellido">
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-4 mx-auto">
-                                    <input type="submit" name="send" class="btn btn-block btn-primary" value="Sign up">                    
+                                    <input type="submit" name="send" class="btn btn-block btn-primary" value="Registrarse">                    
                                 </div>
                             </div>
                         </form>
@@ -119,12 +121,8 @@
         </header>
 
 
-        <!-- Bootstrap core JavaScript -->
-        <script src="../../vendor/jquery/jquery.min.js"></script>
-        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     </body>
-
 
     <!-- Footer -->
     <footer class="footer bg-light">
@@ -133,19 +131,19 @@
                 <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                     <ul class="list-inline mb-2">
                         <li class="list-inline-item">
-                            <a href="#">About us</a>
+                            <a href="#">El proyecto / Nosotros</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Contact</a>
+                            <a href="#">Contacto</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Forum</a>
+                            <a href="#">Foro</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Promos</a>
+                            <a href="#">Promociones</a>
                         </li>
                     </ul>
                     <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>

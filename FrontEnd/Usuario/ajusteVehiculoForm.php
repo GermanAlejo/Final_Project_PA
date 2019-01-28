@@ -4,8 +4,7 @@
     once the user has log in the page will redirect the user to index.php-->
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
+<head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -26,12 +25,24 @@
         <!-- Custom styles for this template -->
         <link href="../../FrontEnd/css/landing-page.min.css" rel="stylesheet">
 
+             
+        <!-- Bootstrap core JavaScript -->
+        <script src="../../vendor/jquery/jquery.min.js"></script>
+        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+        <?php
+        include '../../libraries.php';
+        include_once '../../BackEnd/Usuario/registro.php';
+        ?>
 
-
+        <?php
+        // registrationForm();
+        registroForm();
+        ?>
     </head>
 
     <body>
@@ -43,28 +54,27 @@
                         <img src="../../FrontEnd/img/tripshare logo2.png" height="60"></h5>
                     </a>
                     <nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="#">Search trip</a>
-                        <a class="p-2 text-dark" href="#">Plan trip</a>
+                        <a class="p-2 text-dark" href="../../index.php">Buscar viaje</a>
+                        <a class="p-2 text-dark" href="#">Organizar viaje</a>
 
                         <!-- notice that the Profile and the sigh up buttom will be changed so they switch between them-->
-                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="#" class="dropdown-item">Panel</a>
-                            <a href="#" class="dropdown-item">Previous trips</a>
-                            <a href="#" class="dropdown-item">Profile settings</a>
-                            <a href="#" class="dropdown-item">My Forum</a>
-                            <a href="#" class="dropdown-item">Messages</a>
-                            <a href="#" class="dropdown-item">Close Session</a>
+                            <a href="../../FrontEnd/Usuario/ajusteUsuarioForm.php" class="dropdown-item">Mis datos</a>
+                            <a href="../../FrontEnd/Usuario/ajusteVehiculoForm.php" class="dropdown-item">Mis vehículos</a>
+                            <a href="../../FrontEnd/Viajes/viajesPendientesForm.php" class="dropdown-item">Viajes pendientes</a>
+                            <a href="../../FrontEnd/Viajes/viajesRealizadosForm.php" class="dropdown-item">Viajes realizados</a>
+                            <a href="#" class="dropdown-item">Cerrar Sesión</a>
                         </div>
                     </nav>
-                    <a href="../../FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
+                    <a href="../../FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Acceder</a>
             </div>
         </div>
 
         <header class="">
             <div class="container">
                 <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
-                    <h1>Mi vehiculo</h1>
+                    <h1>Mi vehículo</h1>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
                             <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">
@@ -72,7 +82,7 @@
                     </div>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Matricula: </b></label>
+                            <label for="uname"><b>Matrícula: </b></label>
                         </div>
                     </div>
                     <div class="form-row">
@@ -109,47 +119,48 @@
 </body>
 
 
-<!-- Footer -->
-<footer class="footer bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-                <ul class="list-inline mb-2">
-                    <li class="list-inline-item">
-                        <a href="#">About</a>
-                    </li>
-                    <li class="list-inline-item">&sdot;</li>
-                    <li class="list-inline-item">
-                        <a href="#">Contact</a>
-                    </li>
-                    <li class="list-inline-item">&sdot;</li>
-                    <li class="list-inline-item">
-                        <a href="#">Forum</a>
-                    </li>
-                    <li class="list-inline-item">&sdot;</li>
-                    <li class="list-inline-item">
-                        <a href="#">Promos</a>
-                    </li>
-                </ul>
-                <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
-            </div>
-            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item mr-3">
-                        <a href="https://www.facebook.com/TRIPSHARE_es-282100442475538" target="_blank">
-                            <i class="fab fa-facebook fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item mr-3">
-                        <a href="https://twitter.com/TRIPSHARE3" target="_blank">
-                            <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-                        </a>
-                    </li>
-                </ul>
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a href="#">El proyecto / Nosotros</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Contacto</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Foro</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#">Promociones</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a href="https://www.facebook.com/TRIPSHARE_es-282100442475538" target="_blank">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a href="https://twitter.com/TRIPSHARE3" target="_blank">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
 <?php
 //start session
