@@ -40,7 +40,7 @@ function loginForm() {
                 $_SESSION['userName'] = $userName;
                 $_SESSION['user_id'] = $aux['id'];
                 //$_SESSION['userRol'] = $aux['Rol'];
-                //echo "User logged";
+                echo "User logged";
                 //go back to index after login
                 header("Location: ../../index.php");
             } else {
