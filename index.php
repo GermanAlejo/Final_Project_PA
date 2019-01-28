@@ -32,10 +32,13 @@
         </script>
 
 
+        <?php
+        include 'libraries.php';
+        ?>
+
     </head>
 
     <body>
-
         <div>
             <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
                 <h5 class="my-0 mr-md-auto font-weight-normal">
@@ -43,21 +46,20 @@
                         <img src="FrontEnd/img/tripshare logo2.png" height="60"></h5>
                     </a>
                     <nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="#">Search trip</a>
-                        <a class="p-2 text-dark" href="#">Plan trip</a>
+                        <a class="p-2 text-dark" href="index.php">Buscar viaje</a>
+                        <a class="p-2 text-dark" href="#">Organizar viaje</a>
 
                         <!-- notice that the Profile and the sigh up buttom will be changed so they switch between them-->
-                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="#" class="dropdown-item">Panel</a>
-                            <a href="#" class="dropdown-item">Previous trips</a>
-                            <a href="#" class="dropdown-item">Profile settings</a>
-                            <a href="#" class="dropdown-item">My Forum</a>
-                            <a href="#" class="dropdown-item">Messages</a>
-                            <a href="#" class="dropdown-item">Close Session</a>
+                            <a href="FrontEnd/Usuario/ajusteUsuarioForm.php" class="dropdown-item">Mis datos</a>
+                            <a href="FrontEnd/Usuario/ajusteVehiculoForm.php" class="dropdown-item">Mis vehículos</a>
+                            <a href="FrontEnd/Viajes/viajesPendientesForm.php" class="dropdown-item">Viajes pendientes</a>
+                            <a href="FrontEnd/Viajes/viajesRealizadosForm.php" class="dropdown-item">Viajes realizados</a>
+                            <a href="#" class="dropdown-item">Cerrar Sesión</a>
                         </div>
                     </nav>
-                    <a href="/FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
+                    <a href="FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary">Acceder</a>
             </div>
         </div>
 
@@ -69,30 +71,30 @@
                             <h1 class="mb-5">Planea tu próximo viaje ¿A dónde vas a ir?</h1>
                         </div>
                         <div class="col-md-12 col-lg-8 col-xl-12 mx-auto">
-                            <form>
-                                <div class="form-row">
-                                    <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                        <input name="inicio" id="inicio" type="text" class="form-control " placeholder="From...">
-                                    </div>
-                                    <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                        <input name="fin" id="fin" type="text" class="form-control " placeholder="To...">
-                                    </div>
-                                    <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                        <input type="date" id="date" class="form-control" placeholder="Date" min="today" value="today" required>
-                                    </div>
-                                    <div class="col-12 col-md-3 mb-md-0">
-                                        <button type="submit" class="btn btn-block btn-primary">Search!</button>
-                                    </div>
+                            <div class="form-row">
+                                <div class="col-12 col-md-3 mb-2 mb-md-0">
+                                    <input name="inicio" id="inicio" type="text" class="form-control " placeholder="Desde...">
                                 </div>
-                                <br>
-                                <div class="form-row">
-                                    <div class="col-12 col-md-4 mb-md-0 mx-auto">
-                                        <a href="FrontEnd/Usuario/registroUsuarioForm.php" class="btn btn-block btn-primary">Sign up</a>                    
-                                    </div>
+                                <div class="col-12 col-md-3 mb-2 mb-md-0">
+                                    <input name="fin" id="fin" type="text" class="form-control " placeholder="Hacia...">
                                 </div>
-                            </form>
+                                <div class="col-12 col-md-3 mb-2 mb-md-0">
+                                    <input type="date" id="date" class="form-control" placeholder="Fecha" min="today" value="today" required>
+                                </div>
+                                <div class="col-12 col-md-3 mb-md-0">
+                                    <button type="submit" class="btn btn-block btn-primary">Buscar</button>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-row">
+                                <div class="col-12 col-md-4 mb-md-0 mx-auto">
+                                    <a href="FrontEnd/Usuario/registroUsuarioForm.php" class="btn btn-block btn-primary">Registrarse</a>                    
+                                </div>
+                            </div>
                         </div>
-
+                        <script async defer
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
+                        </script>
                     </form>
                 </div>
             </div>
@@ -119,7 +121,6 @@
                 });
 
             }
-
         </script>
 
 
@@ -155,19 +156,19 @@
                 <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                     <ul class="list-inline mb-2">
                         <li class="list-inline-item">
-                            <a href="#">About us</a>
+                            <a href="#">El proyecto / Nosotros</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Contact</a>
+                            <a href="#">Contacto</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Forum</a>
+                            <a href="#">Foro</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Promos</a>
+                            <a href="#">Promociones</a>
                         </li>
                     </ul>
                     <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
@@ -189,5 +190,6 @@
             </div>
         </div>
     </footer>
+
 
 </html>

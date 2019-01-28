@@ -2,9 +2,7 @@
 <!--This page contains all html and php code for the login of the users
     All of the vaidations will be done in the this same page as the html form
     once the user has log in the page will redirect the user to index.php-->
-<!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,11 +24,20 @@
         <!-- Custom styles for this template -->
         <link href="../../FrontEnd/css/landing-page.min.css" rel="stylesheet">
 
+
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+        <!-- Bootstrap core JavaScript -->
+        <script src="../../vendor/jquery/jquery.min.js"></script>
+        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+        <?php
+        include '../../libraries.php';
+        include '../../BackEnd/Usuario/login.php';
+        include_once '../../BackEnd/Usuario/registro.php';
+        ?>
 
     </head>
 
@@ -43,21 +50,20 @@
                         <img src="../../FrontEnd/img/tripshare logo2.png" height="60"></h5>
                     </a>
                     <nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="#">Search trip</a>
-                        <a class="p-2 text-dark" href="#">Plan trip</a>
+                        <a class="p-2 text-dark" href="../../index.php">Buscar viaje</a>
+                        <a class="p-2 text-dark" href="#">Organizar viaje</a>
 
                         <!-- notice that the Profile and the sigh up buttom will be changed so they switch between them-->
-                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="#" class="dropdown-item">Panel</a>
-                            <a href="#" class="dropdown-item">Previous trips</a>
-                            <a href="#" class="dropdown-item">Profile settings</a>
-                            <a href="#" class="dropdown-item">My Forum</a>
-                            <a href="#" class="dropdown-item">Messages</a>
-                            <a href="#" class="dropdown-item">Close Session</a>
+                            <a href="../../FrontEnd/Usuario/ajusteUsuarioForm.php" class="dropdown-item">Mis datos</a>
+                            <a href="../../FrontEnd/Usuario/ajusteVehiculoForm.php" class="dropdown-item">Mis vehículos</a>
+                            <a href="../../FrontEnd/Viajes/viajesPendientesForm.php" class="dropdown-item">Viajes pendientes</a>
+                            <a href="../../FrontEnd/Viajes/viajesRealizadosForm.php" class="dropdown-item">Viajes realizados</a>
+                            <a href="#" class="dropdown-item">Cerrar Sesión</a>
                         </div>
                     </nav>
-                    <a href="../../FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Sign in</a>
+                    <a href="loginForm.php" class="btn btn-outline-primary" href="#">Acceder</a>
             </div>
         </div>
 
@@ -72,19 +78,27 @@
                                     <form>
                                         <div class="form-row">
                                             <div class="col-12 col-md-6 mb-2">
-                                                <label for="uname"><b>Username</b></label>
-                                                <input name="username" id="username" type="text" class="form-control " placeholder="Enter username">
+                                                <label for="uname"><b>Usuario</b></label>
+                                                <input name="username" id="username" type="text" class="form-control " placeholder="Introducir usuario">
                                             </div>
                                             <div class="col-12 col-md-6 mb-2">
-                                                <label for="uname"><b>Password</b></label>
-                                                <input name="password" id="password" type="password" class="form-control " placeholder="Enter password">  
-                                                <span class="psw">Forgot <a href="#" style="color: white">password?</a></span> 
+                                                <label for="uname"><b>Contraseña</b></label>
+                                                <input name="password" id="password" type="password" class="form-control " placeholder="Introducir contraseña">  
+                                                <span class="psw"> <a href="#" style="color: white">¿Olvidó su contraseña?</a></span> 
                                             </div> 
                                         </div>
                                     </form>
                                 </div>
-                                <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
-                                    <button type="submit" class="btn btn-block btn-primary">Login</button>    
+                                <div class="form-row">
+                                    <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
+                                        <button type="submit" name="envio" class="btn btn-block btn-primary">Acceder</button>    
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-row">
+                                    <div class="col-md-10 col-lg-8 col-xl-4 mx-auto">
+                                        <a href="registroUsuarioForm.php" class="btn btn-block btn-primary">Registrarse</a>    
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -92,9 +106,7 @@
                 </div>
             </div>
 
-            <br><br><br><br>
         </header>
-
 
 
 
@@ -108,19 +120,19 @@
                 <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                     <ul class="list-inline mb-2">
                         <li class="list-inline-item">
-                            <a href="#">About</a>
+                            <a href="#">El proyecto / Nosotros</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Contact</a>
+                            <a href="#">Contacto</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Forum</a>
+                            <a href="#">Foro</a>
                         </li>
                         <li class="list-inline-item">&sdot;</li>
                         <li class="list-inline-item">
-                            <a href="#">Promos</a>
+                            <a href="#">Promociones</a>
                         </li>
                     </ul>
                     <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
@@ -144,11 +156,12 @@
     </footer>
 
     <?php
-//start session
-//    session_start();
+// session_start();
     include_once('../../BackEnd/Usuario/login.php');
+    ?>
 
-    //   loginForm();
+    <?php
+    $con = loginForm();
     ?>
 
 </html>

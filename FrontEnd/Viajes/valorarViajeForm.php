@@ -74,36 +74,51 @@
         <header>
             <div class="container">
                 <div class="col-md-12 col-lg-8 col-xl-10 mx-auto">
-                    <h1>Mi vehículo</h1>
+                    <h1>Mi viaje</h1>
                     <div class="form-row">
-                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                        <div class="col-12 col-md-6 mb-2 mb-md-0">
                             <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Matrícula: </b></label>
+                            <label for="uname"><b>Conductor: </b></label>
                         </div>
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <input type="text" name="matricula" class="form-control">
+                            <a>nombre del tipejo</a>
                         </div>
 
                     </div>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Marca: </b></label>
+                            <label for="uname"><b>Origen: </b></label>
                         </div>
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <input type="text" name="marca" class="form-control">
+                            <a>incio</a>
+                        </div>
+
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <label for="uname"><b>Destino: </b></label>
+                        </div>
+                        <div class="col-12 col-md-3 mb-2 mb-md-0">
+                            <a>destino</a>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <label for="uname"><b>Modelo: </b></label>
+                            <label for="uname"><b>Valoración: </b></label>
                         </div>
+                        <div class="col-2 col-md-2 mb-2 mb-md-0">
+                            <input type="number" name="value" min="0" max="10" value="5" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <div class="col-12 col-md-3 mb-2 mb-md-0">
-                            <input type="text" name="modelo" class="form-control">
+                            <label for="uname"><b>Comentarios:</b></label>
                         </div>
+                        <textarea class="form-control" cols=""rows="5" id="comment"></textarea>
                     </div>
                 </div>
                 <br>
@@ -111,18 +126,15 @@
                     <div class="form-row">
                         <div class="col-12 col-md-4 mb-2 mb-md-0 mx-auto">
                             <div class="form-group">
-                                <input type="submit" name="confirm" class="btn btn-block btn-primary" value="Confirmar">    
+                                <input type="submit" name="confirm" class="btn btn-block btn-primary" value="Valorar">    
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-
-
-
-
     </body>
+
 
 
     <!-- Footer -->
@@ -167,6 +179,7 @@
         </div>
     </footer>
 
+
     <?php
 //start session
 //    session_start();
@@ -176,6 +189,7 @@
     ?>
 
 </html>
+
 
 
 
