@@ -52,4 +52,20 @@ class comentari {
         $this->nomAutor = $nomAutor;
     }
 
+    function crearComentario() {
+        
+    }
+
+    function consultarComentario() {
+        
+    }
+
+    function modificarComentario() {
+        
+    }
+
+    function eliminarComentario() {
+        
+    }
+
 }

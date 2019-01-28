@@ -66,4 +66,20 @@ class promocion {
         $this->descuento = $descuento;
     }
 
+    function crearPromocion() {
+        
+    }
+
+    function consultarPromocion() {
+        
+    }
+
+    function modificarPromocion() {
+        
+    }
+
+    function eliminarPromocion() {
+        
+    }
+
 }
