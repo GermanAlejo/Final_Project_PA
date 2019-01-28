@@ -7,34 +7,34 @@ class listPromociones {
     public $arrayPromociones;
 
     function __construct() {
-        $resultadoArray = consultarListaComentarios();
-        $size = countListaComentarios();
-        $comentario = new comentari();
+        $resultadoArray = consultarListaPromociones();
+        $size = countListaPromociones();
+        $promociones = new comentari();
         $j = 0;
         for ($i = 0; $i < $size; $i++) {
             if ($resultadoArray[$j] !== null) {
-                $comentario->setIdComentario($resultadoArray[$j]);
+                $promociones->setIdComentario($resultadoArray[$j]);
                 $j++;
                 if ($resultadoArray[$j] !== null)
-                    $comentario->setForo_id($resultadoArray[$j]);
+                    $promociones->setForo_id($resultadoArray[$j]);
                 $j++;
                 if ($resultadoArray[$j] !== null)
-                    $comentario->setAutor_id($resultadoArray[$j]);
+                    $promociones->setAutor_id($resultadoArray[$j]);
                 $j++;
                 if ($resultadoArray[$j] !== null)
-                    $comentario->setMensaje($resultadoArray[$j]);
+                    $promociones->setMensaje($resultadoArray[$j]);
                 $j++;
-                $comentario->buscaAutor();
-                $this->arrayComentarios = array([$i] => $comentario);
+                $promociones->buscaAutor();
+                $this->arrayComentarios = array([$i] => $promociones);
             }
         }
     }
 
-    function consultarListaComentarios() {
+    function consultarListaPromociones() {
         return $resultadoArray;
     }
 
-    function countListaComentarios() {
+    function countListaPromociones() {
         return $size;
     }
 

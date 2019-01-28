@@ -8,24 +8,24 @@ class listForo {
 
     function __construct() {
         $resultadoArray = consultarListaForos();
-        $size = countListaComentarios();
+        $size = countListaForos();
         $foro = new foro();
         $j = 0;
         for ($i = 0; $i < $size; $i++) {
             if ($resultadoArray[$j] !== null) {
-                $comentario->setIdComentario($resultadoArray[$j]);
+                $foro->setIdComentario($resultadoArray[$j]);
                 $j++;
                 if ($resultadoArray[$j] !== null)
-                    $comentario->setForo_id($resultadoArray[$j]);
+                    $foro->setForo_id($resultadoArray[$j]);
                 $j++;
                 if ($resultadoArray[$j] !== null)
-                    $comentario->setAutor_id($resultadoArray[$j]);
+                    $foro->setAutor_id($resultadoArray[$j]);
                 $j++;
                 if ($resultadoArray[$j] !== null)
-                    $comentario->setMensaje($resultadoArray[$j]);
+                    $foro->setMensaje($resultadoArray[$j]);
                 $j++;
-                $comentario->buscaAutor();
-                $this->$arrayForos = array([$i] => $comentario);
+                $foro->buscaAutor();
+                $this->$arrayForos = array([$i] => $foro);
             }
         }
     }

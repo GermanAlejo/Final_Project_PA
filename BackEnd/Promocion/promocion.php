@@ -1,17 +1,7 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of promocion
- *
- * @author Racso
- */
 class promocion {
+
     public $idPromocion;
     public $creador_id;
     public $fecha_inicio;
@@ -19,9 +9,7 @@ class promocion {
     public $titulo;
     public $descripcion;
     public $descuento;
-    
-    
-    
+
     function getIdPromocion() {
         return $this->idPromocion;
     }
@@ -78,6 +66,4 @@ class promocion {
         $this->descuento = $descuento;
     }
 
-
-    
 }
