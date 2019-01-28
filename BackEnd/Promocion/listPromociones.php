@@ -1,10 +1,10 @@
 <?php
 
-include 'comentario.php';
+include 'promociones.php';
 
-class listComentarios {
+class listPromociones {
 
-    public $arrayComentarios;
+    public $arrayPromociones;
 
     function __construct() {
         $resultadoArray = consultarListaComentarios();

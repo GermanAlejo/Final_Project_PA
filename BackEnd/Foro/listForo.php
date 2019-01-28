@@ -1,15 +1,15 @@
 <?php
 
-include 'comentario.php';
+include 'foro.php';
 
-class listComentarios {
+class listForo {
 
-    public $arrayComentarios;
+    public $arrayForos;
 
     function __construct() {
-        $resultadoArray = consultarListaComentarios();
+        $resultadoArray = consultarListaForos();
         $size = countListaComentarios();
-        $comentario = new comentari();
+        $foro = new foro();
         $j = 0;
         for ($i = 0; $i < $size; $i++) {
             if ($resultadoArray[$j] !== null) {
@@ -25,16 +25,16 @@ class listComentarios {
                     $comentario->setMensaje($resultadoArray[$j]);
                 $j++;
                 $comentario->buscaAutor();
-                $this->arrayComentarios = array([$i] => $comentario);
+                $this->$arrayForos = array([$i] => $comentario);
             }
         }
     }
 
-    function consultarListaComentarios() {
+    function consultarListaForos() {
         return $resultadoArray;
     }
 
-    function countListaComentarios() {
+    function countListaForos() {
         return $size;
     }
 
