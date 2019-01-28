@@ -161,7 +161,7 @@
     ?>
 
     <?php
-    $con = loginForm();
+    loginForm();
     ?>
 
 </html>

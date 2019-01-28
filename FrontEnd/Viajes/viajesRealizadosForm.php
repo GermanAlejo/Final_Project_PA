@@ -140,12 +140,12 @@ function showTarjetas() {
     //get array with trips
     $viajes = getViajesUsuario();
     $numViajes = sizeof($viajes);
-    
+
     //print_r($viajes);
 
 
     for ($i = 0; $i < $numViajes; $i++) {
-        
+
         //get first element of array aka first trip
         $viaje = $viajes[$i];
         //save values form array in variables
@@ -153,7 +153,8 @@ function showTarjetas() {
         $origen = $viaje['from'];
         $destino = $viaje['to'];
         $fecha = $viaje['date'];
-        
+        $trip_id = $viaje['id'];
+
 
         echo ' <div class="col-lg-6 col-sm-12 mb-3">';
         echo '     <div class="card"> ';
@@ -172,12 +173,19 @@ function showTarjetas() {
         echo '               <ul class="list-unstyled list-inline">';
         echo '                   <li class="list-inline">Origen: ' . $origen . '</li>';
         echo '                   <li class="list-inline">Destino: ' . $destino . '</li>';
-        echo '                   <li class="list-inline">Fecha:</li>' . $fecha . '';
+        echo '                   <li class="list-inline">Fecha:' . $fecha . '</li>';
         echo '               </ul> ';
         echo '           </div>';
         echo '           <div class="col-md-2"></div>';
-        echo '           <div class="col-md-6">   ';
-        echo '               <a href="valorarViajeForm.php" type="button" class="btn btn-primary btn-sm btn-block text-white">Valorar</a>';
+        echo '           <div class="col-md-6">';
+        echo '               <form action="valorarViajeForm.php" method="POST">';
+        echo '                   <input type="hidden" name="name" value="' . $driverName . '">';
+        echo '                   <input type="hidden" name="origen" value="' . $origen . '">';
+        echo '                   <input type="hidden" name="destino" value="' . $destino . '">';
+        echo '                   <input type="hidden" name="fecha" value="' . $fecha . '">';
+        echo '                   <input type="hidden" name="id" value"' . $trip_id . "'>";
+        echo '                  <input type="button" class="btn btn-primary btn-sm btn-block text-white">Valorar</a>';
+        echo '               </form>';
         echo '           </div>';
         echo '       </div>';
         echo '     </div>';

@@ -70,14 +70,14 @@ function getViajesUsuario(){
 //first conenct to DB
         $con = dbConnection();
 
-        //first get the trip data from the DB
-        $sql = "SELECT viaje.origen,viaje.destino,viaje.fecha,usuario.nombre "
+        // get the trip data from the DB
+        $sql = "SELECT viaje.id,viaje.origen,viaje.destino,viaje.fecha,usuario.nombre "
                 . "FROM viajerosClientes JOIN viaje JOIN cliente JOIN usuario "
                 . " WHERE viajerosClientes.cliente_id=" . $user_id
                 . " AND viajerosClientes.viaje_id=viaje.id and viaje.conductor_id=cliente.usuario_id AND"
                 . " cliente.usuario_id=usuario.id";
 
-        //consulta para obtener nombre (del conductor) fecha origen y destino
+       //consulta para obtener nombre (del conductor) fecha origen y destino
        // echo $sql;
         $query = mysqli_query($con, $sql);
 
@@ -91,6 +91,7 @@ function getViajesUsuario(){
             while ($row = mysqli_fetch_assoc($query)) {
 
                 $res[] = array(
+                    'id' => $row['id'],
                     'name' => $row['nombre'],
                     'date' => $row['fecha'],
                     'from' => $row['origen'],
