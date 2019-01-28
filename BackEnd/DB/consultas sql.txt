@@ -1,0 +1,93 @@
+Mostrar Datos Personales: DONETE
+select usuario.foto,usuario.nombre,usuario.apellido1,usuario.apellido2,usuario.correo, usuario.telefono FROM usuario JOIN cliente WHERE usuario.id=cliente.usuario_id and cliente.usuario_id=1;
+
+Actualizar datos de usuario: DONETE menos la foto
+UPDATE usuario SET foto = 'direccion de la foto', nombre = 'nombre del usuario', apellido1 = 'apellido 1', apellido2 = 'apellido 2', correo = 'nuevo correo', contrasenha = '', telefono = '1111' WHERE usuario.id = 2
+
+Modificar contraseña:DONETE
+UPDATE usuario SET contrasenha = 'nueva pass' WHERE usuario.id = 2
+
+Eliminar usuario:
+DELETE FROM usuario WHERE usuario.id = 3
+
+Listar viajes usuario:DONETE
+SELECT viaje.origen,viaje.destino,viaje.fecha FROM viaje JOIN viajerosClientes WHERE viaje.id=viajerosClientes.viaje_id AND viajerosClientes.cliente_id=2
+
+Crear viaje: DONETE
+INSERT INTO viaje (id, conductor_id, vehiculo_id, seguro_id, origen, destino, capacidad, descripcion, precio, fecha, hora_salida) VALUES (NULL, '2', 'se0866DP', '1', 'sevilla', 'madrid', '4', 'descripcion aleatoria', '30', '2019-01-30', '21:13:00')
+
+Eliminar viaje: 
+DELETE FROM viaje WHERE viaje.id = 4
+
+cancelar reserva de viaje:
+delete from viajerosClientes where viajerosClientes.viaje_id=2 and viajerosClientes.cliente_id=2
+
+Valorar viaje:
+INSERT INTO `valoracion` (`id`, `creador_id`, `conductor_id`, `viaje_id`, `valoracion`, `comentarios`) VALUES (NULL, '2', '3', '4', '10', 'tonto el que lo lea');
+
+Reservar Viaje:
+INSERT INTO `viajerosClientes` (`cliente_id`, `viaje_id`) VALUES ('3', '4')
+
+modificar asientos viaje:
+UPDATE `viaje` SET `capacidad` = '3' WHERE `viaje`.`id` = 2
+
+Listar viajes origen destino fecha:
+SELECT viaje.origen,viaje.destino,usuario.nombre,viaje.fecha,viaje.hora_salida from viaje JOIN usuario WHERE viaje.conductor_id= usuario.id and viaje.origen="sevilla" and viaje.destino="madrid" and fecha="2019-01-30"
+
+Listar vehículos conductor:
+select vehiculo.matricula,vehiculo.marca,vehiculo.modelo FROM vehiculo where vehiculo.propietario_id=2
+
+Añadir vehículo:DONETE
+INSERT INTO `vehiculo` (`matricula`, `propietario_id`, `marca`, `modelo`) VALUES ('SE0866CP', '3', 'marca ', 'modelo');
+
+Modificar vehículo:
+UPDATE `vehiculo` SET `matricula` = 'matricula nueva', `marca` = 'marca nueva', `modelo` = 'modelo nuevo' WHERE `vehiculo`.`matricula` = 'SE0866CP'
+
+Eliminar vehículo:
+DELETE FROM vehiculo WHERE vehiculo.matricula = 'se0866DP'
+
+Listar foros:
+SELECT titulo,etiqueta from foro
+
+Mostrar foro:
+  Primero consulta para obtener titulo y etiquetas
+    select titulo,etiqueta from foro where foro.id=1
+  Despues consulta para obtener los mensajes del foro y el usuario que lo ha publicado
+    SELECT usuario.nombre,mensaje.mensaje FROM mensaje JOIN usuario WHERE mensaje.foro_id=1 and usuario.id=mensaje.autor_id
+
+insertar mensaje en foro:
+INSERT INTO `mensaje` (`id`, `foro_id`, `autor_id`, `mensaje`) VALUES (NULL, '1', '3', 'mensaje que se añade');
+
+crear foro:
+INSERT INTO `foro` (`id`, `titulo`, `etiqueta`) VALUES (NULL, 'titulo del foro', 'memes');
+
+Eliminar foro:
+DELETE FROM `foro` WHERE `foro`.`id` = 2
+
+Editar info del foro:
+UPDATE `foro` SET `titulo` = 'titulo nuevo', `etiqueta` = 'nueva etiqueta' WHERE `foro`.`id` = 2
+
+Eliminar mensaje de un foro: 
+delete from mensaje where mensaje.id=2
+
+Listar usuarios:
+SELECT usuario.id,usuario.rol_id,usuario.foto,usuario.nombre,usuario.apellido1,usuario.apellido2,usuario.correo,usuario.telefono FROM usuario WHERE rol_id=1
+
+Borrar usuario:
+delete from usuario where usuario.id=2
+
+Crear promoción: 
+INSERT INTO `promocion` (`id`, `creador_id`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `descuento`, `foto`) VALUES (NULL, '1', '2019-01-25', '2019-02-14', 'Sorteo entradas rey leon', 'que te lo has creído tu ', '', NULL);
+
+Editar promoción:
+UPDATE `promocion` SET `titulo` = 'titulo', `descripcion` = 'descripcion', `foto` = 'foto cambiada.url' WHERE `promocion`.`id` = 3
+
+Eliminar promoción:
+delete from promocion where promocion.id =3
+
+Reactivar promoción
+UPDATE `promocion` SET `fecha_inicio` = '2019-01-30', `fecha_fin` = '2019-01-31' WHERE `promocion`.`id` = 3
+
+Listar promociones
+SELECT foto,titulo,descripcion,fecha_inicio,fecha_fin FROM `promocion`
+
