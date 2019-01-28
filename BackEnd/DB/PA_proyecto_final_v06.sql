@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-01-2019 a las 11:28:36
+-- Tiempo de generación: 28-01-2019 a las 22:12:48
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -76,7 +76,16 @@ CREATE TABLE `foro` (
 --
 
 INSERT INTO `foro` (`id`, `titulo`, `etiqueta`) VALUES
-(1, 'foro principal', 'varios');
+(1, 'foro principal', 'varios'),
+(2, 'titulo nuevo', 'nueva etiqueta'),
+(3, 'foro3', 'nueva etiqueta'),
+(4, 'foro4', 'nueva etiqueta'),
+(5, 'foro5', 'nueva etiqueta'),
+(6, 'foro6', 'nueva etiqueta'),
+(7, 'foro7', 'nueva etiqueta'),
+(8, 'foro8', 'nueva etiqueta'),
+(9, 'foro9', 'nueva etiqueta'),
+(10, 'foro10', 'nueva etiqueta');
 
 -- --------------------------------------------------------
 
@@ -106,7 +115,7 @@ CREATE TABLE `mensaje` (
   `id` int(11) NOT NULL,
   `foro_id` int(11) NOT NULL,
   `autor_id` int(11) NOT NULL,
-  `mensaje` text COLLATE utf8_spanish2_ci NOT NULL
+  `mensaje` varchar(250) COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -114,7 +123,8 @@ CREATE TABLE `mensaje` (
 --
 
 INSERT INTO `mensaje` (`id`, `foro_id`, `autor_id`, `mensaje`) VALUES
-(2, 1, 3, 'ASDFGJK');
+(3, 1, 3, '¿hola que tal estáis?'),
+(4, 1, 3, 'mensaje que se añade');
 
 -- --------------------------------------------------------
 
@@ -128,9 +138,9 @@ CREATE TABLE `promocion` (
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date NOT NULL,
   `titulo` varchar(21) COLLATE utf8_spanish2_ci NOT NULL,
-  `descripcion` text COLLATE utf8_spanish2_ci NOT NULL,
+  `descripcion` varchar(1000) COLLATE utf8_spanish2_ci NOT NULL,
   `descuento` int(11) NOT NULL,
-  `foto` text COLLATE utf8_spanish2_ci
+  `foto` varchar(500) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -138,7 +148,8 @@ CREATE TABLE `promocion` (
 --
 
 INSERT INTO `promocion` (`id`, `creador_id`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `descuento`, `foto`) VALUES
-(2, 1, '2019-01-25', '2019-01-30', 'promo', 'promo', 10, '');
+(2, 1, '2019-01-25', '2019-01-30', 'promo', 'promo', 10, ''),
+(3, 1, '2019-01-25', '2019-02-14', 'Sorteo entradas rey l', 'que te lo has creído tu ', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -167,7 +178,7 @@ INSERT INTO `Rol` (`id`, `estado`) VALUES
 
 CREATE TABLE `seguro` (
   `n_poliza` int(11) NOT NULL,
-  `cobertura` text COLLATE utf8_spanish2_ci NOT NULL,
+  `cobertura` varchar(500) COLLATE utf8_spanish2_ci NOT NULL,
   `importe` int(11) NOT NULL,
   `max_asegurado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
@@ -177,7 +188,7 @@ CREATE TABLE `seguro` (
 --
 
 INSERT INTO `seguro` (`n_poliza`, `cobertura`, `importe`, `max_asegurado`) VALUES
-(1, 'robo, accidente, violacion', 10000, 20);
+(1, 'robo, accidente,', 10000, 20);
 
 -- --------------------------------------------------------
 
@@ -188,7 +199,7 @@ INSERT INTO `seguro` (`n_poliza`, `cobertura`, `importe`, `max_asegurado`) VALUE
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `rol_id` int(1) NOT NULL,
-  `foto` text COLLATE utf8_spanish2_ci,
+  `foto` varchar(500) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `nombre` varchar(16) COLLATE utf8_spanish2_ci NOT NULL,
   `apellido1` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
   `apellido2` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
@@ -204,7 +215,7 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id`, `rol_id`, `foto`, `nombre`, `apellido1`, `apellido2`, `correo`, `contrasenha`, `telefono`) VALUES
 (1, 0, NULL, 'admin', '', '', 'admin@admin', 'admin', NULL),
 (2, 1, NULL, 'oscar', 'Gomez Gonzalez', '', 'oscar@gmail.es', 'oscar', 620988324),
-(3, 1, NULL, 'german', 'Alejo Dominguez', '', 'german@gmail.com', 'german', 620947632);
+(3, 1, NULL, 'german', 'alejo', 'paquete', 'geralejo@gmail.com', 'german ', 666987652);
 
 -- --------------------------------------------------------
 
@@ -218,8 +229,17 @@ CREATE TABLE `valoracion` (
   `conductor_id` int(11) NOT NULL,
   `viaje_id` int(11) NOT NULL,
   `valoracion` int(3) NOT NULL,
-  `comentarios` text COLLATE utf8_spanish2_ci
+  `comentarios` varchar(500) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `valoracion`
+--
+
+INSERT INTO `valoracion` (`id`, `creador_id`, `conductor_id`, `viaje_id`, `valoracion`, `comentarios`) VALUES
+(1, 1, 2, 4, 10, 'tonto el que lo lea'),
+(2, 2, 3, 4, 10, 'tonto el que lo lea'),
+(3, 2, 3, 4, 5, 'hola que tal');
 
 -- --------------------------------------------------------
 
@@ -239,6 +259,7 @@ CREATE TABLE `vehiculo` (
 --
 
 INSERT INTO `vehiculo` (`matricula`, `propietario_id`, `marca`, `modelo`) VALUES
+('SE0866CP', 3, 'marca ', 'modelo'),
 ('se0866DP', 2, 'opel', 'mierda');
 
 -- --------------------------------------------------------
@@ -255,7 +276,7 @@ CREATE TABLE `viaje` (
   `origen` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
   `destino` varchar(60) COLLATE utf8_spanish2_ci NOT NULL,
   `capacidad` int(11) NOT NULL,
-  `descripcion` text COLLATE utf8_spanish2_ci,
+  `descripcion` varchar(500) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `precio` float NOT NULL,
   `fecha` date NOT NULL,
   `hora_salida` time NOT NULL
@@ -267,7 +288,8 @@ CREATE TABLE `viaje` (
 
 INSERT INTO `viaje` (`id`, `conductor_id`, `vehiculo_id`, `seguro_id`, `origen`, `destino`, `capacidad`, `descripcion`, `precio`, `fecha`, `hora_salida`) VALUES
 (2, 2, 'se0866DP', 1, 'sevilla', 'madrid', 4, NULL, 0, '0000-00-00', '00:00:00'),
-(3, 3, 'se0866DP', 1, 'sevilla', 'madrid', 4, NULL, 23, '2019-01-26', '12:15:00');
+(4, 2, 'se0866DP', 1, 'sevilla', 'madrid', 4, 'descripcion aleatoria', 30, '2019-01-30', '21:13:00'),
+(5, 2, 'se0866DP', 1, 'sevilla', 'madrid', 4, 'descripcion aleatoria', 30, '2019-01-30', '21:13:00');
 
 -- --------------------------------------------------------
 
@@ -285,7 +307,9 @@ CREATE TABLE `viajerosClientes` (
 --
 
 INSERT INTO `viajerosClientes` (`cliente_id`, `viaje_id`) VALUES
-(3, 2);
+(2, 2),
+(3, 2),
+(3, 4);
 
 --
 -- Índices para tablas volcadas
@@ -391,19 +415,19 @@ ALTER TABLE `viajerosClientes`
 -- AUTO_INCREMENT de la tabla `foro`
 --
 ALTER TABLE `foro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `mensaje`
 --
 ALTER TABLE `mensaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `promocion`
 --
 ALTER TABLE `promocion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `seguro`
@@ -421,13 +445,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `valoracion`
 --
 ALTER TABLE `valoracion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `viaje`
 --
 ALTER TABLE `viaje`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
