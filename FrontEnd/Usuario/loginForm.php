@@ -148,7 +148,7 @@
 //    session_start();
     include_once('../../BackEnd/Usuario/login.php');
 
-       loginForm();
+    //   loginForm();
     ?>
 
 </html>
