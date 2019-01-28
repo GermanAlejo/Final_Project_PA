@@ -35,6 +35,7 @@ class listForo {
     }
 
     function countListaForos() {
+        $consulta = 'select count(*) from foro';
         return $size;
     }
 

@@ -24,7 +24,6 @@ class listComentarios {
                 if ($resultadoArray[$j] !== null)
                     $comentario->setMensaje($resultadoArray[$j]);
                 $j++;
-                $comentario->buscaAutor();
                 $this->arrayComentarios = array([$i] => $comentario);
             }
         }
@@ -34,7 +33,8 @@ class listComentarios {
         return $resultadoArray;
     }
 
-    function countListaComentarios() {
+    function countListaComentarios($idForo) {
+        $consulta = 'select count(*) from mensaje WHERE mensaje.foro_id=?';
         return $size;
     }
 

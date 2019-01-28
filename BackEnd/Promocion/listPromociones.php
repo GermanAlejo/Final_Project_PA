@@ -35,6 +35,7 @@ class listPromociones {
     }
 
     function countListaPromociones() {
+        $consulta='select count(*) from promocion';
         return $size;
     }
 
