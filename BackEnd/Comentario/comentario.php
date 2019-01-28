@@ -50,31 +50,15 @@ class comentari {
     }
 
     function crearComentario() {
-        
+        $consulta="INSERT INTO `mensaje` (`id`, `foro_id`, `autor_id`, `mensaje`) VALUES (NULL, '1', '3', '?')";
     }
 
     function consultarComentario() {
-        
-    }
-
-    function modificarComentario() {
-        
+        $consulta="SELECT usuario.nombre,mensaje.mensaje FROM mensaje JOIN usuario WHERE mensaje.foro_id=1 and usuario.id=mensaje.autor_id";
     }
 
     function eliminarComentario() {
-        
+        $consulta="delete from mensaje where mensaje.id=2";
     }
 
 }
-
-
-
-
-/*
- * INSERT INTO `mensaje` (`id`, `foro_id`, `autor_id`, `mensaje`) VALUES (NULL, '1', '3', 'mensaje que se añade');
- * 
- * delete from mensaje where mensaje.id=2
- * SELECT usuario.nombre,mensaje.mensaje FROM mensaje JOIN usuario WHERE mensaje.foro_id=1 and usuario.id=mensaje.autor_id
- * 
- * 
- */
