@@ -5,6 +5,7 @@ include 'promociones.php';
 class listPromociones {
 
     public $arrayPromociones;
+    public $sizeArray;
 
     function __construct() {
         $size = countListaPromociones();
@@ -17,6 +18,26 @@ class listPromociones {
             $promocion->setIdPromocion($resultadoArray[$i]);
             $promocion->consultarPromocion();
             $this->arrayPromociones = array([$i] => $promocion);
+        }
+    }
+
+    function añadirMasPromociones() {
+        $size = countListaPromociones();
+        if ($size > $this->sizeArray) {
+            $size = $size - $this->sizeArray;
+            if ($size > 5) {
+                $size = 5;
+            }
+            $puntoA = $this->sizeArray + 1;
+            $puntoB = $puntoA + $size;
+            $resultadoArray = consultarListaPromociones($idForo, $puntoA, $puntoB);
+            $Promocion = new Promocion();
+            for ($i = 0; $i < $size; $i++) {
+                $Promocion->setIdPromocion($resultadoArray[$i]);
+                $Promocion->consultarPromocion();
+                $this->arrayPromociones[$i] = $Promocion;
+            }
+            $this->sizeArray += $size;
         }
     }
 

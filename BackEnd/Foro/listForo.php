@@ -5,6 +5,7 @@ include 'foro.php';
 class listForo {
 
     public $arrayForos;
+    public $sizeArray;
 
     function __construct() {
         $size = countListaForos();
@@ -17,6 +18,26 @@ class listForo {
             $foro->setIdForo($resultadoArray[$i]);
             $foro->consultaForo();
             $this->arrayForos = array([$i] => $foro);
+        }
+    }
+
+    function añadirMasForo() {
+        $size = countListaForos();
+        if ($size > $this->sizeArray) {
+            $size = $size - $this->sizeArray;
+            if ($size > 5) {
+                $size = 5;
+            }
+            $puntoA = $this->sizeArray + 1;
+            $puntoB = $puntoA + $size;
+            $resultadoArray = consultarListaForos($idForo, $puntoA, $puntoB);
+            $foro = new foro();
+            for ($i = 0; $i < $size; $i++) {
+                $foro->setIdForo($resultadoArray[$i]);
+                $foro->consultaForo();
+                $this->arrayForos[$i] = $foro;
+            }
+            $this->sizeArray += $size;
         }
     }
 

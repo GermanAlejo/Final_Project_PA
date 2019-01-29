@@ -5,6 +5,7 @@ include 'comentario.php';
 class listComentarios {
 
     public $arrayComentarios;
+    public $sizeArray;
 
     function __construct($idForo) {
         $size = countListaComentarios();
@@ -17,6 +18,27 @@ class listComentarios {
             $comentario->setIdComentario($resultadoArray[$i]);
             $comentario->consultarComentario();
             $this->arrayComentarios = array([$i] => $comentario);
+        }
+        $this->sizeArray = $size;
+    }
+
+    function añadirMasComentarios() {
+        $size = countListaComentarios();
+        if ($size > $this->sizeArray) {
+            $size = $size - $this->sizeArray;
+            if ($size > 5) {
+                $size = 5;
+            }
+            $puntoA = $this->sizeArray + 1;
+            $puntoB = $puntoA + $size;
+            $resultadoArray = consultarListaComentarios($idForo, $puntoA, $puntoB);
+            $comentario = new comentari();
+            for ($i = 0; $i < $size; $i++) {
+                $comentario->setIdComentario($resultadoArray[$i]);
+                $comentario->consultarComentario();
+                $this->arrayComentarios[$i] = $comentario;
+            }
+            $this->sizeArray += $size;
         }
     }
 
