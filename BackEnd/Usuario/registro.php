@@ -2,8 +2,6 @@
 
 include_once '../../libraries.php';
 
-registroForm();
-
 //This function contains all php code for the database connection and insertion of a new user
 function registroForm() {
 
@@ -81,7 +79,7 @@ function registroForm() {
             //insert into DB
             $query1 = mysqli_query($con, $sqlUser);
 
-            if ($query1) {
+            if (!$query1) {
                 echo "error sql1";
                 $error[] = "User already registered";
                 mysqli_close($con);
@@ -94,10 +92,10 @@ function registroForm() {
                 $sqlClient = "INSERT INTO cliente (usuario_id) VALUES "
                         . "(' " . $user_id . "')";
 
-                $query2 = mysqli_query($con, $sqlUser);
+                //$query2 = mysqli_query($con, $sqlUser);
                 $query3 = mysqli_query($con, $sqlClient);
                 
-                if (!$query2) {
+                if (!$query3) {
                     $error[] = "Error inserting client into clientes table";
                 }
 

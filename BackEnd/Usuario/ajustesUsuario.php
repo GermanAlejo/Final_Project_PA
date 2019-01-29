@@ -93,29 +93,29 @@ function getUserVehicles() {
 
         //get userID to known which cars to get from DB
         $user_id = $_SESSION['user_id'];
-
+        echo $user_id;
         //first conenct to DB
         $con = dbConnection();
 
-        $sql = "SELECT * FROM vehiculo WHERE propietario_id LIKE '" . $user_id . "';";
+        $sql = "SELECT * FROM vehiculo WHERE propietario_id LIKE '" . $user_id . "'";
 
         $query = mysqli_query($con, $sql);
-
+        
         if (!$query) {
 
             $error = "Error in sql";
             mysqli_close($con);
+            
         } else {
-
             //this loop should go to each row of the vehicle table and store it in an array
             while ($row = mysqli_fetch_assoc($query)) {
-
+                
                 $res[] = array('matricula' => $row['matricula'],
                     'propietario_id' => $row['propietario_id'],
                     'marca' => $row['marca'],
                     'modelo' => $row['modelo']);
             }
-
+            print_r($res);
             //close DB conection
             mysqli_close($con);
 

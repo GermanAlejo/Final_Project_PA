@@ -16,6 +16,7 @@
         <title>Tripshare</title>
 
         <?php
+        session_start();
         include '../../libraries.php';
         include '../../BackEnd/Usuario/login.php';
         include_once '../../BackEnd/Usuario/registro.php';
@@ -33,7 +34,7 @@
                     </a>
                     <nav class="my-2 my-md-0 mr-md-3">
                         <a class="p-2 text-dark" href="../../index.php">Buscar viaje</a>
-                        <a class="p-2 text-dark" href="#">Organizar viaje</a>
+                        <a class="p-2 text-dark" href="../Viajes/registroViajeForm.php">Organizar viaje</a>
                         <?php
                         profileButtom();
                         ?>
@@ -116,11 +117,7 @@
     <?php footer() ?>
 
     <?php
-    session_start();
     include_once('../../BackEnd/Usuario/login.php');
-    ?>
-
-    <?php
     loginForm();
     ?>
 

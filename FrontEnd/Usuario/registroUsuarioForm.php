@@ -17,11 +17,10 @@
         <title>Tripshare</title>
 
         <?php
+        session_start();
         include '../../libraries.php';
         include_once '../../BackEnd/Usuario/registro.php';
-        ?>
-
-        <?php
+       
         // registrationForm();
         registroForm();
         ?>

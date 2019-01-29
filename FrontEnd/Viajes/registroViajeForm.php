@@ -8,21 +8,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        
-        
+
+
 
         <link rel="icon" href="../../FrontEnd/img/icon.png">
         <title>Tripshare</title>
 
         <?php
+        session_start();
         include '../../libraries.php';
         include_once '../../BackEnd/Usuario/registro.php';
         ?>
 
-        <?php
-        // registrationForm();
-        registroForm();
-        ?>
 
     </head>
 
@@ -46,6 +43,24 @@
             </div>
         </div>
 
+        <?php
+        include "../../BackEnd/Usuario/ajustesUsuario.php";
+        $vehicles = getUserVehicles();
+       // print_r($vehicles);
+
+        //get user vehicles and retreive it to show data
+        //this function will get all plate number from users vehicles and 
+        function showVehicles($vehicles) {
+            $s = '<option value="';
+            for ($i = 0; $i < sizeof($vehicles); $i++) {
+                $vehicle = $vehicles[$i];
+                $s .= $vehicle['matricula']  . '">' . $vehicle['matricula'] . '</option>';
+            }
+            echo $s;
+            
+        }
+        ?>
+
         <header class="masthead text-white text-center">
             <div class="container">
                 <div class="row">
@@ -56,10 +71,10 @@
                                 <div class="form-group col-md-4">
                                     <label for="inputEmail4">Vehíchulo</label>
 
-                                    <select id="country" class="form-control">
-                                        <option value="all">All</option>
-                                        <option value="au">Australia</option>
-                                        <option value="br">Brazil</option>
+                                    <select class="form-control">
+                                        <?php
+                                        showVehicles($vehicles);
+                                        ?>
                                     </select>
 
                                 </div>
@@ -98,7 +113,7 @@
                                             var checkBox = document.getElementById("check");
                                             var pay = document.getElementById("pay");
                                             if (checkBox.checked === true) {
-                                                
+
                                                 pay.style.display = "block";
 
                                             } else {
@@ -123,18 +138,18 @@
                                 </div>
                             </div>
                         </form>
-                        
-                        
-                                <div class="form-group col-md-3" id="pay" style="display:none" class="collapse in">
-                                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                                        <input type="hidden" name="cmd" value="_s-xclick">
-                                        <input type="hidden" name="hosted_button_id" value="GNJN8V2KFVJ4W">
-                                        <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal, la forma rápida y segura de pagar en Internet.">
-                                        <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
-                                    </form>
-                                </div>
-                        
-                
+
+
+                        <div class="form-group col-md-3" id="pay" style="display:none" class="collapse in">
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                                <input type="hidden" name="cmd" value="_s-xclick">
+                                <input type="hidden" name="hosted_button_id" value="GNJN8V2KFVJ4W">
+                                <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal, la forma rápida y segura de pagar en Internet.">
+                                <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
+                            </form>
+                        </div>
+
+
                     </div>  
                 </div>
             </div>
