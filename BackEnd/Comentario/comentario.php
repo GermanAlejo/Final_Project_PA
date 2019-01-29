@@ -80,11 +80,11 @@ class comentari {
         $resultado = mysqli_stmt_get_result($stmt);
 //pasamos el resultado de la consulta a un array
         $fila = mysqli_fetch_assoc($resultado);
-        $this->nomAutor =$fila[0];
-        $this->mensaje =$fila[1];
-        $this->idComentario =$fila[2];//faltan en la consulta
-        $this->foro_id =$fila[3];//
-        $this->autor_id =$fila[4];//
+        $this->nomAutor = $fila[0];
+        $this->mensaje = $fila[1];
+        $this->idComentario = $fila[2]; //faltan en la consulta
+        $this->foro_id = $fila[3]; //
+        $this->autor_id = $fila[4]; //
     }
 
     function eliminarComentario() {

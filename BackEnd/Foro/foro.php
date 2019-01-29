@@ -8,9 +8,7 @@ class foro {
     public $titulo;
     public $listComentarios;
 
-    function __construct($idForo, $titulo, $listComentarios) {
-        $this->idForo = $idForo;
-        $this->titulo = $titulo;
+    function __construct() {
         $this->listComentarios = new listComentarios();
     }
 
@@ -30,7 +28,7 @@ class foro {
         $this->titulo = $titulo;
     }
 
-    function consultaForo($nomForo) {
+    function consultaForo() {
 //obtenemos la conexion con la base de datos
         $con = dbConnection();
 //creamos la consulta
@@ -49,7 +47,7 @@ class foro {
         return $fila;
     }
 
-    function crearForo($tituloForo) {
+    function crearForo() {
 //obtenemos la conexion con la base de datos
         $con = dbConnection();
 //creamos la consulta
@@ -66,7 +64,7 @@ class foro {
         return $resultado;
     }
 
-    function borrarForo($idForo) {
+    function borrarForo() {
 //obtenemos la conexion con la base de datos
         $con = dbConnection();
 //creamos la consulta
@@ -84,7 +82,7 @@ class foro {
     }
 
     //"UPDATE foro SET titulo = ?, etiqueta = ? WHERE foro.id = ?";
-    function modifForo($idForo, $foroTitulo, $foroEtiqueta) {
+    function modifForo() {
 //obtenemos la conexion con la base de datos
         $con = dbConnection();
 //creamos la consulta
