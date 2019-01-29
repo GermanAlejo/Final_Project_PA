@@ -6,7 +6,6 @@ include_once '../../libraries.php';
 function loginForm() {
 
 
-
     if (isset($_POST['envio'])) {
 
         echo 'entra1';
@@ -14,7 +13,7 @@ function loginForm() {
 
 //hadle the form and validate the input
         if (isset($_POST['username']) && isset($_POST['password'])) {
-  echo 'entra2';
+            echo 'entra2';
             $con = dbConnection();
 
 //Save values in an array and sanitize them
@@ -40,16 +39,16 @@ function loginForm() {
                 $aux = mysqli_fetch_array($query); //get the query result into an array
                 print_r($aux);
                 if (password_verify($password, $aux['contrasenha'])) {//using password_verify without hashing the DB passwords causes an error
-                    //not finding any user
-                    // if ($password === $aux['Pass']) {
+                    
                     //user found
                     mysqli_close($con);
-
+                    
+                    session_start();
                     //create session values once the user has been found in the DB
                     $_SESSION['userName'] = $userName;
                     $_SESSION['user_id'] = $aux['id'];
-                    //$_SESSION['userRol'] = $aux['Rol'];
-                    echo "User logged";
+                    //$_SESSION['userRol'] = $aux['Rol'];   
+                    echo "User logged with id: " . $_SESSION['user_id'];
                     //go back to index after login
                     //header("Location: ../../index.php");
                 } else {

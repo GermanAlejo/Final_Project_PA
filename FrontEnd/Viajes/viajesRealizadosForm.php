@@ -10,6 +10,12 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+        <?php
+        include '../../libraries.php';
+        include_once '../../BackEnd/Usuario/registro.php';
+        session_start();
+        ?>
+
 
         <link rel="icon" href="../../FrontEnd/img/icon.png">
         <title>Tripshare</title>
@@ -36,10 +42,6 @@
         include_once '../../BackEnd/Usuario/registro.php';
         ?>
 
-        <?php
-        // registrationForm();
-        registroForm();
-        ?>
     </head>
 
     <body>
@@ -68,40 +70,11 @@
             <div class="container">
                 <h2 class="mb-5">Viajes realizados</h2>
                 <div class="row">
-
-
                     <?php
-                    for ($i = 0; $i < 5; $i++) {
-
-                        echo ' <div class="col-lg-6 col-sm-12 mb-3">';
-                        echo '     <div class="card"> ';
-                        echo '   <div class="card-body">';
-                        echo '       <div class="row ">';
-                        echo '           <div class="col-md-4">';
-                        echo '               <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">';
-                        echo '           </div>';
-                        echo '           <div class="col-md-8">';
-                        echo '               <h4>Conductor </h4>';
-                        echo '               <h6>nombre del tipejo</h6>';
-                        echo '           </div>';
-                        echo '       </div>';
-                        echo '       <div class="row ">  ';
-                        echo '           <div class="col-md-4">  ';
-                        echo '               <ul class="list-unstyled list-inline">';
-                        echo '                   <li class="list-inline">Origen:</li>';
-                        echo '                   <li class="list-inline">Destino:</li>';
-                        echo '                   <li class="list-inline">Distancia:</li>';
-                        echo '               </ul> ';
-                        echo '           </div>';
-                        echo '           <div class="col-md-2"></div>';
-                        echo '           <div class="col-md-6">   ';
-                        echo '               <a href="valorarViajeForm.php" type="button" class="btn btn-primary btn-sm btn-block text-white">Valorar</a>';
-                        echo '           </div>';
-                        echo '       </div>';
-                        echo '     </div>';
-                        echo '  </div>';
-                        echo '</div>';
-                    }
+                    include "../../BackEnd/Viajes/misViajes.php";
+                    
+                    echo "userID: " . $_SESSION['user_id'];
+                    showTarjetas();
                     ?>
 
                 </div>

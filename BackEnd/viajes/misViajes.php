@@ -1,6 +1,7 @@
 <?php
 
 include_once '../../libraries.php';
+getViajesUsuario();
 
 //this function returns all trips where the user has drive
 function getViajesConductor() {
@@ -59,7 +60,7 @@ function getViajesConductor() {
 //returns all trips where the user has been client
 function getViajesUsuario(){
     $error[] = "";
-
+    $res = "";
 //check if the user is logged
     if (isset($_SESSION['user_id'])) {
 
@@ -69,15 +70,15 @@ function getViajesUsuario(){
 //first conenct to DB
         $con = dbConnection();
 
-        //first get the trip data from the DB
-        $sql = "SELECT viaje.origen,viaje.destino,viaje.fecha,usuario.nombre "
+        // get the trip data from the DB
+        $sql = "SELECT viaje.id,viaje.origen,viaje.destino,viaje.fecha,usuario.nombre "
                 . "FROM viajerosClientes JOIN viaje JOIN cliente JOIN usuario "
                 . " WHERE viajerosClientes.cliente_id=" . $user_id
                 . " AND viajerosClientes.viaje_id=viaje.id and viaje.conductor_id=cliente.usuario_id AND"
                 . " cliente.usuario_id=usuario.id";
 
-        //consulta para obtener nombre (del conductor) fecha origen y destino
-        echo $sql;
+       //consulta para obtener nombre (del conductor) fecha origen y destino
+       // echo $sql;
         $query = mysqli_query($con, $sql);
 
         if (!$query) {
@@ -90,6 +91,7 @@ function getViajesUsuario(){
             while ($row = mysqli_fetch_assoc($query)) {
 
                 $res[] = array(
+                    'id' => $row['id'],
                     'name' => $row['nombre'],
                     'date' => $row['fecha'],
                     'from' => $row['origen'],
@@ -99,9 +101,9 @@ function getViajesUsuario(){
 
 //close DB conection
             mysqli_close($con);
-
+            return $res;
 //the array with the tables rows is returnet to the frontend
-            print_r($res);
+          //  print_r($res);
         }
     } else {
         unSetSession();
@@ -109,4 +111,5 @@ function getViajesUsuario(){
     }
 
     print_r($error);
+    return $res;
 }

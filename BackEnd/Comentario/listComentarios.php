@@ -1,16 +1,7 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+include 'comentario.php';
 
-/**
- * Description of listComentarios
- *
- * @author Racso
- */
 class listComentarios {
 
     public $arrayComentarios;
@@ -33,7 +24,6 @@ class listComentarios {
                 if ($resultadoArray[$j] !== null)
                     $comentario->setMensaje($resultadoArray[$j]);
                 $j++;
-                $comentario->buscaAutor();
                 $this->arrayComentarios = array([$i] => $comentario);
             }
         }
@@ -43,7 +33,8 @@ class listComentarios {
         return $resultadoArray;
     }
 
-    function countListaComentarios() {
+    function countListaComentarios($idForo) {
+        $consulta = 'select count(*) from mensaje WHERE mensaje.foro_id=?';
         return $size;
     }
 

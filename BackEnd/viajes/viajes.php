@@ -178,7 +178,7 @@ function newViaje() {
                 //get the vehicle id
                 $car_id = "";
 
-                //get he insurance?
+                //get the insurance?
                 $insurance_id = 1;
 
                 //conect to DB

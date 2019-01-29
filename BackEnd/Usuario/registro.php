@@ -70,6 +70,8 @@ function registroForm() {
 
             //sql sentence for inserting user
             //echo $name . "<br/>";
+             $sqlUserExist= "SELECT COUNT(*) FROM usuario WHERE usuario.correo=".$userName.";";
+
             $sqlUser = "INSERT INTO usuario ( id, rol_id, foto, nombre, apellido1, apellido2, correo, contrasenha, telefono"
                     . ") VALUES ('NULL', ' 1 ', 'NULL', '" . $name
                     . "', '" . $middleName . "', '" . $lastName . "', '" . $userName . "', "
@@ -79,7 +81,7 @@ function registroForm() {
             //insert into DB
             $query1 = mysqli_query($con, $sqlUser);
 
-            if (!$query1) {
+            if ($query1) {
                 echo "error sql1";
                 $error[] = "User already registered";
                 mysqli_close($con);
@@ -92,8 +94,9 @@ function registroForm() {
                 $sqlClient = "INSERT INTO cliente (usuario_id) VALUES "
                         . "(' " . $user_id . "')";
 
-                $query2 = mysqli_query($con, $sqlClient);
-
+                $query2 = mysqli_query($con, $sqlUser);
+                $query3 = mysqli_query($con, $sqlClient);
+                
                 if (!$query2) {
                     $error[] = "Error inserting client into clientes table";
                 }
