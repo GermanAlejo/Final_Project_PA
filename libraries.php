@@ -23,6 +23,52 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 -->
 
+
+
+<!-- Bootstrap core CSS -->
+<link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom fonts for this template -->
+<link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+<!-- Custom styles for this template -->
+<link href="../../FrontEnd/css/landing-page.min.css" rel="stylesheet">
+
+<!-- Bootstrap core JavaScript -->
+<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../vendor/jquery/jquery.min.js"></script>
+
+<!-- API Google -->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
+</script>
+
+
+
+<!-- INDEX -->
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom fonts for this template -->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+<!-- Custom styles for this template -->
+<link href="FrontEnd/css/landing-page.min.css" rel="stylesheet">
+
+<!-- Bootstrap core JavaScript -->
+
+<script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="../../vendor/jquery/jquery.min.js"></script>
+
+
+
+
+
+
 <!--All php function here:  -->
 <?php
 
@@ -51,36 +97,115 @@ function unSetSession() {
     session_destroy();
 }
 
+function footer() {
+
+    echo '<footer class="footer bg-light">';
+    echo '    <div class="container">';
+    echo '        <div class="row">';
+    echo '            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">';
+    echo '                <ul class="list-inline mb-2">';
+    echo '                    <li class="list-inline-item">';
+    echo '                        <a href="#">El proyecto / Nosotros</a>';
+    echo '                    </li>';
+    echo '                    <li class="list-inline-item">&sdot;</li>';
+    echo '                    <li class="list-inline-item">';
+    echo '                        <a href="#">Contacto</a>';
+    echo '                    </li>';
+    echo '                   <li class="list-inline-item">&sdot;</li>';
+    echo '                    <li class="list-inline-item">';
+    echo '                        <a href="#">Foro</a>';
+    echo '                    </li>';
+    echo '                    <li class="list-inline-item">&sdot;</li>';
+    echo '                    <li class="list-inline-item">';
+    echo '                        <a href="#">Promociones</a>';
+    echo '                    </li>';
+    echo '                </ul>';
+    echo '                <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>';
+    echo '            </div>';
+    echo '            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">';
+    echo '                <ul class="list-inline mb-0">';
+    echo '                    <li class="list-inline-item mr-3">';
+    echo '                        <a href="https://www.facebook.com/TRIPSHARE_es-282100442475538" target="_blank">';
+    echo '                            <i class="fab fa-facebook fa-2x fa-fw"></i>';
+    echo '                        </a>';
+    echo '                    </li>';
+    echo '                    <li class="list-inline-item mr-3">';
+    echo '                        <a href="https://twitter.com/TRIPSHARE3" target="_blank">';
+    echo '                            <i class="fab fa-twitter-square fa-2x fa-fw"></i>';
+    echo '                        </a>';
+    echo '                     </li>';
+    echo '                </ul>';
+    echo '            </div>';
+    echo '        </div>';
+    echo '    </div>';
+    echo '</footer>';
+}
+
+function profileButtom() {
+
+    echo '                    <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>';
+    echo '                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">';
+    echo '                        <a href="../../FrontEnd/Usuario/ajusteUsuarioForm.php" class="dropdown-item">Mis datos</a>';
+    echo '                        <a href="../../FrontEnd/Usuario/ajusteVehiculoForm.php" class="dropdown-item">Mis vehículos</a>';
+    echo '                        <a href="../../FrontEnd/Viajes/viajesPendientesForm.php" class="dropdown-item">Viajes pendientes</a>';
+    echo '                        <a href="../../FrontEnd/Viajes/viajesRealizadosForm.php" class="dropdown-item">Viajes realizados</a>';
+    echo '                        <a href="#" class="dropdown-item">Cerrar Sesión</a>';
+    echo '                    </div>';
+}
+
+function accessButtom() {
+
+    echo '                <a href="../../FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Acceder</a>';
+}
+
+function indexProfileButtom() {
+
+    echo '                    <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>';
+    echo '                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">';
+    echo '                        <a href="FrontEnd/Usuario/ajusteUsuarioForm.php" class="dropdown-item">Mis datos</a>';
+    echo '                        <a href="FrontEnd/Usuario/ajusteVehiculoForm.php" class="dropdown-item">Mis vehículos</a>';
+    echo '                        <a href="FrontEnd/Viajes/viajesPendientesForm.php" class="dropdown-item">Viajes pendientes</a>';
+    echo '                        <a href="FrontEnd/Viajes/viajesRealizadosForm.php" class="dropdown-item">Viajes realizados</a>';
+    echo '                        <a href="#" class="dropdown-item">Cerrar Sesión</a>';
+    echo '                    </div>';
+}
+
+function indexAccessButtom() {
+
+    echo '                <a href="FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Acceder</a>';
+}
 ?>
+
+
 
 <!--All javascript functions here:   -->
 <script>
-    //Esta funcion sirve para mostrar o ocultar distintos campos del formulario
-    //en funcion de el valor de cmpValor que le pasemos
-    //ocultara idElem si no se cumple y mostrara idElem2 en el caso de
-    //que se le haya mandado alguno
-    //Funsion sedida por el gran Am3
-    function showCarForm(idValor, idElem, idElem2, cmpValor) {
-        var x = document.getElementById(idElem);
-        var valor = document.getElementById(idValor);
-        if (idElem2 != null) {
-            var x2 = document.getElementById(idElem2);
-        }
-        if (valor.value === cmpValor) {
-            x.style.display = "block";
-            if (x2 != null) {
-                x2.style.display = "none";
-            }
+            //Esta funcion sirve para mostrar o ocultar distintos campos del formulario
+            //en funcion de el valor de cmpValor que le pasemos
+            //ocultara idElem si no se cumple y mostrara idElem2 en el caso de
+            //que se le haya mandado alguno
+            //Funsion sedida por el gran Am3
+            function showCarForm(idValor, idElem, idElem2, cmpValor) {
+                var x = document.getElementById(idElem);
+                var valor = document.getElementById(idValor);
+                if (idElem2 != null) {
+                    var x2 = document.getElementById(idElem2);
+                }
+                if (valor.value === cmpValor) {
+                    x.style.display = "block";
+                    if (x2 != null) {
+                        x2.style.display = "none";
+                    }
 
-            return true;
-        } else if (valor.value !== cmpValor) {
-            x.style.display = "none";
-            if (x2 !== null) {
-                x2.style.display = "block";
-            }
+                    return true;
+                } else if (valor.value !== cmpValor) {
+                    x.style.display = "none";
+                    if (x2 !== null) {
+                        x2.style.display = "block";
+                    }
 
-        }
-        return false;
-    }
+                }
+                return false;
+            }
 
 </script>

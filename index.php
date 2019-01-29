@@ -7,29 +7,11 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-
         <link rel="icon" href="FrontEnd/img/icon.png">
         <title>Tripshare</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom fonts for this template -->
-        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-        <!-- Custom styles for this template -->
-        <link href="FrontEnd/css/landing-page.min.css" rel="stylesheet">
-
-        <!-- Bootstrap core JavaScript -->
-        <script src="../../vendor/jquery/jquery.min.js"></script>
-        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- API Google -->
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
-        </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.css">
 
 
         <?php
@@ -43,23 +25,19 @@
             <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
                 <h5 class="my-0 mr-md-auto font-weight-normal">
                     <a href="index.php">
-                        <img src="FrontEnd/img/tripshare logo2.png" height="60"></h5>
+                        <img src="FrontEnd/img/tripshare logo2.png" height="60">
                     </a>
-                    <nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="index.php">Buscar viaje</a>
-                        <a class="p-2 text-dark" href="#">Organizar viaje</a>
-
-                        <!-- notice that the Profile and the sigh up buttom will be changed so they switch between them-->
-                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="FrontEnd/Usuario/ajusteUsuarioForm.php" class="dropdown-item">Mis datos</a>
-                            <a href="FrontEnd/Usuario/ajusteVehiculoForm.php" class="dropdown-item">Mis vehículos</a>
-                            <a href="FrontEnd/Viajes/viajesPendientesForm.php" class="dropdown-item">Viajes pendientes</a>
-                            <a href="FrontEnd/Viajes/viajesRealizadosForm.php" class="dropdown-item">Viajes realizados</a>
-                            <a href="#" class="dropdown-item">Cerrar Sesión</a>
-                        </div>
-                    </nav>
-                    <a href="FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary">Acceder</a>
+                </h5>
+                <nav class="my-2 my-md-0 mr-md-3">
+                    <a class="p-2 text-dark" href="../../index.php">Buscar viaje</a>
+                    <a class="p-2 text-dark" href="#">Organizar viaje</a>
+                    <?php
+                    indexProfileButtom();
+                    ?>
+                </nav>
+                <?php
+                indexAccessButtom();
+                ?>
             </div>
         </div>
 
@@ -79,7 +57,8 @@
                                     <input name="fin" id="fin" type="text" class="form-control " placeholder="Hacia...">
                                 </div>
                                 <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                    <input type="date" id="date" class="form-control" placeholder="Fecha" min="today" value="today" required>
+                                   
+                                    <input type="date" id="date" class="form-control" placeholder="Fecha" min="today" required>
                                 </div>
                                 <div class="col-12 col-md-3 mb-md-0">
                                     <button type="submit" class="btn btn-block btn-primary">Buscar</button>
@@ -91,14 +70,45 @@
                                     <a href="FrontEnd/Usuario/registroUsuarioForm.php" class="btn btn-block btn-primary">Registrarse</a>                    
                                 </div>
                             </div>
+
+                            <div class="form-row ">
+                                <div class="col-12 col-md-12 mb-md-0 mx-auto">
+                                    <br>
+
+                                    <!-- START Bootstrap-Cookie-Alert -->
+                                    <div class="alert text-center cookiealert" role="alert">
+                                        <b>AVISO SOBRE USO DE COOCKIES</b> &#x1F36A; Es posible que utilicemos cookies propias y de terceros para mejorar nuestros servicios.
+                                        Esto nos ayudará a mejorar experiencia en el uso de nuestra web. Adicionalmente, nos reservamos el derecho de compartir los análisis
+                                        de navegación y los grupos de interés inferidos con terceros. Al clicar en "Aceptar" o SI CONTINÚA NAVEGANDO, ACEPTA SU USO. 
+                                        También puede CONFIGURAR O RECHAZAR la instalación de cookies clicando en “Cambiar configuración".
+                                        <br>
+                                        <button type="button" class="btn btn-primary btn-sm acceptcookies" aria-label="Close">Acepto</button>
+                                    </div>
+                                    <!-- END Bootstrap-Cookie-Alert -->
+
+                                    <!-- Include cookiealert script -->
+                                    <script src="https://cdn.jsdelivr.net/gh/Wruczek/Bootstrap-Cookie-Alert@gh-pages/cookiealert.js"></script>  
+
+                                </div>
+                            </div>
                         </div>
                         <script async defer
                                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
                         </script>
                     </form>
                 </div>
+
             </div>
+
+
         </header>
+
+
+
+
+
+
+
 
 
         <script>
@@ -125,6 +135,10 @@
 
 
 
+
+
+
+
     </body>
 
     <!-- Testimonials -->
@@ -147,49 +161,10 @@
         </div>
     </section>
 
-
-
     <!-- Footer -->
-    <footer class="footer bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-                    <ul class="list-inline mb-2">
-                        <li class="list-inline-item">
-                            <a href="#">El proyecto / Nosotros</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Contacto</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Foro</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Promociones</a>
-                        </li>
-                    </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
-                </div>
-                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item mr-3">
-                            <a href="https://www.facebook.com/TRIPSHARE_es-282100442475538" target="_blank">
-                                <i class="fab fa-facebook fa-2x fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item mr-3">
-                            <a href="https://twitter.com/TRIPSHARE3" target="_blank">
-                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php footer() ?>
+
+
 
 
 </html>

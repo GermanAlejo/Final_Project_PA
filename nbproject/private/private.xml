@@ -3,6 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/opt/lampp/htdocs/Final_Project_PA/FrontEnd/Usuario/loginForm.php</file>
+            <file>file:/opt/lampp/htdocs/Final_Project_PA/FrontEnd/Viajes/registroViajeForm.php</file>
+            <file>file:/opt/lampp/htdocs/Final_Project_PA/index.php</file>
+            <file>file:/opt/lampp/htdocs/Final_Project_PA/FrontEnd/Usuario/registroUsuarioForm.php</file>
+            <file>file:/opt/lampp/htdocs/Final_Project_PA/libraries.php</file>
+=======
             <file>file:/C:/Users/geral/Documents/GitHub/Final_Project_PA/BackEnd/Usuario/ajustesUsuario.php</file>
             <file>file:/C:/Users/geral/Documents/GitHub/Final_Project_PA/index.php</file>
             <file>file:/C:/Users/geral/Documents/GitHub/Final_Project_PA/BackEnd/Promocion/listPromociones.php</file>
@@ -18,6 +25,7 @@
             <file>file:/C:/Users/geral/Documents/GitHub/Final_Project_PA/BackEnd/viajes/misViajes.php</file>
             <file>file:/C:/Users/geral/Documents/GitHub/Final_Project_PA/FrontEnd/Usuario/registroUsuarioForm.php</file>
             <file>file:/C:/Users/geral/Documents/GitHub/Final_Project_PA/BackEnd/Usuario/registro.php</file>
+>>>>>>> master
         </group>
     </open-files>
 </project-private>
