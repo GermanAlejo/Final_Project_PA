@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-01-2019 a las 22:12:48
+-- Tiempo de generación: 29-01-2019 a las 17:58:24
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.11
 
@@ -188,7 +188,8 @@ CREATE TABLE `seguro` (
 --
 
 INSERT INTO `seguro` (`n_poliza`, `cobertura`, `importe`, `max_asegurado`) VALUES
-(1, 'robo, accidente,', 10000, 20);
+(1, 'robo, accidente,', 10000, 20),
+(2, 'Accidente ,avería, retraso', 50, 2000);
 
 -- --------------------------------------------------------
 
@@ -215,7 +216,8 @@ CREATE TABLE `usuario` (
 INSERT INTO `usuario` (`id`, `rol_id`, `foto`, `nombre`, `apellido1`, `apellido2`, `correo`, `contrasenha`, `telefono`) VALUES
 (1, 0, NULL, 'admin', '', '', 'admin@admin', 'admin', NULL),
 (2, 1, NULL, 'oscar', 'Gomez Gonzalez', '', 'oscar@gmail.es', 'oscar', 620988324),
-(3, 1, NULL, 'german', 'alejo', 'paquete', 'geralejo@gmail.com', 'german ', 666987652);
+(3, 1, NULL, 'german', 'alejo', 'paquete', 'geralejo@gmail.com', 'german ', 666987652),
+(67, 1, 'NULL', 'Fernando', 'Moreno', 'Vidal', 'Fermorvid@gmail.com', '$2y$10$BE3nFNNW0.4FNhRgDtt4tO7KX5W7jUlNEzNz1TJTJPkR6RDhuXjdu', 620988423);
 
 -- --------------------------------------------------------
 
@@ -372,6 +374,7 @@ ALTER TABLE `seguro`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `correo` (`correo`),
   ADD KEY `usuario_ibfk_2` (`rol_id`);
 
 --
@@ -433,13 +436,13 @@ ALTER TABLE `promocion`
 -- AUTO_INCREMENT de la tabla `seguro`
 --
 ALTER TABLE `seguro`
-  MODIFY `n_poliza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `n_poliza` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT de la tabla `valoracion`
