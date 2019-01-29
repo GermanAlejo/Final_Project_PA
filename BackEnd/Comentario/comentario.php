@@ -8,7 +8,6 @@ class comentari {
     public $mensaje;
     public $nomAutor;
 
-    
     function getIdComentario() {
         return $this->idComentario;
     }
@@ -50,15 +49,59 @@ class comentari {
     }
 
     function crearComentario() {
-        $consulta="INSERT INTO `mensaje` (`id`, `foro_id`, `autor_id`, `mensaje`) VALUES (NULL, '1', '3', '?')";
+//obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta
+        $consulta = "INSERT INTO mensaje (foro_id, autor_id, mensaje) VALUES (NULL, '?', '?', '?')";
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//metemos las variables a la consulta
+        mysqli_stmt_bind_param($stmt, "sss", $this->foro_id, $this->autor_id, $this->mensaje);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+//devolvemos el resultado,si termino bien o mal la creacion
+        return $resultado;
     }
 
     function consultarComentario() {
-        $consulta="SELECT usuario.nombre,mensaje.mensaje FROM mensaje JOIN usuario WHERE mensaje.foro_id=1 and usuario.id=mensaje.autor_id";
+        //obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta
+        $consulta = "SELECT usuario.nombre,mensaje.mensaje FROM mensaje JOIN usuario WHERE mensaje.foro_id=? and usuario.id=?";
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//metemos las variables a la consulta
+        mysqli_stmt_bind_param($stmt, "ss", $this->foro_id, $this->autor_id);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+//pasamos el resultado de la consulta a un array
+        $fila = mysqli_fetch_assoc($resultado);
+        $this->nomAutor =$fila[0];
+        $this->mensaje =$fila[1];
+        $this->idComentario =$fila[2];//faltan en la consulta
+        $this->foro_id =$fila[3];//
+        $this->autor_id =$fila[4];//
     }
 
     function eliminarComentario() {
-        $consulta="delete from mensaje where mensaje.id=2";
+//obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta
+        $consulta = "delete from mensaje where mensaje.id=?";
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//metemos las variables a la consulta
+        mysqli_stmt_bind_param($stmt, "s", $this->idComentario);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+//devolvemos el resultado,si termino bien o mal la creacion
+        return $resultado;
     }
 
 }

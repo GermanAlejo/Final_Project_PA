@@ -29,37 +29,35 @@ class foro {
     function setTitulo($titulo) {
         $this->titulo = $titulo;
     }
-    
-//
-//    function consultaForo($nomForo) {
-////obtenemos la conexion con la base de datos
-//        $con = dbConnection();
-////creamos la consulta
-//        $consulta = "SELECT fo.titulo, fo.etiqueta FROM FORO fo WHERE fo.titulo = ?";
-//
-//        $stmt = mysqli_stmt_init($con);
-//        mysqli_stmt_prepare($stmt, $consulta);
-////metemos la variable a la consulta
-//        mysqli_stmt_bind_param($stmt, "s", $nomForo);
-////ejecutamos la consulta
-//        mysqli_stmt_execute($stmt);
-////guardamos el resultado de la consulta
-//        $resultado = mysqli_stmt_get_result($stmt);
-////pasamos el resultado de la consulta a un array
-//        $fila = mysqli_fetch_assoc($resultado);
-////devolvemos el resultado en orden titulo, etiqueta
-//        return $fila;
-//    }
+
+    function consultaForo($nomForo) {
+//obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta
+        $consulta = "SELECT fo.titulo, fo.etiqueta FROM FORO fo WHERE fo.id = ?";
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//metemos la variable a la consulta
+        mysqli_stmt_bind_param($stmt, "s", $this->idForo);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+//pasamos el resultado de la consulta a un array
+        $fila = mysqli_fetch_assoc($resultado);
+//devolvemos el resultado en orden titulo, etiqueta
+        return $fila;
+    }
 
     function crearForo($tituloForo) {
 //obtenemos la conexion con la base de datos
         $con = dbConnection();
 //creamos la consulta
-        $crear = "INSERT INTO foro (?,?)";
+        $crear = "INSERT INTO foro (titulo) VALUES (?)";
         $stmt = mysqli_stmt_init($con);
         mysqli_stmt_prepare($stmt, $crear);
 //metemos la variable a la consulta
-        mysqli_stmt_bind_param($stmt, "s", $tituloForo);
+        mysqli_stmt_bind_param($stmt, "s", $this->titulo);
 //ejecutamos la consulta
         mysqli_stmt_execute($stmt);
 //guardamos el resultado de la consulta
@@ -76,7 +74,7 @@ class foro {
         $stmt = mysqli_stmt_init($con);
         mysqli_stmt_prepare($stmt, $borrar);
 //metemos la variable a la consulta
-        mysqli_stmt_bind_param($stmt, "s", $idForo);
+        mysqli_stmt_bind_param($stmt, "s", $this->idForo);
 //ejecutamos la consulta
         mysqli_stmt_execute($stmt);
 //guardamos el resultado de la consulta
@@ -94,16 +92,11 @@ class foro {
         if ($foroTitulo !== "") {
             $modificar += "";
         }
-
-
-
-
-
         $modificar1 = "UPDATE foro SET titulo = ?, etiqueta = ? WHERE foro.id = ?";
         $stmt = mysqli_stmt_init($con);
         mysqli_stmt_prepare($stmt, $modificar);
 //metemos la variable a la consulta
-        mysqli_stmt_bind_param($stmt, "s", $idForo);
+        mysqli_stmt_bind_param($stmt, "s", $this->idForo);
 //ejecutamos la consulta
         mysqli_stmt_execute($stmt);
 //guardamos el resultado de la consulta
@@ -112,14 +105,7 @@ class foro {
         return $resultado;
     }
 
-    function entraForo() {
-        
-    }
-
 }
-
-
-
 
 /*
  * 

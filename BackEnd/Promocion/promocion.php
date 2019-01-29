@@ -9,6 +9,7 @@ class promocion {
     public $titulo;
     public $descripcion;
     public $descuento;
+    public $foto;
 
     function getIdPromocion() {
         return $this->idPromocion;
@@ -36,6 +37,10 @@ class promocion {
 
     function getDescuento() {
         return $this->descuento;
+    }
+
+    function getFoto() {
+        return $this->foto;
     }
 
     function setIdPromocion($idPromocion) {
@@ -66,24 +71,99 @@ class promocion {
         $this->descuento = $descuento;
     }
 
+    function setFoto($foto) {
+        $this->foto = $foto;
+    }
+
     function crearPromocion() {
-        $consulta = "INSERT INTO `promocion` (`id`, `creador_id`, `fecha_inicio`, `fecha_fin`, `titulo`, `descripcion`, `descuento`, `foto`) VALUES (NULL, '1', '2019-01-25', '2019-02-14', 'Sorteo entradas rey leon', 'que te lo has creído tu ', '', NULL)";
+        //obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta
+        $consulta = "INSERT INTO promocion (id, creador_id, fecha_inicio, fecha_fin, titulo, descripcion, descuento, foto) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//metemos las variables a la consulta
+        mysqli_stmt_bind_param($stmt, "sssssss", $this->creador_id, $this->fecha_inicio, $this->fecha_fin, $this->titulo, $this->descripcion, $this->descuento, $this->foto);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+//devolvemos el resultado,si termino bien o mal la creacion
+        return $resultado;
     }
 
     function consultarPromocion() {
-        $consultar = "SELECT foto,titulo,descripcion,fecha_inicio,fecha_fin FROM `promocion`";
+        //obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta
+        $consultar = "SELECT foto,titulo,descripcion,fecha_inicio,fecha_fin FROM promocion WHERE promocion.id=?";
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//metemos las variables a la consulta
+        mysqli_stmt_bind_param($stmt, "s", $this->idPromocion);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+//pasamos el resultado de la consulta a un array
+        $fila = mysqli_fetch_assoc($resultado);
+        $this->foto = $fila[0];
+        $this->titulo = $fila[1];
+        $this->descripcion = $fila[2];
+        $this->fecha_inicio = $fila[3];
+        $this->fecha_fin = $fila[4];
     }
 
     function modificarPromocion() {
-        $consulta = "UPDATE `promocion` SET `titulo` = 'titulo', `descripcion` = 'descripcion', `foto` = 'foto cambiada.url' WHERE `promocion`.`id` = 3";
+//obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta
+        $consulta = "UPDATE promocion SET titulo=?, descripcion=?, foto=? WHERE promocion.id = ?";
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//metemos las variables a la consulta
+        mysqli_stmt_bind_param($stmt, "ssss", $this->titulo, $this->descripcion, $this->foto, $this->idPromocion);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+//devolvemos el resultado,si termino bien o mal la creacion
+        return $resultado;
     }
 
     function reactivar() {
-        $consulta = "UPDATE `promocion` SET `fecha_inicio` = '2019-01-30', `fecha_fin` = '2019-01-31' WHERE `promocion`.`id` = 3";
+        //obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta
+        $consulta = "UPDATE promocion SET fecha_inicio=?, fecha_fin=? WHERE promocion.id= ?";
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//metemos las variables a la consulta
+        mysqli_stmt_bind_param($stmt, "sss", $this->fecha_inicio, $this->fecha_fin, $this->idPromocion);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+//devolvemos el resultado,si termino bien o mal la creacion
+        return $resultado;
     }
 
     function eliminarPromocion() {
-        $consulta = "delete from promocion where promocion.id =3";
+//obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta
+        $consulta = "delete from promocion where promocion.id =?";
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//metemos las variables a la consulta
+        mysqli_stmt_bind_param($stmt, "s", $this->idPromocion);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+//devolvemos el resultado,si termino bien o mal la creacion
+        return $resultado;
     }
 
 }
