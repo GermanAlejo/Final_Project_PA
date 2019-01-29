@@ -10,6 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+        <?php session_start(); ?>
 
         <link rel="icon" href="../../FrontEnd/img/icon.png">
         <title>Tripshare</title>
@@ -43,35 +44,36 @@
             <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
                 <h5 class="my-0 mr-md-auto font-weight-normal">
                     <a href="../../index.php">
-                        <img src="../../FrontEnd/img/tripshare logo2.png" height="60"></h5>
-                    </a>
-                    <nav class="my-2 my-md-0 mr-md-3">
-                        <a class="p-2 text-dark" href="../../index.php">Buscar viaje</a>
-                        <a class="p-2 text-dark" href="#">Organizar viaje</a>
+                        <img src="../../FrontEnd/img/tripshare logo2.png" height="60"></a></h5>
 
-                        <!-- notice that the Profile and the sigh up buttom will be changed so they switch between them-->
-                        <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a href="../../FrontEnd/Usuario/ajusteUsuarioForm.php" class="dropdown-item">Mis datos</a>
-                            <a href="../../FrontEnd/Usuario/ajusteVehiculoForm.php" class="dropdown-item">Mis vehículos</a>
-                            <a href="../../FrontEnd/Viajes/viajesPendientesForm.php" class="dropdown-item">Viajes pendientes</a>
-                            <a href="../../FrontEnd/Viajes/viajesRealizadosForm.php" class="dropdown-item">Viajes realizados</a>
-                            <a href="#" class="dropdown-item">Cerrar Sesión</a>
-                        </div>
-                    </nav>
-                    <a href="../../FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Acceder</a>
+                <nav class="my-2 my-md-0 mr-md-3">
+                    <a class="p-2 text-dark" href="../../index.php">Buscar viaje</a>
+                    <a class="p-2 text-dark" href="#">Organizar viaje</a>
+
+                    <!-- notice that the Profile and the sigh up buttom will be changed so they switch between them-->
+                    <a href="#" class="dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Perfil</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="../../FrontEnd/Usuario/ajusteUsuarioForm.php" class="dropdown-item">Mis datos</a>
+                        <a href="../../FrontEnd/Usuario/ajusteVehiculoForm.php" class="dropdown-item">Mis vehículos</a>
+                        <a href="../../FrontEnd/Viajes/viajesPendientesForm.php" class="dropdown-item">Viajes pendientes</a>
+                        <a href="../../FrontEnd/Viajes/viajesRealizadosForm.php" class="dropdown-item">Viajes realizados</a>
+                        <a href="#" class="dropdown-item">Cerrar Sesión</a>
+                    </div>
+                </nav>
+                <a href="../../FrontEnd/Usuario/loginForm.php" class="btn btn-outline-primary" href="#">Acceder</a>
             </div>
         </div>
 
         <?php
         include '../../libraries.php';
-
         //get values from previous hidden form
         $driver = $_POST['name'];
         $origen = $_POST['origen'];
         $destino = $_POST['destino'];
-        $fecha = $_POST['fecha'];
+        //$fecha = $_POST['fecha'];
         $trip_id = $_POST['id'];
+        //echo "trip id:" . $trip_id;
+        //echo $driver;
         ?>
 
         <header>
@@ -91,7 +93,7 @@
 
                             </div>
                             <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                <a><?php $driver ?></a>
+                                <a><?php echo $driver; ?></a>
                             </div>
 
                         </div>
@@ -100,7 +102,7 @@
                                 <label for="uname"><b>Origen: </b></label>
                             </div>
                             <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                <a><?php $origen ?></a>
+                                <a><?php echo $origen ?></a>
                             </div>
 
                         </div>
@@ -109,7 +111,7 @@
                                 <label for="uname"><b>Destino: </b></label>
                             </div>
                             <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                <a><?php $destino ?></a>
+                                <a><?php echo $destino ?></a>
                             </div>
                         </div>
                         <div class="form-row">
@@ -133,10 +135,10 @@
                             <div class="col-12 col-md-4 mb-2 mb-md-0 mx-auto">
                                 <div class="form-group">
                                     <input type="submit" name="send" class="btn btn-block btn-primary" value="Valorar">   
-                                    <input type="hidden" name="driver" value="<?php $driver ?>">
-                                    <input type="hidden" name="origen" value="<?php $origen ?>">
-                                    <input type="hidden" name="destino" value="<?php $destino ?>">
-                                    <input type="hidden" name="trip_id" value="<?php $trip_id ?>">
+                                    <input type="hidden" name="driver" value="<?//php $driver ?>">
+                                    <input type="hidden" name="origen" value="<?php echo $origen ?>">
+                                    <input type="hidden" name="destino" value="<?php echo $destino ?>">
+                                    <input type="hidden" name="trip_id" value="<?php echo $trip_id ?>">
                                 </div>
                             </div>
                         </div>
@@ -147,8 +149,8 @@
     </body>
 
     <?php
-    include_once '../../BackEnd/Valoraciones/Valoracion.php';
-    session_start();
+    include_once '../../BackEnd/Valoraciones/valoracion.php';
+
     newValoracion();
     ?>
 
@@ -196,11 +198,6 @@
     </footer>
 
 
-    <?php
-//start session
-//    session_start();
-    include_once('../../BackEnd/Usuario/login.php');
-    ?>
 
 </html>
 

@@ -1,4 +1,6 @@
 <?php
+include_once '../../libraries.php';
+
 
 function newValoracion() {
 
@@ -10,13 +12,9 @@ function newValoracion() {
             //get session values
             $user_id = $_SESSION['user_id'];
             
-            $trip_id = $_SESSION['trip_id'];
+            $trip_id = $_POST['trip_id'];
             
-            //get previous session values
-            $driver = $_POST['driver'];
-            $origen = $_POST['origen'];
-            $destino = $_POST['destino'];
-
+            
             //this attribute is selected
             $valoracion = $_POST['valoracion'];
 
@@ -33,9 +31,7 @@ function newValoracion() {
                 //prepare sql sentence to get driverID and Trip ID
                 $sql1 = "select viaje.conductor_id FROM viaje WHERE viaje.id='" . $trip_id . "'";
                 
-                $sql2 = "INSERT INTO valoracion (id, creador_id, conductor_id, viaje_id, valoracion, comentarios) "
-                        . "VALUES (NULL, '". $user_id ."', '" . $driver_id . "', '" . $trip_id . "', "
-                        . "'" . $valoracion . "', '" . $comen . "')";
+
 
                 $query1 = mysqli_query($con, $sql1);
 
@@ -43,9 +39,27 @@ function newValoracion() {
                     echo "error sql1";
                     mysqli_close($con);
                 } else {
+
+                    $aux = mysqli_fetch_row($query1);
+                    print_r($aux);
+                    $driver_id = $aux['id'];
+                    echo $driver_id;
+                    //prepare second sql sentence for inserting the valoration
+                    $sql2 = "INSERT INTO valoracion (id, creador_id, conductor_id, viaje_id, valoracion, comentarios) "
+                            . "VALUES (NULL, '" . $user_id . "', '" . $driver_id . "', '" . $trip_id . "', "
+                            . "'" . $valoracion . "', '" . $comen . "')";
                     
-                    $driver_id = mysqli_fetch_row($query1);
+                    $query2 = mysqli_query($con, $sql2);
                     
+                    if(!$query2){
+                        echo 'error sql2';
+                        mysqli_close($con);
+                    }else{
+                        echo 'Valoracion realizada con exito';
+                        mysqli_close($con);
+                        //page should take the user back to the list of done trips
+                        //header('Location: ../../FrontEnd/Viajes/viajesRealizadosForm.php');
+                    }
                 }
             }
         } else {

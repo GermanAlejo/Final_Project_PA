@@ -5,10 +5,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
+
+        <?php
+        include '../../libraries.php';
+        include_once '../../BackEnd/Usuario/registro.php';
+        session_start();
+        ?>
 
 
         <link rel="icon" href="../../FrontEnd/img/icon.png">
@@ -34,11 +41,7 @@
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <?php
-        include '../../libraries.php';
-        include_once '../../BackEnd/Usuario/registro.php';
-        ?>
-
+        
 
     </head>
 
@@ -75,7 +78,7 @@
                 <div class="row">
                     <?php
                     include "../../BackEnd/Viajes/misViajes.php";
-                    session_start();
+                    
                     echo "userID: " . $_SESSION['user_id'];
                     showTarjetas();
                     ?>
@@ -140,21 +143,22 @@ function showTarjetas() {
     //get array with trips
     $viajes = getViajesUsuario();
     $numViajes = sizeof($viajes);
-
-    //print_r($viajes);
+    //echo "prueba";
+    print_r($viajes);
 
 
     for ($i = 0; $i < $numViajes; $i++) {
 
         //get first element of array aka first trip
         $viaje = $viajes[$i];
+        //print_r($viaje);
         //save values form array in variables
         $driverName = $viaje['name'];
         $origen = $viaje['from'];
         $destino = $viaje['to'];
         $fecha = $viaje['date'];
         $trip_id = $viaje['id'];
-
+        echo "tripID:" . $trip_id;
 
         echo ' <div class="col-lg-6 col-sm-12 mb-3">';
         echo '     <div class="card"> ';
@@ -182,9 +186,9 @@ function showTarjetas() {
         echo '                   <input type="hidden" name="name" value="' . $driverName . '">';
         echo '                   <input type="hidden" name="origen" value="' . $origen . '">';
         echo '                   <input type="hidden" name="destino" value="' . $destino . '">';
-        echo '                   <input type="hidden" name="fecha" value="' . $fecha . '">';
-        echo '                   <input type="hidden" name="id" value"' . $trip_id . "'>";
-        echo '                  <input type="button" class="btn btn-primary btn-sm btn-block text-white">Valorar</a>';
+        //echo '                   <input type="hidden" name="fecha" value="' . $fecha . '">'; not used for now
+        echo '                   <input type="hidden" name="id" value="' . $trip_id . '">';
+        echo '                  <input  type="submit" class="btn btn-primary btn-sm btn-block text-white" value="Valorar">Valorar';
         echo '               </form>';
         echo '           </div>';
         echo '       </div>';
