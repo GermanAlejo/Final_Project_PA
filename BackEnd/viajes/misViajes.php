@@ -1,7 +1,7 @@
 <?php
 
-include '../../libraries.php';
-//getViajesUsuario();
+include_once '../../libraries.php';
+getViajesUsuario();
 
 //this function returns all trips where the user has drive
 function getViajesConductor() {
@@ -41,7 +41,7 @@ function getViajesConductor() {
                     'from' => $row['origen'],
                     'to' => $row['destino']);
             }
-
+         
 
 //close DB conection
             mysqli_close($con);
@@ -58,7 +58,7 @@ function getViajesConductor() {
 }
 
 //returns all trips where the user has been client
-function getViajesUsuario() {
+function getViajesUsuario(){
     $error[] = "";
     $res = "";
 //check if the user is logged
@@ -77,8 +77,8 @@ function getViajesUsuario() {
                 . " AND viajerosClientes.viaje_id=viaje.id and viaje.conductor_id=cliente.usuario_id AND"
                 . " cliente.usuario_id=usuario.id";
 
-        //consulta para obtener nombre (del conductor) fecha origen y destino
-        // echo $sql;
+       //consulta para obtener nombre (del conductor) fecha origen y destino
+       // echo $sql;
         $query = mysqli_query($con, $sql);
 
         if (!$query) {
@@ -97,13 +97,13 @@ function getViajesUsuario() {
                     'from' => $row['origen'],
                     'to' => $row['destino']);
             }
-
+         
 
 //close DB conection
             mysqli_close($con);
             return $res;
 //the array with the tables rows is returnet to the frontend
-            //  print_r($res);
+          //  print_r($res);
         }
     } else {
         unSetSession();
@@ -112,43 +112,4 @@ function getViajesUsuario() {
 
     print_r($error);
     return $res;
-
-    function viajesPendientes() {
-        if (isset($_SESSION['user_id'])) {
-            $idUser = $_SESSION['user_id'];
-            //obtenemos la conexion con la base de datos
-            $con = dbConnection();
-//creamos la consulta
-            $consulta = "SELECT tra.capacidad, tra.descripcion, tra.destino, tra.fecha, tra.hora_salida, tra.id, tra.origen, tra.precio, tra.seguro_id, tra.vehiculo_id FROM viaje tra, viajerosclientes vi WHERE tra.fecha>=SYSDATE() and vi.viaje_id=tra.id and vi.cliente_id=? or tra.conductor_id=?";
-            $stmt = mysqli_stmt_init($con);
-            mysqli_stmt_prepare($stmt, $consulta);
-//metemos las variables a la consulta
-            mysqli_stmt_bind_param($stmt, "ss", $idUser, $idUser);
-//ejecutamos la consulta
-            mysqli_stmt_execute($stmt);
-//guardamos el resultado de la consulta
-            $resultado = mysqli_stmt_get_result($stmt);
-//pasamos el resultado de la consulta a un array
-            $resultadoArray = mysqli_fetch_assoc($resultado);
-            return $resultadoArray;
-        }
-    }
-
-    function countPendientes() {
-        $idUser = $_SESSION['user_id'];
-        //obtenemos la conexion con la base de datos
-        $con = dbConnection();
-//creamos la consulta 
-        $consulta = "SELECT COUNT(DISTINCT tra.id) FROM viaje tra, viajerosClientes vi WHERE tra.fecha>=SYSDATE() and vi.viaje_id=tra.id and vi.cliente_id=? or tra.conductor_id=?";
-        $stmt = mysqli_stmt_init($con);
-        mysqli_stmt_prepare($stmt, $consulta);
-//metemos las variables a la consulta
-        mysqli_stmt_bind_param($stmt, "ss", $idUser, $idUser);
-//ejecutamos la consulta
-        mysqli_stmt_execute($stmt);
-//guardamos el resultado de la consulta
-        $resultado = mysqli_stmt_get_result($stmt);
-        return $resultado;
-    }
-
 }
