@@ -1,21 +1,21 @@
 <?php
 
 //include '../../libraries.php'; //this include crashes all pages using functions from this file IDK WHY
-
+//this function returns an associative array with future trips
+buscaViajes();
 function buscaViajes() {
 
-    $error[] = "";
-    $res[] = "";
-
+    $res;//array();
+   
     if (isset($_POST['inicio']) && isset($_POST['fin']) && isset($_POST['fecha'])) {
-
+       
 //in this case the user does not need to be logged
         //Save values in an array and sanitize them
         $arraySanitize = array(
             'inicio' => FILTER_SANITIZE_STRING,
             'fin' => FILTER_SANITIZE_STRING,
             'fecha' => FILTER_SANITIZE_STRING);
-
+        //print_r($_POST);
 
         if (!isset($_POST['inicio']) || $_POST['inicio'] == "") {
             $error[] = "Origin can't be empty";
@@ -28,13 +28,13 @@ function buscaViajes() {
         }
         if (empty($error)) {
 
-
+          
 //filter the values
             $formInput = filter_input_array(INPUT_POST, $arraySanitize);
             $ini = $formInput['inicio'];
             $fin = $formInput['fin'];
             $date = $formInput['fecha'];
-
+          
             //validate date
             if (validateDateValues($date)) {
 //first conenct to DB
@@ -62,32 +62,36 @@ function buscaViajes() {
 //this loop should go to each row of the trips table and store it in an array
                         while ($row = mysqli_fetch_assoc($query)) {
 
-                            //we need to get the driver_id to get the name
-                            $driver_id = $row['conductor_id'];
-                            $newSql = "SELECT nombre FROM usuario WHERE usuario.id='" . $driver_id . "'";
-                            $queryName = mysqli_query($con, $newSql);
-                            if (!$queryName) {
-                                $error[] = "Error in sql1";
-                                mysqli_close($con);
-                            } else {
-                                $rowDriver = mysqli_fetch_assoc($queryName);
-                                $driverName = $rowDriver['nombre'];
+                            if (validateDateValues($row['fecha'])) {
+                                //we need to get the driver_id to get the name
+                                $driver_id = $row['conductor_id'];
+                                //now get driver name
+                                $newSql = "SELECT nombre FROM usuario WHERE usuario.id='" . $driver_id . "'";
+                                $queryName = mysqli_query($con, $newSql);
+                                if (!$queryName) {
+                                    $error[] = "Error in sql1";
+                                    mysqli_close($con);
+                                } else {
+                                    $rowDriver = mysqli_fetch_assoc($queryName);
+                                    $driverName = $rowDriver['nombre'];
 
-                                $res[] = array(
-                                    'name' => $driverName,
-                                    'date' => $row['fecha'],
-                                    'from' => $row['origen'],
-                                    'to' => $row['destino'],
-                                    'slots' => $row['capacidad'],
-                                    'desc' => $row['descripcion'],
-                                    'price' => $row['precio'],
-                                    'depTime' => $row['hora_salida']);
-                                //echo "loop";
+                                    $res[] = array(
+                                        'name' => $driverName,
+                                        'date' => $row['fecha'],
+                                        'from' => $row['origen'],
+                                        'to' => $row['destino'],
+                                        'slots' => $row['capacidad'],
+                                        'desc' => $row['descripcion'],
+                                        'price' => $row['precio'],
+                                        'dep_time' => $row['hora_salida']);
+                                    //echo "loop";
+                                }
                             }
                         }
                     }
 //close DB conection
                     mysqli_close($con);
+                  //  header("../../FrontEnd/Viajes/reservaViajesForm.php");
                 }
             } else {
                 $error[] = "Date not valid";
@@ -95,8 +99,8 @@ function buscaViajes() {
         }
     }
 //the array with the tables rows is returnet to the frontend
-    print_r($res);
-    print_r($error);
+   // print_r($res);
+    //print_r($error);
     return $res;
 }
 
@@ -111,7 +115,7 @@ function getViaje($idViaje) {
 
 
     //first get the trip data about the DB
-    $sql = "SELECT * FROM viaje WHERE viaje_id='" . $idViaje . "'";
+    $sql = "SELECT viaje.origen, viaje.destino FROM viaje WHERE viaje_id='" . $idViaje . "'";
 
     //echo $sql;
     $query = mysqli_query($con, $sql);

@@ -17,14 +17,6 @@
 <!-- Custom styles for this template -->
 <link href="css/landing-page.min.css" rel="stylesheet">
 
-<!--Bootstrap 3 libraries
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
--->
-
-
-
 <!-- Bootstrap core CSS -->
 <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -130,6 +122,7 @@ function validateDateValues($date) {
 
 
 //this function displays all trips done by the user
+//this function is currently not being used
 function showTarjetas() {
 
     //get array with trips

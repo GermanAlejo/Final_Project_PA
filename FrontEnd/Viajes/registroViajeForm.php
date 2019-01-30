@@ -9,13 +9,12 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-
-
         <link rel="icon" href="../../FrontEnd/img/icon.png">
         <title>Tripshare</title>
 
         <?php
         session_start();
+        include '../../libraries.php';
         include '../../BackEnd/viajes/viajes.php';
         include "../../BackEnd/Usuario/ajustesUsuario.php";
         ?>
@@ -78,12 +77,12 @@
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Origen</label>
-                                    <input type="text" name="inicio" class="form-control" placeholder="Desde...">
+                                    <label for="">Origen</label>
+                                    <input type="text" id="inicio" name="inicio" class="form-control" placeholder="Desde...">
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputNumber">Destino</label>
-                                    <input type="text" name="fin" class="form-control" placeholder="Hacia...">
+                                    <label for="">Destino</label>
+                                    <input type="text" id="fin" name="fin" class="form-control" placeholder="Hacia...">
                                 </div>
                             </div>
 

@@ -41,10 +41,9 @@
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
         </script>
 
-  <?php
+        <?php
         include '../../libraries.php';
-        include_once '../../BackEnd/Usuario/registro.php';
-       
+        include_once '../../BackEnd/viajes/viajes.php';
         ?>
 
     </head>
@@ -183,42 +182,72 @@
 
 
                     <?php
-                    for ($i = 0; $i < 5; $i++) {
+                    $trip_id = showFutureTrips();
 
-                        echo ' <div class="col-lg-6 col-sm-12 mb-3">';
-                        echo '     <div class="card"> ';
-                        echo '   <div class="card-body">';
-                        echo '       <div class="row ">';
-                        echo '           <div class="col-md-4">';
-                        echo '               <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">';
-                        echo '           </div>';
-                        echo '           <div class="col-md-8">';
-                        echo '               <h4>Conductor </h4>';
-                        echo '               <h6>nombre del tipejo</h6>';
-                        echo '           </div>';
-                        echo '       </div>';
-                        echo '       <div class="row ">  ';
-                        echo '           <div class="col-md-4">  ';
-                        echo '               <ul class="list-unstyled list-inline">';
-                        echo '                   <li class="list-inline">Origen:</li>';
-                        echo '                   <li class="list-inline">Destino:</li>';
-                        echo '                   <li class="list-inline">Hora de salida:</li>';
-                        echo '               </ul> ';
-                        echo '           </div>';
-                        echo '           <div class="col-md-2"></div>';
-                        echo '           <div class="col-md-6">   ';
+                    //this function shows index result when searching for a trip
+                    function showFutureTrips() {
 
-                        echo '               <h6>3 Asientos libres</h6>';
-                        echo '               <input type="number" name="quantity" min="1" max="5" value="1">';
+                        //get asociative array with trip and driver data
+                        $viajes = buscaViajes();
+                        
+                        $numViajes = sizeof($viajes);
+                        echo "NUM" . $numViajes;
+                        print_r($viajes);
 
-                        echo '               <button type="button" class="btn btn-secondary btn-sm btn-block">Reservar asientos</button>';
+                        for ($i = 0; $i < $numViajes; $i++) {
 
-                        echo '           </div>';
-                        echo '       </div>';
-                        echo '     </div>';
-                        echo '  </div>';
-                        echo '</div>';
+                            //get first element of array aka first trip
+                            $viaje = $viajes[$i];
+                            print_r($viaje);
+                            //save values form array in variables
+                            $driverName = $viaje['name'];
+                            $origen = $viaje['from'];
+                            $destino = $viaje['to'];
+                            //$fecha = $viaje['date'];
+                            $hora_salida = $viaje['dep_time'];
+                            $trip_id = $viaje['id'];
+                            $asientos = $viaje['slots'];
+                            //echo "tripID:" . $trip_id;
+
+                            echo ' <div class="col-lg-6 col-sm-12 mb-3">';
+                            echo '     <div class="card"> ';
+                            echo '   <div class="card-body">';
+                            echo '       <div class="row ">';
+                            echo '           <div class="col-md-4">';
+                            echo '               <img class="user-pic" src="../img/user_icon.jpg" alt="" width="100px">';
+                            echo '           </div>';
+                            echo '           <div class="col-md-8">';
+                            echo '               <h4>Conductor </h4>';
+                            echo '               <h6>' . $driverName . '</h6>';
+                            echo '           </div>';
+                            echo '       </div>';
+                            echo '       <div class="row ">  ';
+                            echo '           <div class="col-md-6">  ';
+                            echo '               <ul class="list-unstyled list-inline">';
+                            echo '                   <li class="list-inline">Origen: ' .  $origen . '</li>';
+                            echo '                   <li class="list-inline">Destino: ' . $destino . '</li>';
+                            echo '                   <li class="list-inline">Hora de salida: ' . $hora_salida . '</li>';
+                            echo '               </ul> ';
+                            echo '           </div>';
+                           // echo '           <div class="col-md-2"></div>';
+                            echo '           <div class="col-md-6">   ';
+
+                            echo '               <h6>' . $asientos . ' Asientos libres</h6>';
+                            echo '               <input type="number" name="quantity" min="1" max="' . $asientos . '" value="1">';
+
+                            echo '               <button type="button" class="btn btn-secondary btn-sm btn-block">Reservar asientos</button>';
+
+                            echo '           </div>';
+                            echo '       </div>';
+                            echo '     </div>';
+                            echo '  </div>';
+                            echo '</div>';
+                        }
+                        return $trip_id;
                     }
+                    
+                    $origenG = $trip_id['origen'];
+                    $destinoG = $trip_id['destino'];
                     ?>
 
                 </div>
@@ -226,14 +255,16 @@
 
         </section>
 
+        <!--NOT USED FOR NOW-->
+        
         <div id="right-panel">
             <div>
-                <b>Start:</b>
-                <input type="text" name="inicio" value="" id="inicio"/>
+               <!-- <b>Start:</b>-->
+                <input type="hidden" name="inicio" value="<?php$origenG?>" id="inicio"/>
                 <br>
 
-                <b>End:</b>
-                <input type="text" name="fin" value="" id="fin"/>
+               <!-- <b>End:</b>-->
+                <input type="hidden" name="fin" value="<?php$destino?>" id="fin"/>
 
                 <input type="submit" id="submit" value="Calcular ruta">
 
@@ -246,5 +277,5 @@
 
 
     <!-- Footer -->
-       <?php footer() ?>
+    <?php footer() ?>
 </html>
