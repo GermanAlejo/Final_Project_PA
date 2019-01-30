@@ -102,13 +102,13 @@
 
 
                             incio = new google.maps.places.Autocomplete((
-                                    document.getElementById('inicio')), {
+                                    document.getElementById('inicio2')), {
                                 types: ['(cities)'],
                                 componentRestrictions: countryRestrict
                             });
 
                             fin = new google.maps.places.Autocomplete((
-                                    document.getElementById('fin')), {
+                                    document.getElementById('fin2')), {
                                 types: ['(cities)'],
                                 componentRestrictions: countryRestrict
                             });
@@ -135,8 +135,8 @@
                             }
 
                             directionsService.route({
-                                origin: document.getElementById('inicio').value,
-                                destination: document.getElementById('fin').value,
+                                origin: document.getElementById('inicio2').value,
+                                destination: document.getElementById('fin2').value,
                                 waypoints: waypts,
                                 optimizeWaypoints: true,
                                 travelMode: 'DRIVING'
@@ -149,8 +149,7 @@
                                     // For each route, display summary information.
                                     for (var i = 0; i < route.legs.length; i++) {
                                         var routeSegment = i + 1;
-                                        summaryPanel.innerHTML += '<b>Route Segment: '
-                                        '</b><br>';
+                                        summaryPanel.innerHTML += '<b>Route Segment: </b><br>';
                                         summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
                                         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
                                         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
@@ -165,9 +164,7 @@
 
                     </script>
 
-                    <script async defer
-                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
-                    </script>
+
                 </div>
             </div>
 
@@ -189,10 +186,10 @@
 
                         //get asociative array with trip and driver data
                         $viajes = buscaViajes();
-                        
+
                         $numViajes = sizeof($viajes);
-                        echo "NUM" . $numViajes;
-                        print_r($viajes);
+                        //echo "NUM" . $numViajes;
+                        //print_r($viajes);
 
                         for ($i = 0; $i < $numViajes; $i++) {
 
@@ -224,12 +221,12 @@
                             echo '       <div class="row ">  ';
                             echo '           <div class="col-md-6">  ';
                             echo '               <ul class="list-unstyled list-inline">';
-                            echo '                   <li class="list-inline">Origen: ' .  $origen . '</li>';
+                            echo '                   <li class="list-inline">Origen: ' . $origen . '</li>';
                             echo '                   <li class="list-inline">Destino: ' . $destino . '</li>';
                             echo '                   <li class="list-inline">Hora de salida: ' . $hora_salida . '</li>';
                             echo '               </ul> ';
                             echo '           </div>';
-                           // echo '           <div class="col-md-2"></div>';
+                            // echo '           <div class="col-md-2"></div>';
                             echo '           <div class="col-md-6">   ';
 
                             echo '               <h6>' . $asientos . ' Asientos libres</h6>';
@@ -245,36 +242,71 @@
                         }
                         return $trip_id;
                     }
-                    
-                    $aux = getViaje($trip_id);
-                    print_r($aux);
-                    $origenG = $aux['origen'];
-                    $destinoG = $aux['destino'];
-                    
+
+                  
                     ?>
 
                 </div>
             </div>
-
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
+            </script>
         </section>
 
+
+
+
         <!--NOT USED FOR NOW-->
-        
+        <script>
+            function ciudades2() {
+<?php
+echo 'var inicio="' . $origenG . '"';
+echo 'var fin="' . $destino . '"';
+?>
+                document.getElementById("inicio2").value = inicio;
+                document.getElementById("fin2").value = fin;
+            }
+        </script>
+
         <div id="right-panel">
             <div>
-               <!-- <b>Start:</b>-->
-                <input type="hidden" name="inicio" value="<?php$origenG?>" id="inicio"/>
+                <?php
+                      $aux = getViaje($trip_id);
+                    //print_r($aux);
+                    $origenG = $aux['origen'];
+                    $destinoG = $aux['destino'];
+                    echo '<input type="hidden" id="origenG" value="' . $origenG . '">';
+                    echo'<input type="hidden" id="destinoG" value="' . $destinoG . '">';
+                ?>
+                <b>Start:</b>
+                <input type="text" name="inicio" value="" id="inicio2"/>
                 <br>
 
-               <!-- <b>End:</b>-->
-                <input type="hidden" name="fin" value="<?php$destino?>" id="fin"/>
+                <b>End:</b>
+                <input type="text" name="fin" value="" id="fin2"/>
 
-                <input type="submit" id="submit" value="Calcular ruta">
+                <button id="submit" onclick="ciudades()" value="">Calcular ruta</button>
 
             </div>
             <div id="directions-panel"></div>
         </div>
+         <script>
+            function ciudades() {
 
+                document.getElementById("inicio2").value = document.getElementById("inicioG").value ;
+                document.getElementById("fin2").value = document.getElementById("finG").value ;
+            }
+        </script>
+        <?php
+        /*
+          $s = '<div id="right-panel">';
+
+          $s.= ' <input type="text" name="inicio" id="origen" value="' . $origenG . '"/>';
+          $s .= ' <br>';
+          $s .= '<input type="text" name="fin" id="fin" value="' . $destinoG . '"/>';
+          $s .= '<input type="submit" id="submit" value="Calcular ruta">';
+          echo $s; */
+        ?>
 
     </body>
 

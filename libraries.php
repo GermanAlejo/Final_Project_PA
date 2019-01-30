@@ -78,7 +78,7 @@ function dbConnection() {
     if (!$db) {
         die("ERROR: Can't connect to DB ");
     }
-
+    mysqli_set_charset($con, "utf-8");
     return $con;
 }
 
@@ -198,9 +198,9 @@ function footer() {
     echo '                        <a href="#">Contacto</a>';
     echo '                    </li>';
     echo '                   <li class="list-inline-item">&sdot;</li>';
-    echo '                    <li class="list-inline-item">';
-    echo '                        <a href="#">Foro</a>';
-    echo '                    </li>';
+ //   echo '                    <li class="list-inline-item">';
+   // echo '                        <a href="#">Foro</a>';
+  //  echo '                    </li>';
     echo '                    <li class="list-inline-item">&sdot;</li>';
     echo '                    <li class="list-inline-item">';
     echo '                        <a href="#">Promociones</a>';
