@@ -250,6 +250,7 @@
                     print_r($aux);
                     $origenG = $aux['origen'];
                     $destinoG = $aux['destino'];
+                    
                     ?>
 
                 </div>
