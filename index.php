@@ -15,7 +15,9 @@
 
 
         <?php
+        session_start();
         include 'libraries.php';
+        
         ?>
 
     </head>
@@ -44,21 +46,21 @@
         <header class="masthead text-white text-center">
             <div class="container">
                 <div class="row">
-                    <form action="#" method="GET">
+                    <form action="FrontEnd/Viajes/reservaViajesForm.php" method="POST">
                         <div class="col-xl-12 mx-auto">
                             <h1 class="mb-5">Planea tu próximo viaje ¿A dónde vas a ir?</h1>
                         </div>
                         <div class="col-md-12 col-lg-8 col-xl-12 mx-auto">
                             <div class="form-row">
                                 <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                    <input name="inicio" id="inicio" type="text" class="form-control " placeholder="Desde...">
+                                    <input name="inicio" id="inicio" type="text" class="form-control" placeholder="Desde..." required>
                                 </div>
                                 <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                    <input name="fin" id="fin" type="text" class="form-control " placeholder="Hacia...">
+                                    <input name="fin" id="fin" type="text" class="form-control" placeholder="Hacia..." required>
                                 </div>
                                 <div class="col-12 col-md-3 mb-2 mb-md-0">
                                    
-                                    <input type="date" id="date" class="form-control" placeholder="Fecha" min="today" required>
+                                    <input name="fecha" type="date" id="date" class="form-control" placeholder="Fecha" min="today" required>
                                 </div>
                                 <div class="col-12 col-md-3 mb-md-0">
                                     <button type="submit" class="btn btn-block btn-primary">Buscar</button>
@@ -141,6 +143,7 @@
             <h2 class="mb-5">Promociones exclusivas</h2>
             <div class="row">
                 <?php
+            
                 for ($i = 0; $i < 5; $i++) {
                     echo '      <div class="col-lg-4">';
                     echo '        <div class="testimonial-item mx-auto mb-5 mb-lg-0">';
