@@ -79,11 +79,11 @@
                                 <br>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Origen</label>
-                                    <input type="text" name="inicio" class="form-control">
+                                    <input type="text" name="inicio" class="form-control" placeholder="Desde...">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputNumber">Destino</label>
-                                    <input type="text" name="fin" class="form-control">
+                                    <input type="text" name="fin" class="form-control" placeholder="Hacia...">
                                 </div>
                             </div>
 
@@ -139,10 +139,10 @@
                                     <input type="submit" name="send" class="btn btn-block btn-primary" value="Registrar viaje">                    
                                 </div>
                             </div>
-                           
+
                         </form>
 
-                         <?php
+                        <?php
                         newViaje();
                         ?>
 
@@ -161,11 +161,31 @@
             </div>
 
         </header>
+        <script>
+            var incio;
+            var fin;
+            var countryRestrict = {'country': 'es'};
 
+            function initMap() {
+
+                incio = new google.maps.places.Autocomplete((
+                        document.getElementById('inicio')), {
+                    types: ['(cities)'],
+                    componentRestrictions: countryRestrict
+                });
+
+                fin = new google.maps.places.Autocomplete((
+                        document.getElementById('fin')), {
+                    types: ['(cities)'],
+                    componentRestrictions: countryRestrict
+                });
+
+            }
+        </script>
 
     </body>
 
     <!-- Footer -->
-<?php footer() ?>
+    <?php footer() ?>
 
 </html>

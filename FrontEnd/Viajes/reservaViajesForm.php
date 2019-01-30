@@ -44,12 +44,7 @@
   <?php
         include '../../libraries.php';
         include_once '../../BackEnd/Usuario/registro.php';
-        ?>
-
-        <?php
-        include_once '../../BackEnd/Usuario/registro.php';
-        // registrationForm();
-        registroForm();
+       
         ?>
 
     </head>
@@ -207,7 +202,7 @@
                         echo '               <ul class="list-unstyled list-inline">';
                         echo '                   <li class="list-inline">Origen:</li>';
                         echo '                   <li class="list-inline">Destino:</li>';
-                        echo '                   <li class="list-inline">Distancia:</li>';
+                        echo '                   <li class="list-inline">Hora de salida:</li>';
                         echo '               </ul> ';
                         echo '           </div>';
                         echo '           <div class="col-md-2"></div>';

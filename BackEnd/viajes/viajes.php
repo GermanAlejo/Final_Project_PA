@@ -1,72 +1,103 @@
 <?php
 
-include '../../libraries.php'; //this include crashes all pages using functions from this file IDK WHY
+//include '../../libraries.php'; //this include crashes all pages using functions from this file IDK WHY
 
-function getProximosViajes() {
+function buscaViajes() {
 
     $error[] = "";
-    $res = "";
+    $res[] = "";
+
+    if (isset($_POST['inicio']) && isset($_POST['fin']) && isset($_POST['fecha'])) {
+
 //in this case the user does not need to be logged
-    //Save values in an array and sanitize them
-    $arraySanitize = array('inicio' => FILTER_SANITIZE_STRING,
-        'fin' => FILTER_SANITIZE_STRING);
+        //Save values in an array and sanitize them
+        $arraySanitize = array(
+            'inicio' => FILTER_SANITIZE_STRING,
+            'fin' => FILTER_SANITIZE_STRING,
+            'fecha' => FILTER_SANITIZE_STRING);
+
+
+        if (!isset($_POST['inicio']) || $_POST['inicio'] == "") {
+            $error[] = "Origin can't be empty";
+        }
+        if (!isset($_POST['fin']) || $_POST['fin'] == "") {
+            $error[] = "Destination can't be empty";
+        }
+        if (!isset($_POST['fecha']) || $_POST['fecha'] == "") {
+            $error[] = "Date can't be emtpy";
+        }
+        if (empty($error)) {
+
 
 //filter the values
-    $formInput = filter_input_array(INPUT_POST, $arraySanitize);
-    $ini = $formInput['inicio'];
-    $fin = $formInput['fin'];
+            $formInput = filter_input_array(INPUT_POST, $arraySanitize);
+            $ini = $formInput['inicio'];
+            $fin = $formInput['fin'];
+            $date = $formInput['fecha'];
 
-    $fech = $_POST['fecha'];
-
+            //validate date
+            if (validateDateValues($date)) {
 //first conenct to DB
-    $con = dbConnection();
+                $con = dbConnection();
 
+//                //first check if theres any trip at all for that date
+//                $sqlN = "SELECT COUNT(*) FROM viaje WHERE viaje.origen='" . $ini . "' "
+//                        . " AND viaje.destino='" . $fin . "' AND viaje.fecha='" . $date . "'";
+//
+//                $queryN = mysqli_query($con, $sqlN);
+                //if theres at least one row we have one trip to show
+                //get trip data from DB table
+                $sql = "SELECT * FROM viaje WHERE viaje.origen='" . $ini . "' "
+                        . " AND viaje.destino='" . $fin . "' AND viaje.fecha='" . $date . "'";
 
-    //first get the trip data about the DB
-    $sql = "SELECT * FROM viaje WHERE viaje.origen='" . $ini . "' "
-            . " AND viaje.destino='" . $fin . "' AND viaje.fecha='" . $fech . "'";
+                //echo $sql;
+                $query = mysqli_query($con, $sql);
 
-    //echo $sql;
-    $query = mysqli_query($con, $sql);
-
-    if (!$query) {
-        $error = "Error in sql";
-        mysqli_close($con);
-    } else {
-
+                if (!$query) {
+                    $error = "Error in sql";
+                    mysqli_close($con);
+                } else {
+                    //check number of rows resulting the search
+                    if (mysqli_num_rows($query) >= 1) {
 //this loop should go to each row of the trips table and store it in an array
-        while ($row = mysqli_fetch_assoc($query)) {
+                        while ($row = mysqli_fetch_assoc($query)) {
 
-            //we need to get the driver_id to get the name
-            $driver_id = $row['conductor_id'];
-            $newSql = "SELECT nombre FROM usuario WHERE usuario.id='" . $driver_id . "'";
-            $queryName = mysqli_query($con, $newSql);
-            $rowDriver = mysqli_fetch_assoc($queryName);
-            $driverName = $rowDriver['nombre'];
+                            //we need to get the driver_id to get the name
+                            $driver_id = $row['conductor_id'];
+                            $newSql = "SELECT nombre FROM usuario WHERE usuario.id='" . $driver_id . "'";
+                            $queryName = mysqli_query($con, $newSql);
+                            if (!$queryName) {
+                                $error[] = "Error in sql1";
+                                mysqli_close($con);
+                            } else {
+                                $rowDriver = mysqli_fetch_assoc($queryName);
+                                $driverName = $rowDriver['nombre'];
 
-            $res[] = array(
-                'name' => $driverName,
-                'date' => $row['fecha'],
-                'from' => $row['origen'],
-                'to' => $row['destino'],
-                'slots' => $row['capacidad'],
-                'desc' => $row['descripcion'],
-                'price' => $row['precio'],
-                'depTime' => $row['hora_salida']);
-            //echo "loop";
-        }
-
-
+                                $res[] = array(
+                                    'name' => $driverName,
+                                    'date' => $row['fecha'],
+                                    'from' => $row['origen'],
+                                    'to' => $row['destino'],
+                                    'slots' => $row['capacidad'],
+                                    'desc' => $row['descripcion'],
+                                    'price' => $row['precio'],
+                                    'depTime' => $row['hora_salida']);
+                                //echo "loop";
+                            }
+                        }
+                    }
 //close DB conection
-        mysqli_close($con);
-
-//the array with the tables rows is returnet to the frontend
-        print_r($res);
-        return $res;
+                    mysqli_close($con);
+                }
+            } else {
+                $error[] = "Date not valid";
+            }
+        }
     }
-
-
+//the array with the tables rows is returnet to the frontend
+    print_r($res);
     print_r($error);
+    return $res;
 }
 
 //this function receives the id of a trip and returns the trip from the trip table
@@ -171,7 +202,7 @@ function newViaje() {
                     $plate = $formInput['plate'];
                     $date = $formInput['fecha'];
                     $time = $formInput['hora_salida'];
-                    
+
                     /*
                      * DateTIme format validation doesn't work for now check function in libraries
                      * not sure if this is necesary given that is not possible to change dateTime format in the form
@@ -182,11 +213,9 @@ function newViaje() {
                     //$dateTime = $date . " " . $time;
                     //echo "DATETIMEANTES" . $dateTime;
                     //$dateTime = validateDate($date, $format='Y-m-d H:i');
-                    
                     //echo "DATETIMEDESPUES" . $dateTime;
                     //dateTime output after validating
                     //echo "DATETIME:" . $dateTime;
-
                     //now validate dateTime values
                     //$aux = explode(" ", $dateTime);
                     //$date2 = $aux[0]; //get date
