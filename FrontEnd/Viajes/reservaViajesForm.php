@@ -43,13 +43,9 @@
 
   <?php
         include '../../libraries.php';
-        include_once '../../BackEnd/Usuario/registro.php';
-        ?>
-
-        <?php
-        include_once '../../BackEnd/Usuario/registro.php';
-        // registrationForm();
-        registroForm();
+        session_start();
+        
+        
         ?>
 
     </head>
