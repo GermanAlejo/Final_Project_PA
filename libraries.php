@@ -97,6 +97,37 @@ function unSetSession() {
     session_destroy();
 }
 
+//NOT USED FOR NOW funtion to validate Date to use specific format: https://stackoverflow.com/questions/14504913/verify-valid-date-using-phps-datetime-class?answertab=active#tab-top
+function validateDate($date, $format = 'Y-m-d H:i') {
+    $d = DateTime::createFromFormat($format, $date);
+    return $d && $d->format($format) == $date;
+}
+
+//function to validate dateTime values
+function validateDateValues($date) {
+
+    $res = false;
+    //old code not working for some cases
+//    $currentDateTime = getdate(); //get current os date
+//    $aux = explode("-", $date); //split date fields into three 
+    //echo "AUX:";
+    //print_r($aux);
+    //print_r($currentDateTime);
+//    if ($currentDateTime['year'] <= $aux[0] && $currentDateTime['mon'] <= $aux[1] && $currentDateTime['mday'] <= $aux[2]) {
+//        $res = true;
+//    }
+    //more simple way to compare
+    //take todays date compare to input date
+    $today = date("Y-m-d");
+
+    if (strtotime($date) > strtotime($today)) {
+
+        $res = true;
+    }
+
+    return $res;
+}
+
 function footer() {
 
     echo '<footer class="footer bg-light">';

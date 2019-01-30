@@ -21,7 +21,6 @@
         include '../../libraries.php';
         include_once '../../BackEnd/Usuario/registro.php';
        
-        // registrationForm();
         registroForm();
         ?>
     </head>

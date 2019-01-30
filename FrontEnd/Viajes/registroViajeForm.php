@@ -16,7 +16,6 @@
 
         <?php
         session_start();
-        include '../../libraries.php';
         include '../../BackEnd/viajes/viajes.php';
         include "../../BackEnd/Usuario/ajustesUsuario.php";
         ?>
@@ -131,7 +130,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="inputName" >Descripción</label>
-                                    <textarea class="form-control" cols=""rows="3" id="comment"></textarea>
+                                    <textarea name="descripcion" class="form-control" cols=""rows="3" id="comment"></textarea>
                                 </div>     
                             </div>
 
@@ -140,9 +139,10 @@
                                     <input type="submit" name="send" class="btn btn-block btn-primary" value="Registrar viaje">                    
                                 </div>
                             </div>
+                           
                         </form>
 
-                        <?php
+                         <?php
                         newViaje();
                         ?>
 
