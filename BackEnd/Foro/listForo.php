@@ -2,7 +2,6 @@
 
 include 'foro.php';
 
-
 class listForo {
 
     public $arrayForos;
