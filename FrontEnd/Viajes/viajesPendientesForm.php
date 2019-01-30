@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -72,7 +72,11 @@
 
 
                     <?php
-                    for ($i = 0; $i < 2; $i++) {
+                    $arrayViajes = viajesPendientes();
+                    $totalSize = countPendientes();
+                    echo $totalSize;
+                    $j = 0;
+                    for ($i = 0; $i < $totalSize; $i++) {
 
                         echo ' <div class="col-lg-6 col-sm-12 mb-3">';
                         echo '     <div class="card"> ';

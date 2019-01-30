@@ -3,12 +3,13 @@
 //include '../../libraries.php'; //this include crashes all pages using functions from this file IDK WHY
 //this function returns an associative array with future trips
 buscaViajes();
+
 function buscaViajes() {
 
-    $res;//array();
-   
+    $res; //array();
+
     if (isset($_POST['inicio']) && isset($_POST['fin']) && isset($_POST['fecha'])) {
-       
+
 //in this case the user does not need to be logged
         //Save values in an array and sanitize them
         $arraySanitize = array(
@@ -28,13 +29,13 @@ function buscaViajes() {
         }
         if (empty($error)) {
 
-          
+
 //filter the values
             $formInput = filter_input_array(INPUT_POST, $arraySanitize);
             $ini = $formInput['inicio'];
             $fin = $formInput['fin'];
             $date = $formInput['fecha'];
-          
+
             //validate date
             if (validateDateValues($date)) {
 //first conenct to DB
@@ -92,7 +93,7 @@ function buscaViajes() {
                     }
 //close DB conection
                     mysqli_close($con);
-                  //  header("../../FrontEnd/Viajes/reservaViajesForm.php");
+                    //  header("../../FrontEnd/Viajes/reservaViajesForm.php");
                 }
             } else {
                 $error[] = "Date not valid";
@@ -100,7 +101,7 @@ function buscaViajes() {
         }
     }
 //the array with the tables rows is returnet to the frontend
-   // print_r($res);
+    // print_r($res);
     //print_r($error);
     return $res;
 }
@@ -343,6 +344,23 @@ function reservarViaje() {
             $resultadoArray = mysqli_fetch_assoc($resultado);
             return $resultadoArray;
         }
+    }
+
+    function countPendientes() {
+        $idUser = $_SESSION['user_id'];
+        //obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta 
+        $consulta = "SELECT COUNT(DISTINCT tra.id) FROM viaje tra, viajerosClientes vi WHERE tra.fecha>=SYSDATE() and vi.viaje_id=tra.id and vi.cliente_id=? or tra.conductor_id=?";
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//metemos las variables a la consulta
+        mysqli_stmt_bind_param($stmt, "ss", $idUser, $idUser);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+        return $resultado;
     }
 
 }
