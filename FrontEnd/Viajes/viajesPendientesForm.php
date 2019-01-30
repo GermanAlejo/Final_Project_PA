@@ -5,12 +5,17 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
 
+        <?php
+        include '../../libraries.php';
+        include "../../BackEnd/viajes/misViajes.php";
+        session_start();
+        ?>
 
         <link rel="icon" href="../../FrontEnd/img/icon.png">
         <title>Tripshare</title>
@@ -32,15 +37,7 @@
 
 
 
-        <?php
-        include '../../libraries.php';
-        include_once '../../BackEnd/Usuario/registro.php';
-        ?>
 
-        <?php
-        // registrationForm();
-        registroForm();
-        ?>
     </head>
 
     <body>
@@ -72,7 +69,11 @@
 
 
                     <?php
-                    for ($i = 0; $i < 2; $i++) {
+                    $arrayViajes = viajesPendientes();
+                    $totalSize = countPendientes();
+                    echo $totalSize;
+                    $j = 0;
+                    for ($i = 0; $i < $totalSize; $i++) {
 
                         echo ' <div class="col-lg-6 col-sm-12 mb-3">';
                         echo '     <div class="card"> ';
@@ -91,7 +92,8 @@
                         echo '               <ul class="list-unstyled list-inline">';
                         echo '                   <li class="list-inline">Origen:</li>';
                         echo '                   <li class="list-inline">Destino:</li>';
-                        echo '                   <li class="list-inline">Distancia:</li>';
+                        echo '                   <li class="list-inline">fecha:</li>';
+                        echo '                   <li class="list-inline">hora:</li>';
                         echo '               </ul> ';
                         echo '           </div>';
                         echo '           <div class="col-md-2"></div>';
