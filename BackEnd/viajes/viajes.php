@@ -108,28 +108,28 @@ function buscaViajes() {
 function getViaje($idViaje) {
 
     $error[] = "";
-
+    $res;
     //user does not need to be logged
 //first conenct to DB
     $con = dbConnection();
 
 
     //first get the trip data about the DB
-    $sql = "SELECT viaje.origen, viaje.destino FROM viaje WHERE viaje_id='" . $idViaje . "'";
+    $sql = "SELECT viaje.origen, viaje.destino FROM viaje WHERE id='" . $idViaje . "'";
 
     //echo $sql;
     $query = mysqli_query($con, $sql);
 
     if (!$query) {
         $error = "Error in sql";
-        $res = "Trip not found";
+        //$res = "Trip not found";
         mysqli_close($con);
     } else if (mysqli_num_rows($query) === 1) {//check if the result is only one(row)
         $res = mysqli_fetch_array($query);
         //save trip id for later use when selecting a trip
-        $_SESSION['trip_id'] = $res['id'];
+        //$_SESSION['trip_id'] = $res['id'];
         //save avalaible slots so its easier to check later when reserving a trip
-        $_SESSION['slots'] = $res['capacidad'];
+        //$_SESSION['slots'] = $res['capacidad'];
 //close DB conection
         mysqli_close($con);
     }

@@ -198,7 +198,7 @@
 
                             //get first element of array aka first trip
                             $viaje = $viajes[$i];
-                            print_r($viaje);
+                            //print_r($viaje);
                             //save values form array in variables
                             $driverName = $viaje['name'];
                             $origen = $viaje['from'];
@@ -246,8 +246,10 @@
                         return $trip_id;
                     }
                     
-                    $origenG = $trip_id['origen'];
-                    $destinoG = $trip_id['destino'];
+                    $aux = getViaje($trip_id);
+                    print_r($aux);
+                    $origenG = $aux['origen'];
+                    $destinoG = $aux['destino'];
                     ?>
 
                 </div>

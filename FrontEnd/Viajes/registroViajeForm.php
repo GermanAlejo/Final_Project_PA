@@ -93,7 +93,7 @@
                                 </div>
                                 <br>
                                 <div class="form-group col-md-2">
-                                    <label for="inputLastName">Hora</label>
+                                    <label for="">Hora</label>
                                     <input  class="form-control" type="time" id="appt" name="hora_salida"  value="00:00"required>                                    
                                 </div>
                                 <br>
@@ -138,7 +138,9 @@
                                     <input type="submit" name="send" class="btn btn-block btn-primary" value="Registrar viaje">                    
                                 </div>
                             </div>
-
+                            <script async defer
+                                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
+                            </script>
                         </form>
 
                         <?php
