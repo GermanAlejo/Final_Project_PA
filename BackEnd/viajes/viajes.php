@@ -318,26 +318,4 @@ function reservarViaje() {
     } else {
         echo "Please log in to reserve a trip";
     }
-
-    function viajesPendientes() {
-        if (isset($_SESSION['user_id'])) {
-            $idUser = $_SESSION['user_id'];
-            //obtenemos la conexion con la base de datos
-            $con = dbConnection();
-//creamos la consulta
-            $consulta = "SELECT tra.capacidad, tra.descripcion, tra.destino, tra.fecha, tra.hora_salida, tra.id, tra.origen, tra.precio, tra.seguro_id, tra.vehiculo_id FROM viaje tra, viajerosclientes vi WHERE tra.fecha>=SYSDATE() and vi.viaje_id=tra.id and vi.cliente_id=? or tra.conductor_id=?";
-            $stmt = mysqli_stmt_init($con);
-            mysqli_stmt_prepare($stmt, $consulta);
-//metemos las variables a la consulta
-            mysqli_stmt_bind_param($stmt, "ss", $idUser, $idUser);
-//ejecutamos la consulta
-            mysqli_stmt_execute($stmt);
-//guardamos el resultado de la consulta
-            $resultado = mysqli_stmt_get_result($stmt);
-//pasamos el resultado de la consulta a un array
-            $resultadoArray = mysqli_fetch_assoc($resultado);
-            return $resultadoArray;
-        }
-    }
-
 }
