@@ -103,13 +103,6 @@
 <?php footer() ?>
 
 
-<?php
-//start session
-//    session_start();
-include_once('../../BackEnd/Usuario/login.php');
-
-//   loginForm();
-?>
 
 </html>
 

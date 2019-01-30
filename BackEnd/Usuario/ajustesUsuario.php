@@ -87,7 +87,8 @@ function addVehicle() {
 function getUserVehicles() {
 
     $error[] = "";
-
+    $res = "";
+       
     //check if the user is logged
     if (isset($_SESSION['user_id'])) {
 
@@ -115,7 +116,7 @@ function getUserVehicles() {
                     'marca' => $row['marca'],
                     'modelo' => $row['modelo']);
             }
-            print_r($res);
+           // print_r($res);
             //close DB conection
             mysqli_close($con);
 

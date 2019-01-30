@@ -1,6 +1,6 @@
 <?php
 
-include '../../libraries.php';
+//include '../../libraries.php';//this include crashes all pages using functions from this file IDK WHY
 
 //this need to be changed
 getProximosViajes();
@@ -8,29 +8,23 @@ getProximosViajes();
 function getProximosViajes() {
 
     $error[] = "";
-
+    $res = "";
 //in this case the user does not need to be logged
     //Save values in an array and sanitize them
     $arraySanitize = array('inicio' => FILTER_SANITIZE_STRING,
         'fin' => FILTER_SANITIZE_STRING);
-
+    
 //filter the values
     $formInput = filter_input_array(INPUT_POST, $arraySanitize);
     $ini = $formInput['inicio'];
     $fin = $formInput['fin'];
 
-   // $fech = $_POST['fecha'];
+    $fech = $_POST['fecha'];
 
 //first conenct to DB
     $con = dbConnection();
 
-    //esto es una crutada para separar el resultado de busqueda de google
-    $ini = explode(",", $ini);
-    $ini = $ini[0];
-
-    $fin = explode(",", $fin);
-    $fin = $fin[0];
-
+   
     //first get the trip data about the DB
     $sql = "SELECT * FROM viaje WHERE viaje.origen='" . $ini . "' "
             . " AND viaje.destino='" . $fin . "' AND viaje.fecha='" . $fech . "'";
@@ -123,7 +117,7 @@ function newViaje() {
         if (isset($_SESSION['user_id'])) {
             if (isset($_POST['origen']) && isset($_POST['destino']) && isset($_POST['capacidad']) && isset($_POST['precio']) && isset($_POST['fecha']) && isset($_POST['hora_salida'])) {
                 //first we sanitize all inputs 
-                //     if (empty($error)) {
+           
 
                 $arraySanitize = array(
                     'origen' => FILTER_SANITIZE_STRING,
@@ -132,8 +126,8 @@ function newViaje() {
                     'descripcion' => FILTER_SANITIZE_STRING,
                     'precio' => FILTER_SANITIZE_NUMBER_INT,
                     'fecha' => FILTER_SANITIZE_STRING,
-                    'hora_salida' => FILTER_SANITIZE_NUMBER_INT);
-                //       }
+                    'hora_salida' => FILTER_SANITIZE_NUMBER_INT);//change date and hour to use specific validating functions
+             
                 //form validation
                 $error = [];
                 // then check requiered fields for errors
@@ -174,7 +168,7 @@ function newViaje() {
 
                 //get driver id from session values as the user creating the trip is the driver
                 $driver_id = $_SESSION['user_id'];
-
+                echo $date . "--" . $time;
                 //get the vehicle id
                 $car_id = "";
 
@@ -192,7 +186,7 @@ function newViaje() {
 
                 //echo $sql;
                 //insert into DB
-                $query1 = mysqli_query($con, $sql);
+                //$query1 = mysqli_query($con, $sql);
 
                 if (!$query1) {
                     echo "error sql";
@@ -201,7 +195,7 @@ function newViaje() {
                 } else {
                     //echo "true";
 
-                    print_r($error);
+                    //print_r($error);
 
                     mysqli_close($con);
                     //redirect user to trips page
@@ -212,6 +206,7 @@ function newViaje() {
             echo "You must be logged to plan a new trip<br/>";
         }
     }
+    print_r($error);
 }
 
 //this function reserves a trip for a user if avalaible

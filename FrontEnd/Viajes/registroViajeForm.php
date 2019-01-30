@@ -17,7 +17,8 @@
         <?php
         session_start();
         include '../../libraries.php';
-        include_once '../../BackEnd/Usuario/registro.php';
+        include '../../BackEnd/viajes/viajes.php';
+        include "../../BackEnd/Usuario/ajustesUsuario.php";
         ?>
 
 
@@ -44,20 +45,18 @@
         </div>
 
         <?php
-        include "../../BackEnd/Usuario/ajustesUsuario.php";
         $vehicles = getUserVehicles();
-       // print_r($vehicles);
 
+        // print_r($vehicles);
         //get user vehicles and retreive it to show data
         //this function will get all plate number from users vehicles and 
         function showVehicles($vehicles) {
             $s = '<option value="';
             for ($i = 0; $i < sizeof($vehicles); $i++) {
                 $vehicle = $vehicles[$i];
-                $s .= $vehicle['matricula']  . '">' . $vehicle['matricula'] . '</option>';
+                $s .= $vehicle['matricula'] . '">' . $vehicle['matricula'] . '</option>';
             }
             echo $s;
-            
         }
         ?>
 
@@ -71,7 +70,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="inputEmail4">Vehíchulo</label>
 
-                                    <select class="form-control">
+                                    <select name="plate" class="form-control">
                                         <?php
                                         showVehicles($vehicles);
                                         ?>
@@ -97,16 +96,20 @@
                                 <br>
                                 <div class="form-group col-md-2">
                                     <label for="inputLastName">Hora</label>
-                                    <input  class="form-control" type="time" id="appt" name="appt" min="9:00" max="18:00"  value="00:00"required>                                    
+                                    <input  class="form-control" type="time" id="appt" name="hora_salida"  value="00:00"required>                                    
                                 </div>
                                 <br>
                                 <div class="form-group col-md-3">
                                     <label for="inputLastName">Precio</label>
-                                    <input type="number" name="precio" class="form-control">
+                                    <input type="number" min="0" name="precio" class="form-control">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputLastName">Nº Ocupantes</label>
+                                    <input type="number" min="1" max="7" name="capacidad" class="form-control">
                                 </div>
                                 <div class="form-group col-md-1">
                                     <label for="inputLastName">Seguro</label>
-                                    <input type="checkbox" name="precio" class="form-control" id="check" onclick="paypal()">
+                                    <input type="checkbox" name="seguro" class="form-control" id="check" onclick="paypal()">
                                     <script>
                                         function paypal() {
 
@@ -139,6 +142,9 @@
                             </div>
                         </form>
 
+                        <?php
+                        newViaje();
+                        ?>
 
                         <div class="form-group col-md-3" id="pay" style="display:none" class="collapse in">
                             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
@@ -160,6 +166,6 @@
     </body>
 
     <!-- Footer -->
-    <?php footer() ?>
+<?php footer() ?>
 
 </html>

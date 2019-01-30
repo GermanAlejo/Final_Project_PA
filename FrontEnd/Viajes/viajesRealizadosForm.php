@@ -13,6 +13,7 @@
         <?php
         include '../../libraries.php';
         include_once '../../BackEnd/Usuario/registro.php';
+        include "../../BackEnd/Viajes/misViajes.php";
         session_start();
         ?>
 
@@ -35,12 +36,6 @@
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
        
-
-
-        <?php
-        include '../../libraries.php';
-        include_once '../../BackEnd/Usuario/registro.php';
-        ?>
 
     </head>
 
@@ -71,7 +66,7 @@
                 <h2 class="mb-5">Viajes realizados</h2>
                 <div class="row">
                     <?php
-                    include "../../BackEnd/Viajes/misViajes.php";
+                    
                     
                     echo "userID: " . $_SESSION['user_id'];
                     showTarjetas();
