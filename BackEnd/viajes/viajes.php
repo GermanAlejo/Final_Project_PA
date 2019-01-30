@@ -78,6 +78,7 @@ function buscaViajes() {
 
                                     $res[] = array(
                                         'name' => $driverName,
+                                        'id' => $row['id'],
                                         'date' => $row['fecha'],
                                         'from' => $row['origen'],
                                         'to' => $row['destino'],

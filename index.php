@@ -17,7 +17,6 @@
         <?php
         session_start();
         include 'libraries.php';
-        
         ?>
 
     </head>
@@ -59,7 +58,7 @@
                                     <input name="fin" id="fin" type="text" class="form-control" placeholder="Hacia..." required>
                                 </div>
                                 <div class="col-12 col-md-3 mb-2 mb-md-0">
-                                   
+
                                     <input name="fecha" type="date" id="date" class="form-control" placeholder="Fecha" min="today" required>
                                 </div>
                                 <div class="col-12 col-md-3 mb-md-0">
@@ -143,21 +142,66 @@
             <h2 class="mb-5">Promociones exclusivas</h2>
             <div class="row">
                 <?php
-            
-                for ($i = 0; $i < 5; $i++) {
-                    echo '      <div class="col-lg-4">';
-                    echo '        <div class="testimonial-item mx-auto mb-5 mb-lg-0">';
-                    echo '          <img class="img-fluid rounded-circle mb-3" src="FrontEnd/img/cartel.jpg" alt="">';
-                    echo '          <h5>Margaret E.</h5>';
-                    echo '          <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>';
-                    echo '        </div>';
-                    echo '      </div>';
+                include ('BackEnd/Promocion/listPromociones.php');
+                
+                
+                
+                showPromo();
+                
+                function showPromo() {
+                    $promos = new listPromociones();
+                    
+                    $promos->consultarListaPromociones(1, 5);
+                    $tam = sizeof($promos);
+
+                    for ($i = 0; $i < $tam; $i++) {
+                        $promo = $promos[$i];
+                        $s = '<section class="testimonials text-center bg-light">';
+                        $s .=   '<div class="container">';
+                        $s .=       '<h2 class="mb-5">Promociones exclusivas</h2>';
+                        $s .=       ' <div class="row">';
+                        $s .=           ' <div class="col-lg-4">';
+                        $s .=               ' <div class="testimonial-item mx-auto mb-5 mb-lg-0">';
+                        $s .=                   ' <img class="" src="FrontEnd/img/sorteo_1.jpg" alt="">';
+                        $s .=                   ' <h5>' . $promo['titulo'] . '</h5>';
+                        $s .=                   '<p class="font-weight-light mb-0">' . $promo['descripcion'] . '</p>';
+                        $s .=               ' </div>'
+                                        . ' </div>'
+                                    . '</div>'
+                                . '</div>'
+                            . '</section>';
+                        echo $s;
+                    }
                 }
                 ?>
             </div>
         </div>
     </section>
+    <section class="testimonials text-center bg-light">
+        <div class="container">
+            <h2 class="mb-5">Promociones exclusivas</h2>
+            <div class="row">
 
+                <div class="col-lg-4">
+                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                        <img class="" src="FrontEnd/img/sorteo_1.jpg" alt="">
+                        <h5>Sorteo “Miamor perdido”</h5>
+                        <p class="font-weight-light mb-0">¡Participa en nuestro sorteo en Facebook y Twitter y gana una entrad...
+                            Leer todo el artículo</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                        <img class="img-fluid rounded-circle mb-3" src="FrontEnd/img/sorteo_2.jpg" alt="">
+                        <h5>Sorteo “Magia Majara”</h5>
+                        <p class="font-weight-light mb-0">¡Participa en nuestro sorteo en Facebook y Twitter y gana una entrad...
+                            Leer todo el artículo</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
     <!-- Footer -->
     <?php footer() ?>
 
