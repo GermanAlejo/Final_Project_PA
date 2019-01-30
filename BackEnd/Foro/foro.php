@@ -103,6 +103,10 @@ class foro {
         return $resultado;
     }
 
+    function listarComentarios() {
+        $this->listComentarios = new listComentarios($this->idForo);
+    }
+
 }
 
 /*

@@ -60,8 +60,17 @@ class listForo {
     }
 
     function countListaForos() {
+        //obtenemos la conexion con la base de datos
+        $con = dbConnection();
+//creamos la consulta
         $consulta = 'select count(*) from foro';
-        return $size;
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt, $consulta);
+//ejecutamos la consulta
+        mysqli_stmt_execute($stmt);
+//guardamos el resultado de la consulta
+        $resultado = mysqli_stmt_get_result($stmt);
+        return $resultado;
     }
 
     function getForos($num) {
