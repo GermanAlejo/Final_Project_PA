@@ -52,10 +52,10 @@ function newValoracion() {
                     $query2 = mysqli_query($con, $sql2);
                     
                     if(!$query2){
-                        echo 'error sql2';
+                        //echo 'error sql2';
                         mysqli_close($con);
                     }else{
-                        echo 'Valoracion realizada con exito';
+                        //echo 'Valoracion realizada con exito';
                         mysqli_close($con);
                         //page should take the user back to the list of done trips
                         //header('Location: ../../FrontEnd/Viajes/viajesRealizadosForm.php');

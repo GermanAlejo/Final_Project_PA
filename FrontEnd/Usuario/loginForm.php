@@ -19,7 +19,6 @@
         session_start();
         include '../../libraries.php';
         include '../../BackEnd/Usuario/login.php';
-        include_once '../../BackEnd/Usuario/registro.php';
         ?>
 
     </head>

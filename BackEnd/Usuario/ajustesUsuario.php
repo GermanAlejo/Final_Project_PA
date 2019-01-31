@@ -80,7 +80,7 @@ function addVehicle() {
     }
 
     //check all error for debugging porpouses
-    print_r($error);
+   // print_r($error);
 }
 
 //this function will get all vehicles from a user in the DB and return it to the backend
@@ -94,7 +94,7 @@ function getUserVehicles() {
 
         //get userID to known which cars to get from DB
         $user_id = $_SESSION['user_id'];
-        echo $user_id;
+       // echo $user_id;
         //first conenct to DB
         $con = dbConnection();
 
@@ -104,7 +104,7 @@ function getUserVehicles() {
         
         if (!$query) {
 
-            $error = "Error in sql";
+            //$error[] = "Error in sql";
             mysqli_close($con);
             
         } else {
@@ -128,7 +128,7 @@ function getUserVehicles() {
         $error[] = "The user must be logged-in";
     }
 
-    print_r($error);
+    //print_r($error);
 }
 
 //this function changes the name of the user in case is not taken already
@@ -168,6 +168,8 @@ function setName() {
             mysqli_close($con);
         }
     }
+    //debugging
+    //print_r($error);
 }
 
 function setMiddlename(){
@@ -207,6 +209,7 @@ function setMiddlename(){
             mysqli_close($con);
         }
     }
+    print_r($error);
     
 }
 
@@ -445,8 +448,4 @@ function actualizeUser() {
     }
 }
 
-function deleteUser(){
-    
-    
-    
-}
+

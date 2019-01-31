@@ -103,10 +103,10 @@ function registroForm() {
                 $_SESSION["user"] = $userName;
                 $_SESSION["user_id"] = $user_id;
 
-                print_r($error);
+                //print_r($error);
 
                 mysqli_close($con);
-                header("Location: ../../index.php");
+                //header("Location: ../../index.php");
             }
         } else {
             unSetSession();

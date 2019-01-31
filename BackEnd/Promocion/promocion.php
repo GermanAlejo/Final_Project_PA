@@ -167,3 +167,36 @@ class promocion {
     }
 
 }
+/*
+function getPromos() {
+
+    $error[] = "";
+    $res;
+    //user does not need to be logged
+//first conenct to DB
+    $con = dbConnection();
+
+
+    //first get the trip data about the DB
+    $sql = "SELECT titulo, descripcion, descuento FROM promocion ";
+
+    //echo $sql;
+    $query = mysqli_query($con, $sql);
+
+    if (!$query) {
+        $error = "Error in sql";
+      
+        mysqli_close($con);
+    } else if (mysqli_num_rows($query) === 1) {//check if the result is only one(row)
+        $res = mysqli_fetch_array($query);
+        
+        mysqli_close($con);
+    }
+
+    print_r($error);
+
+    //return trip
+    return $res;
+}*/
+
+

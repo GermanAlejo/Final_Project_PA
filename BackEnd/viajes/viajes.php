@@ -136,7 +136,7 @@ function getViaje($idViaje) {
         mysqli_close($con);
     }
 
-    print_r($error);
+   //print_r($error);
 
     //return trip
     return $res;
@@ -146,14 +146,14 @@ function getViaje($idViaje) {
 function newViaje() {
 
     $error[] = "";
-    echo "function called<br/>";
+   // echo "function called<br/>";
     if (isset($_POST['send'])) {
-        echo "from sent<br/>";
+        //echo "from sent<br/>";
         if (isset($_SESSION['user_id'])) {
-            echo "user logged<br/>";
+           // echo "user logged<br/>";
             if (isset($_POST['inicio']) && isset($_POST['fin']) && isset($_POST['capacidad']) && isset($_POST['precio']) && isset($_POST['fecha']) && isset($_POST['hora_salida']) && isset($_POST['plate'])) {
                 //first we sanitize all inputs 
-                echo "fields filled<br/>";
+               // echo "fields filled<br/>";
 
                 $arraySanitize = array(
                     'inicio' => FILTER_SANITIZE_STRING,
@@ -226,7 +226,7 @@ function newViaje() {
                     //$aux = explode(" ", $dateTime);
                     //$date2 = $aux[0]; //get date
                     //$time2 = $aux[0]; //get time
-                    echo "fecha" . $date;
+                   // echo "fecha" . $date;
                     if (validateDateValues($date)) {
 
                         //get driver id from session values as the user creating the trip is the driver
@@ -247,16 +247,16 @@ function newViaje() {
                         $query1 = mysqli_query($con, $sql);
 
                         if (!$query1) {
-                            echo "error sql";
+                            //echo "error sql";
                             $error[] = "Trip already registered";
                             mysqli_close($con);
                         } else {
-                            echo "sql done<br/>";
+                           // echo "sql done<br/>";
                             //print_r($error);
 
                             mysqli_close($con);
                             //redirect user to trips page
-                            header("Location: ../../FrontEnd/Viajes/viajesPendientesForm.php");
+                            //header("Location: ../../FrontEnd/Viajes/viajesPendientesForm.php");
                         }
                     } else {
                         $error[] = "date time values not valid";
@@ -267,7 +267,7 @@ function newViaje() {
             echo "You must be logged to plan a new trip<br/>";
         }
     }
-    print_r($error);
+   // print_r($error);
 }
 
 //this function reserves a trip for a user if avalaible

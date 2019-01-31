@@ -137,46 +137,41 @@
     </body>
 
     <!-- Testimonials -->
-    <section class="testimonials text-center bg-light">
+   <!-- <section class="testimonials text-center bg-light">
         <div class="container">
             <h2 class="mb-5">Promociones exclusivas</h2>
             <div class="row">
                 <?php
-                include ('BackEnd/Promocion/listPromociones.php');
-                
-                
-                
-                showPromo();
-                
+              //  showPromo();
+
                 function showPromo() {
-                    $promos = new listPromociones();
-                    
-                    $promos->consultarListaPromociones(1, 5);
+
+                    $promos = getPromos();
                     $tam = sizeof($promos);
 
                     for ($i = 0; $i < $tam; $i++) {
                         $promo = $promos[$i];
                         $s = '<section class="testimonials text-center bg-light">';
-                        $s .=   '<div class="container">';
-                        $s .=       '<h2 class="mb-5">Promociones exclusivas</h2>';
-                        $s .=       ' <div class="row">';
-                        $s .=           ' <div class="col-lg-4">';
-                        $s .=               ' <div class="testimonial-item mx-auto mb-5 mb-lg-0">';
-                        $s .=                   ' <img class="" src="FrontEnd/img/sorteo_1.jpg" alt="">';
-                        $s .=                   ' <h5>' . $promo['titulo'] . '</h5>';
-                        $s .=                   '<p class="font-weight-light mb-0">' . $promo['descripcion'] . '</p>';
-                        $s .=               ' </div>'
-                                        . ' </div>'
-                                    . '</div>'
+                        $s .= '<div class="container">';
+                        $s .= '<h2 class="mb-5">Promociones exclusivas</h2>';
+                        $s .= ' <div class="row">';
+                        $s .= ' <div class="col-lg-4">';
+                        $s .= ' <div class="testimonial-item mx-auto mb-5 mb-lg-0">';
+                        $s .= ' <img class="" src="FrontEnd/img/sorteo_1.jpg" alt="">';
+                        $s .= ' <h5>' . $promo['titulo'] . '</h5>';
+                        $s .= '<p class="font-weight-light mb-0">' . $promo['descripcion'] . '</p>';
+                        $s .= ' </div>'
+                                . ' </div>'
                                 . '</div>'
-                            . '</section>';
+                                . '</div>'
+                                . '</section>';
                         echo $s;
                     }
                 }
                 ?>
             </div>
         </div>
-    </section>
+    </section>-->
     <section class="testimonials text-center bg-light">
         <div class="container">
             <h2 class="mb-5">Promociones exclusivas</h2>
@@ -203,7 +198,7 @@
         </div>
     </section>
     <!-- Footer -->
-    <?php footer() ?>
+<?php footer() ?>
 
 
 

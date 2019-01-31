@@ -50,6 +50,7 @@
                         <a class="p-2 text-dark" href="../../index.php">Buscar viaje</a>
                         <a class="p-2 text-dark" href="#">Organizar viaje</a>
                         <?php
+                        include '../../libraries.php';
                         profileButtom();
                         ?>
                     </nav>
@@ -60,7 +61,7 @@
         </div>
 
         <?php
-        include '../../libraries.php';
+       // include '../../libraries.php';
         //get values from previous hidden form
         $driver = $_POST['name'];
         $origen = $_POST['origen'];

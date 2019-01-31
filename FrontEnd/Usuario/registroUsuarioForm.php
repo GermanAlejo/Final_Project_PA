@@ -53,28 +53,28 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Email</label>
-                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                    <input type="email" name="email" class="form-control" id="inputEmail4" placeholder="Email" required>
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Contraseña</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="···········">
+                                    <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="···········" required>
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="inputNumber">Teléfono</label>
-                                    <input type="text" name="phoneNumber" class="form-control" placeholder="XXXYYYZZZ">
+                                    <input type="text" name="phoneNumber" class="form-control" placeholder="XXXYYYZZZ" required>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="inputName" >Nombre</label>
-                                    <input type="text" name="firstName" class="form-control" placeholder="Nombre">
+                                    <input type="text" name="firstName" class="form-control" placeholder="Nombre" required>
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">
                                     <label for="inputLastName">Primer apellido</label>
-                                    <input type="text" name="middlename" class="form-control" placeholder="Primer apellido">
+                                    <input type="text" name="middlename" class="form-control" placeholder="Primer apellido" required>
                                 </div>
                                 <br>
                                 <div class="form-group col-md-4">

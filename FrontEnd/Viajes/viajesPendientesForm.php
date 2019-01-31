@@ -34,12 +34,7 @@
 
         <?php
         include '../../libraries.php';
-        include_once '../../BackEnd/Usuario/registro.php';
-        ?>
-
-        <?php
-        // registrationForm();
-        registroForm();
+       
         ?>
     </head>
 
@@ -74,7 +69,7 @@
                     <?php
                     $arrayViajes = viajesPendientes();
                     $totalSize = countPendientes();
-                    echo $totalSize;
+                  //  echo $totalSize;
                     $j = 0;
                     for ($i = 0; $i < $totalSize; $i++) {
 

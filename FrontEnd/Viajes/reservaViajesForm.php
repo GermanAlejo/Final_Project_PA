@@ -32,14 +32,11 @@
         <!-- Bootstrap core JavaScript -->
         <script src="../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script src="../../vendor/jquery/jquery.min.js"></script>
-        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- API Google -->
+        <!-- API Google 
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
-        </script>
+        </script>-->
 
         <?php
         include '../../libraries.php';
@@ -94,7 +91,7 @@
                         function initMap() {
                             var directionsService = new google.maps.DirectionsService;
                             var directionsDisplay = new google.maps.DirectionsRenderer;
-                            var map = new google.maps.Map(document.getElementById('map'), {
+                            map = new google.maps.Map(document.getElementById('map'), {
                                 zoom: 6,
                                 center: {lat: 40, lng: -3},
                                 mapTypeControl: false
@@ -102,13 +99,13 @@
 
 
                             incio = new google.maps.places.Autocomplete((
-                                    document.getElementById('inicio2')), {
+                                    document.getElementById('inicio')), {
                                 types: ['(cities)'],
                                 componentRestrictions: countryRestrict
                             });
 
                             fin = new google.maps.places.Autocomplete((
-                                    document.getElementById('fin2')), {
+                                    document.getElementById('fin')), {
                                 types: ['(cities)'],
                                 componentRestrictions: countryRestrict
                             });
@@ -116,9 +113,10 @@
                             places = new google.maps.places.PlacesService(map);
 
                             directionsDisplay.setMap(map);
-                            document.getElementById('submit').addEventListener('click', function () {
-                                calculateAndDisplayRoute(directionsService, directionsDisplay);
-                            });
+                            if (document.getElementById('submit'))
+                                document.getElementById('submit').addEventListener('click', function () {
+                                    calculateAndDisplayRoute(directionsService, directionsDisplay);
+                                });
 
                         }
 
@@ -135,8 +133,8 @@
                             }
 
                             directionsService.route({
-                                origin: document.getElementById('inicio2').value,
-                                destination: document.getElementById('fin2').value,
+                                origin: document.getElementById('inicio').value,
+                                destination: document.getElementById('fin').value,
                                 waypoints: waypts,
                                 optimizeWaypoints: true,
                                 travelMode: 'DRIVING'
@@ -149,7 +147,8 @@
                                     // For each route, display summary information.
                                     for (var i = 0; i < route.legs.length; i++) {
                                         var routeSegment = i + 1;
-                                        summaryPanel.innerHTML += '<b>Route Segment: </b><br>';
+                                        summaryPanel.innerHTML += '<b>Route Segment: '
+                                        '</b><br>';
                                         summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
                                         summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
                                         summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
@@ -164,7 +163,9 @@
 
                     </script>
 
-
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
+                    </script>
                 </div>
             </div>
 
@@ -243,70 +244,63 @@
                         return $trip_id;
                     }
 
-                  
+                    $aux = getViaje($trip_id);
+                   // print_r($aux);
+                    $origenG = $aux['origen'];
+                    $destinoG = $aux['destino'];
+                    //echo $origenG;
+                    //echo $destinoG;
                     ?>
 
                 </div>
             </div>
-            <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMUO9y2pHnf2AujLJt5KAGA0sNXhQp9wE&callback=initMap&libraries=places">
-            </script>
         </section>
 
-
-
-
-        <!--NOT USED FOR NOW-->
-        <script>
-            function ciudades2() {
-<?php
-echo 'var inicio="' . $origenG . '"';
-echo 'var fin="' . $destino . '"';
-?>
-                document.getElementById("inicio2").value = inicio;
-                document.getElementById("fin2").value = fin;
-            }
-        </script>
-
-        <div id="right-panel">
+        <div id="right-panel" class="d-none">
             <div>
-                <?php
-                      $aux = getViaje($trip_id);
-                    //print_r($aux);
-                    $origenG = $aux['origen'];
-                    $destinoG = $aux['destino'];
-                    echo '<input type="hidden" id="origenG" value="' . $origenG . '">';
-                    echo'<input type="hidden" id="destinoG" value="' . $destinoG . '">';
-                ?>
-                <b>Start:</b>
-                <input type="text" name="inicio" value="" id="inicio2"/>
+                <!-- <b>Start:</b>-->
+                <input type="text" name="inicio" value="" id="inicio"/>
                 <br>
 
-                <b>End:</b>
-                <input type="text" name="fin" value="" id="fin2"/>
+                <!-- <b>End:</b>-->
+                <input type="text" name="fin" value="" id="fin"/>
 
-                <button id="submit" onclick="ciudades()" value="">Calcular ruta</button>
+                <button onclick="buscar()">Buscar</button>
 
             </div>
             <div id="directions-panel"></div>
         </div>
-         <script>
+
+        <!--NOT USED FOR NOW-->
+        <script>
             function ciudades() {
-
-                document.getElementById("inicio2").value = document.getElementById("inicioG").value ;
-                document.getElementById("fin2").value = document.getElementById("finG").value ;
+<?php
+if (strlen($origenG) == 0 || strlen($destinoG) == 0) {
+    echo 'var inicio="' . $_POST['inicio'] . '";';
+    echo 'var fin="' . $_POST['fin'] . '";';
+} else {
+    echo 'var inicio="' . $origenG . '";';
+    echo 'var fin="' . $destinoG . '";';
+}
+?>
+                document.getElementById("inicio").value = inicio;
+                document.getElementById("fin").value = fin;
             }
-        </script>
-        <?php
-        /*
-          $s = '<div id="right-panel">';
+            function buscar() {
+                var directionsService = new google.maps.DirectionsService;
+                var directionsDisplay = new google.maps.DirectionsRenderer;
+                places = new google.maps.places.PlacesService(map);
+                directionsDisplay.setMap(map);
 
-          $s.= ' <input type="text" name="inicio" id="origen" value="' . $origenG . '"/>';
-          $s .= ' <br>';
-          $s .= '<input type="text" name="fin" id="fin" value="' . $destinoG . '"/>';
-          $s .= '<input type="submit" id="submit" value="Calcular ruta">';
-          echo $s; */
-        ?>
+                calculateAndDisplayRoute(directionsService, directionsDisplay);
+            }
+            ;
+            window.onload = function () {
+                ciudades();
+                buscar();
+            };
+
+        </script>
 
     </body>
 
