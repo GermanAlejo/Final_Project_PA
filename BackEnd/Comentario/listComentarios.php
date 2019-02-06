@@ -1,6 +1,8 @@
 <?php
 
+namespace BackEnd\listComentario;
 include 'comentario.php';
+use BackEnd\Comentario;
 
 class listComentarios {
 

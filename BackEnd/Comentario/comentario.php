@@ -1,5 +1,7 @@
 <?php
 
+namespace BackEnd\Comentario;
+
 class comentari {
 
     public $idComentario;
